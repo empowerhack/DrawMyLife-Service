@@ -29,6 +29,8 @@ gem 'haml-rails'
 
 gem 'bootstrap', '~> 4.0.0.alpha3'
 
+gem 'simple_form'
+
 gem 'devise'
 
 # Use ActiveModel has_secure_password
