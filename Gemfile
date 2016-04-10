@@ -37,7 +37,7 @@ gem 'simple_form'
 gem 'devise'
 
 # Image management
-gem "paperclip", "~> 5.0.0.beta1"
+gem "paperclip", "~> 4.3"
 
 # Pagination
 gem 'kaminari', '~> 0.16.3'
