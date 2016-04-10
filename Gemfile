@@ -45,6 +45,8 @@ gem 'kaminari', '~> 0.16.3'
 # User Puma as the app server
 gem 'puma'
 
+gem 'rack-cors', '~> 0.3.1'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
