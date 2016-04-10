@@ -6,13 +6,10 @@
           .panel-heading
             %h2 Forgot your password?
           .panel-body
-            = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
-              = devise_error_messages!
-              .field
-                = f.label :email
-                %br/
-                = f.email_field :email, autofocus: true, class: 'form-control'
-              %br
-              .actions
-                = f.submit "Send me reset password instructions", class: 'btn btn-primary'
+            = simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
+              = f.error_notification
+              .form-inputs
+                = f.input :email, required: true, autofocus: true, placeholder: "Email", label: false
+              .form-actions
+                = f.submit "Send me reset password instructions", class: 'btn-lg btn-primary btn-block'
         = render "devise/shared/links"

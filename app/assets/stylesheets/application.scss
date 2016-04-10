@@ -15,11 +15,15 @@
 
 @import "bootstrap";
 
-/* ## LOG IN / REG CUSTOMISATIONS ## */
-
 html, body {
   height: 100%;
 }
+
+.alert {
+  margin-bottom: 0px;
+}
+
+/* ## LOG IN / REG CUSTOMISATIONS ## */
 
 .login-bg {
   padding-top: 4em;
