@@ -11,19 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160410100500) do
-
-  create_table "locations", force: :cascade do |t|
-    t.string   "country"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "organisations", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
+ActiveRecord::Schema.define(version: 20160410112028) do
 
   create_table "drawings", force: :cascade do |t|
     t.string   "name"
@@ -38,6 +26,18 @@ ActiveRecord::Schema.define(version: 20160410100500) do
   end
 
   add_index "drawings", ["user_id"], name: "index_drawings_on_user_id"
+
+  create_table "locations", force: :cascade do |t|
+    t.string   "country"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "organisations", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
