@@ -1,5 +1,5 @@
 class DrawingsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: [:new, :edit, :update, :destroy]
   before_action :set_drawing, only: [:show, :edit, :update, :destroy]
   before_action :owned_drawing, only: [:edit, :update, :destroy]
 
