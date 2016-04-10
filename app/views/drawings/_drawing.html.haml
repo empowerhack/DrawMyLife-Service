@@ -7,8 +7,10 @@
     .drawing-bottom
       .caption
         .caption-content
-          = drawing.name
-          = drawing.description
+          .drawing-name
+            = drawing.name
+          .drawing-description
+            = drawing.description
           .user-name
             Uploaded by:
             = drawing.user.email

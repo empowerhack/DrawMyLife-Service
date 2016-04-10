@@ -8,6 +8,7 @@ class DrawingsController < ApplicationController
     respond_to do |format|
       format.html
       format.js
+      format.json { render json: @drawings }
     end
   end
 
@@ -27,6 +28,10 @@ class DrawingsController < ApplicationController
   end
 
   def show
+    respond_to do |format|
+      format.html
+      format.json { render json: @drawing }
+    end
   end
 
   def edit
