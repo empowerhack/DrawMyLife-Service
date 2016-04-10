@@ -1,0 +1,6 @@
+= render 'form'
+
+.text-center.edit-links
+  = link_to "Cancel", drawing_path(@drawing)
+  |
+  = link_to "Delete Post", drawing_path(@drawing), method: :delete, data: { confirm: 'Are you sure?' }
