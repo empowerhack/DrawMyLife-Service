@@ -1,0 +1,17 @@
+.drawings-wrapper.col-md-4.col-xs-12
+  .drawing
+    .drawing-head
+    .image.center-block
+      = link_to (image_tag drawing.image.url(:medium), class:'img-responsive'),
+                 drawing_path(drawing)
+    .drawing-bottom
+      .caption
+        .caption-content
+          = drawing.name
+          = drawing.description
+          .user-name
+            Uploaded by:
+            = drawing.user.email
+          .time-ago
+            = time_ago_in_words drawing.created_at
+

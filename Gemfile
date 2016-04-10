@@ -27,11 +27,21 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'haml'
 gem 'haml-rails'
 
+# Pretty things
 gem 'bootstrap-sass', '~> 3.3.6'
 
+# Pretty forms
 gem 'simple_form'
 
+# User auth
 gem 'devise'
+
+# Image management
+gem "paperclip", "~> 5.0.0.beta1"
+
+# Pagination
+gem 'kaminari', '~> 0.16.3'
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

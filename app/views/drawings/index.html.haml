@@ -1,4 +1,5 @@
-%h1 Draw My Life
-%p Add some drawings here!
+#drawings
+  = render 'drawings'
 
-= link_to "Logout", destroy_user_session_path, method: :delete
+#paginator.text-center
+  = link_to_next_page @drawings, 'LOAD MORE', remote: true, id: 'load_more'

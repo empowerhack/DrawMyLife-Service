@@ -1,0 +1,30 @@
+%nav.navbar.navbar-default
+  .navbar-container
+    .navbar-header
+      .navbar-brand= link_to "Draw My Life", root_path
+    #bs-example-navbar-collapse-1.collapse.navbar-collapse
+      %ul.nav.navbar-nav.navbar-right
+        - if user_signed_in?
+          %li
+            = link_to "Add New drawing", new_drawing_path
+          %li.dropdown
+            %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+              = current_user.email
+              %span.caret
+            %ul.dropdown-menu
+              %li
+                = link_to "My Profile", edit_user_registration_path(current_user)
+              %li
+                = link_to "Logout", destroy_user_session_path, method: :delete
+        - else
+          %li.dropdown
+            %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+              Sign in
+              %span.caret
+            %ul.dropdown-menu
+              %li
+                = link_to "Login", new_user_session_path
+              %li
+                = link_to "Register", new_user_registration_path
+    / /.navbar-collapse
+  / /.container-fluid
