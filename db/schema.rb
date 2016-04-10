@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20160410112028) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "drawings", force: :cascade do |t|
     t.string   "name"
     t.string   "description"
@@ -25,7 +28,7 @@ ActiveRecord::Schema.define(version: 20160410112028) do
     t.integer  "user_id"
   end
 
-  add_index "drawings", ["user_id"], name: "index_drawings_on_user_id"
+  add_index "drawings", ["user_id"], name: "index_drawings_on_user_id", using: :btree
 
   create_table "locations", force: :cascade do |t|
     t.string   "country"
@@ -56,7 +59,7 @@ ActiveRecord::Schema.define(version: 20160410112028) do
     t.integer  "location_id"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end

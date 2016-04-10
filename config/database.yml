@@ -1,7 +1,7 @@
-#   gem install ps
+#   gem install pg
 #
 #   Ensure the Postgres gem is defined in your Gemfile
-#   gem 'ps'
+#   gem 'pg'
 #
 default: &default
   adapter: postgresql

@@ -74,3 +74,4 @@ group :production do
   gem 'aws-sdk', '< 2.0'
 end
 
+ruby "2.2.0"
