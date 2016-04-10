@@ -10,10 +10,20 @@
           .container-fluid
             .form-group.text-center
               %h4 Upload an image (this is required):
-              = f.input :image, label: false, input_html: { onChange: 'loadFile(event)' }
+              = f.input :image, label: false, required: true, input_html: { onChange: 'loadFile(event)' }
             .form-group.text-center
               = f.input :name, label: false, placeholder: 'The image name, e.g. Playground'
             .form-group.text-center
               = f.input :description, label: false, placeholder: 'The description, e.g. Children play'
+            .form-group.text-center
+              = f.input :age, type: 'number', label: false, required: true, placeholder: 'Age of child'
+            .form-group.text-center
+              = f.input :gender, collection: ["Female", "Male"], label: false, required: true, prompt: "Gender of child"
+            .form-group.text-center
+              = f.input :story, label: false, required: false, placeholder: 'The story of the child (optional)'
+            .form-group.text-center
+              = f.input :subject_matter, collection: ["Home / Country of origin", "Transit", "Camp life", "Future hopes / destination"], label: false, required: true, prompt: "Subject matter of drawing"
+            .form-group.text-center
+              = f.input :mood_rating, type: 'number', required: true, label: false, placeholder: 'Mood rating (1 to 10)'
             .form-group.text-center
               = f.button :submit, class: 'btn-success btn-block'
