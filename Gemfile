@@ -66,7 +66,9 @@ group :development do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+end
 
+group :production do
   # Asset hosting: Stick to this version for now http://ruby.awsblog.com/post/TxFKSK2QJE6RPZ/Upcoming-Stable-Release-of-AWS-SDK-for-Ruby-Version-2
   gem 'rails_12factor'
   gem 'aws-sdk', '< 2.0'
