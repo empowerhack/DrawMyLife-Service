@@ -42,6 +42,8 @@ gem "paperclip", "~> 4.3"
 # Pagination
 gem 'kaminari', '~> 0.16.3'
 
+# User Puma as the app server
+gem 'puma'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
