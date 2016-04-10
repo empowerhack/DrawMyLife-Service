@@ -212,3 +212,37 @@ html, body {
     text-align: center;
   }
 }
+
+$emotions: (
+  'joyous' : '\1F602',
+  'happy' : '\1F60A',
+  'neutral' : '\1F610',
+  'sad' : '\1F61E',
+  'tragic' : '\1F622'
+);
+
+.ranger{
+  &-label{
+    display: none;
+  }
+  &-group{
+    text-align: center;
+    @each $emotion, $emoji in $emotions {
+      &[data-mood="#{$emotion}"]{
+        .ranger-emoji:after{
+          content: map-get($emotions,$emotion);
+        }
+      }
+    }
+  }
+  &-emoji{
+    &:after{
+      content: '.';
+      display: inline-block;
+      width: 1em;
+      margin-bottom: 20px;
+      line-height: 1em;
+      font-size: 6em;
+    }
+  }
+}

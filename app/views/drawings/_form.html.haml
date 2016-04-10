@@ -24,6 +24,26 @@
             .form-group.text-center
               = f.input :subject_matter, collection: ["Home / Country of origin", "Transit", "Camp life", "Future hopes / destination"], label: false, required: true, prompt: "Subject matter of drawing"
             .form-group.text-center
+              .ranger-group
+                .ranger-emoji
+                %label_tag.ranger-label{:for => "range"} Range
+                %input.ranger-range#range{:type => "range", :name => "range", :min => "0", :max => "4", :step => "1", :value => "2"}
+
               = f.input :mood_rating, type: 'number', required: true, label: false, placeholder: 'Mood rating (1 to 10)'
             .form-group.text-center
               = f.button :submit, class: 'btn-success btn-block'
+
+
+:javascript
+  var ranger = function($elem) {
+    var $parent = $elem.parent(),
+        moods = ["joyous","happy","neutral", "sad","tragic"],
+        rangeVal = parseInt($elem.val());
+        defaultMood = rangeVal;
+    $parent.attr("data-mood",moods[defaultMood]);
+    $elem.change(function(){
+      rangeVal = parseInt($elem.val());
+      $parent.attr('data-mood',moods[rangeVal]);
+    });
+  }
+  ranger($('.ranger-range'));
