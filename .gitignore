@@ -18,3 +18,4 @@
 vendor
 public
 .ruby-version
+.byebug_history

@@ -93,6 +93,11 @@ html, body {
   margin: 0 auto;
 }
 
+.drawings-full {
+  max-width: 642px;
+  width: 100%;
+}
+
 .drawing {
   background-color: #fff;
   border-color: #edeeee;
@@ -121,8 +126,19 @@ html, body {
     }
   }
   .image {
+    position: relative;
+    overflow: hidden;
+    padding-bottom: 100%;
     border-bottom: 1px solid #eeefef;
     border-top: 1px solid #eeefef;
+  }
+  .image img{
+    position: absolute;
+    max-width: 100%;
+    max-height: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
   }
 }
 
@@ -176,29 +192,32 @@ html, body {
   margin-bottom: 40px;
 }
 
+$loadbgcolour: #85144B;
+
 #paginator {
-  color: #4090DB;
-  height: 120px;
-  width: 120px;
+  color: #ddd;
+  background-color: $loadbgcolour;
+  height: 80px;
+  width: 80px;
   margin: 60px auto 40px;
   position: relative;
   display: table;
-  border: 2px solid #4090DB;
   border-radius: 50%;
   :hover {
-    border: 1px solid #2D6DA8;
+    background-color: lighten($loadbgcolour, 10%);
     border-radius: 50%;
   }
 }
 
 #load_more {
+  color: #ddd;
   display: table-cell;
   font-size: 12px;
-  padding: 0px 9px;
+  padding: 0px 5px;
   vertical-align: middle;
   text-decoration: none;
   a :hover {
-    color: #2D6DA8;
+    color: #ddd;
   }
 }
 
