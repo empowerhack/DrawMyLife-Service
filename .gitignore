@@ -17,4 +17,5 @@
 /tmp
 vendor
 public
-.ruby-version
+.byebug_history
+.DS_Store

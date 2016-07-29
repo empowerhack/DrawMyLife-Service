@@ -1,3 +1,3 @@
 $('#drawings').append("<%= escape_javascript(render 'drawings') %>");
-$('#paginator').html("<%= escape_javascript(link_to_next_page(@drawings, 'LOAD MORE', remote: true, id: 'load_more')) %>");
+$('#paginator').html("<%= escape_javascript(link_to_next_page(@drawings, 'MORE', remote: true, id: 'load_more')) %>");
 if (!$('#load_more').length) { $('#paginator').remove(); }

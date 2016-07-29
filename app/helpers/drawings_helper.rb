@@ -6,4 +6,9 @@ module DrawingsHelper
       'placeholder.png'
     end
   end
+
+  def drawings_class
+    index_view = current_page?(root_path) || current_page?(controller: "drawings", action: "index")
+    index_view ? "col-xs-6 col-sm-4" : "drawings-full"
+  end
 end
