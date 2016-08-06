@@ -12,7 +12,7 @@
                 = f.input :email, required: true, autofocus: true, label: false, placeholder: 'Email', input_html: { class: 'input-lg' }
                 = f.input :password, required: true, label: false, placeholder: 'Password', input_html: { class: 'input-lg' }, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length)
                 = f.input :password_confirmation, required: true, label: false, placeholder: 'Confirm Password', input_html: { class: 'input-lg' }
-                = f.input :country, priority: [ "GR", "HU", "RS" ], include_blank: "Select a country", label: false, required: true, class: 'form-control'
+                = f.input :country, priority: TOP_COUNTRIES, include_blank: "Select a country", label: false, required: true, class: 'form-control'
               .form-actions
                 = f.submit "Sign up", class: 'btn-lg btn-primary btn-block'
         = render "devise/shared/links"
