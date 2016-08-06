@@ -12,8 +12,6 @@
               %h4 Upload an image (this is required):
               = f.input :image, label: false, required: true, input_html: { onChange: 'loadFile(event)' }
             .form-group.text-center
-              = f.input :name, label: false, placeholder: 'The image name, e.g. Playground'
-            .form-group.text-center
               = f.input :description, label: false, placeholder: 'The description, e.g. Children play'
             .form-group.text-center
               = f.input :age, type: 'number', label: false, required: true, placeholder: 'Age of child'
