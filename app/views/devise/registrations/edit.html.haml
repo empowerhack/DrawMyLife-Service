@@ -16,6 +16,8 @@
                     Currently waiting confirmation for: #{resource.unconfirmed_email}
                 = f.input :password, autocomplete: "off", hint: "leave it blank if you don't want to change it", placeholder: "Password", required: false, label: false
                 = f.input :password_confirmation, required: false, placeholder: "Password Confirmation", label: false
+                .form-group
+                  = f.input :country, priority: [ "GR", "HU", "RS" ], include_blank: "Select a country", label: false, required: true, class: 'form-control'
                 = f.input :current_password, hint: "we need your current password to confirm your changes", required: true, placeholder: "Current password", label: false
               .form-actions
                 = f.submit "Update", class: 'btn-lg btn-primary btn-block'

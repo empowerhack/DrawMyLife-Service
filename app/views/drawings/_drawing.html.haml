@@ -12,4 +12,10 @@
             Uploaded by:
             = drawing.user.email
           .time-ago
+            uploaded
             = time_ago_in_words drawing.created_at
+            ago
+          .country
+            - if drawing.country
+              drawn in
+              = ISO3166::Country.find_country_by_alpha2(drawing.country).name
