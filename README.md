@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/empowerhack/DrawMyLife-Service.svg?branch=master)](https://travis-ci.org/empowerhack/DrawMyLife-Service)
+
 # Draw My Life API / Admin
 
 **Draw My Life** is an open source, volunteer-led initiative in partnership with [Terre Des Hommes](terredeshommes.org), born at an [EmpowerHack](empowerhack.com) hackathon for refugee women and girls in 2016. The initiative consists of multiple, separate and inter-related projects aiming to improve mental health support for refugee children.
