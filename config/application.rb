@@ -1,5 +1,4 @@
 require File.expand_path('../boot', __FILE__)
-
 require 'rails/all'
 
 # Require the gems listed in Gemfile, including any gems
@@ -26,9 +25,8 @@ module DrawMyLifeService
     config.middleware.insert_before 0, "Rack::Cors" do
       allow do
         origins '*'
-        resource '*', :headers => :any, :methods => [:get]
+        resource '*', headers: :any, methods: [:get]
       end
     end
-
   end
 end
