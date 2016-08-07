@@ -22,7 +22,7 @@ class DrawingsController < ApplicationController
       flash[:success] = "Your drawing is uploaded."
       redirect_to drawings_path
     else
-      flash.now[:error] = "Oh no! Something went wrong."
+      flash.now[:error] = "Sorry, your drawing could not be saved. Please review your changes and try again."
       render :new
     end
   end
@@ -42,7 +42,7 @@ class DrawingsController < ApplicationController
       flash[:success] = "Your drawing was updated."
       redirect_to(drawing_path(@drawing))
     else
-      flash[:error] = "Something went wrong."
+      flash.now[:error] = "Sorry, your drawing could not be saved. Please review your changes and try again."
       render :edit
     end
   end
