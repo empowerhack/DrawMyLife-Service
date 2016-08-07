@@ -2,10 +2,17 @@ require 'rails_helper'
 
 RSpec.describe Drawing, type: :model do
   describe "validations" do
-    context "presence" do
-      %i(image age gender subject_matter mood_rating status).each do |attr|
-        it { is_expected.to validate_presence_of attr }
-      end
+    PRIORITY_FIELDS = %i(description subject_matter mood_rating country).freeze
+
+    subject { FactoryGirl.build(:drawing, attrs) }
+
+    let(:attrs) { FactoryGirl.attributes_for(:drawing, status: status) }
+    let(:status) { "complete" }
+
+    it { is_expected.to define_enum_for(:status).with(%i(pending complete)) }
+
+    %i(image status).each do |attr|
+      it { is_expected.to validate_presence_of attr }
     end
 
     it { is_expected.to validate_numericality_of(:age) }
@@ -20,6 +27,18 @@ RSpec.describe Drawing, type: :model do
         .is_less_than_or_equal_to(10)
     end
 
-    it { is_expected.to define_enum_for(:status).with(%i(pending complete)) }
+    context "status is complete" do
+      PRIORITY_FIELDS.each do |attr|
+        it { is_expected.to validate_presence_of attr }
+      end
+    end
+
+    context "status is pending" do
+      let(:status) { "pending" }
+
+      PRIORITY_FIELDS.each do |attr|
+        it { is_expected.to_not validate_presence_of attr }
+      end
+    end
   end
 end

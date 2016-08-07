@@ -11,14 +11,11 @@
             .form-group.text-center
               %h4 Upload an image (this is required):
               = f.input :image, label: false, required: true, input_html: { onChange: 'loadFile(event)' }
+
+            .h4 Details of drawing (required when marked complete)
+
             .form-group.text-center
-              = f.input :description, label: false, placeholder: 'The description, e.g. Children play'
-            .form-group.text-center
-              = f.input :age, type: 'number', label: false, required: true, placeholder: 'Age of child'
-            .form-group.text-center
-              = f.input :gender, collection: ["Female", "Male"], label: false, required: true, prompt: "Gender of child"
-            .form-group.text-center
-              = f.input :story, label: false, required: false, placeholder: 'The story of the child (optional)'
+              = f.input :description, label: false, placeholder: 'The description, e.g. Children playing in the garden, mountains in background'
             .form-group.text-center
               = f.input :subject_matter, collection: ["Home / Country of origin", "Transit", "Camp life", "Future hopes / destination"], label: false, required: true, prompt: "Subject matter of drawing"
             .form-group.text-center
@@ -30,6 +27,17 @@
               = f.input :mood_rating, type: 'number', required: true, label: false, placeholder: 'Mood rating (1 to 10)'
             .form-group.text-center
               = f.input :country, priority: TOP_COUNTRIES, selected: (@drawing.new_record? ? current_user.country : @drawing.country), label: false, include_blank: "Country picture was drawn in", class: 'form-control'
+
+            %hr
+
+            .h4 Details of artist
+
+            .form-group.text-center
+              = f.input :age, type: 'number', label: false, required: true, placeholder: 'Age of artist'
+            .form-group.text-center
+              = f.input :gender, collection: ["Female", "Male"], label: false, required: true, prompt: "Gender of artist"
+            .form-group.text-center
+              = f.input :story, label: false, required: false, placeholder: 'Context / story of the artist, e.g. interesting cultural or psychological notes (optional)'
             .form-group.text-center
               %label_tag{for: "status"} Status (leave this as Pending if you need to enter required details later)
               = f.input :status, collection: radio_statuses, label_method: lambda {|k| k.last.capitalize }, as: :radio_buttons, required: true, label: false
