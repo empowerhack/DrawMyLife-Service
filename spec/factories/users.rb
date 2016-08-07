@@ -4,5 +4,7 @@ FactoryGirl.define do
     password 'my53cur3pa55word'
     password_confirmation 'my53cur3pa55word'
     country "GR"
+
+    organisation
   end
 end
