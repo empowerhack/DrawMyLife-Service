@@ -43,7 +43,7 @@ RSpec.describe DrawingsController, type: :controller do
         expect(drawing.reload.description).to eq(params[:description])
       end
 
-      it "redirects to index" do
+      it "redirects to the drawing" do
         expect(perform).to redirect_to drawing_path drawing.id
       end
     end

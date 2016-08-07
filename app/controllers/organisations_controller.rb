@@ -48,5 +48,4 @@ class OrganisationsController < ApplicationController
   def find_organisation
     @organisation = Organisation.find(params[:id])
   end
-
 end

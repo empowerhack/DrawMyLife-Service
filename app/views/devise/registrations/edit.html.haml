@@ -18,6 +18,7 @@
                 = f.input :password_confirmation, required: false, placeholder: "Password Confirmation", label: false
                 .form-group
                   = f.input :country, priority: TOP_COUNTRIES, include_blank: "Select a country", label: false, required: true, class: 'form-control'
+                  = f.input :organisation_id, as: :select, collection: Organisation.all, include_blank: "Select an organisation (optional)", label: false
                 = f.input :current_password, hint: "we need your current password to confirm your changes", required: true, placeholder: "Current password", label: false
               .form-actions
                 = f.submit "Update", class: 'btn-lg btn-primary btn-block'
