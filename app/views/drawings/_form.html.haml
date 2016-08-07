@@ -19,7 +19,7 @@
             .form-group.text-center
               = f.input :subject_matter, collection: ["Home / Country of origin", "Transit", "Camp life", "Future hopes / destination"], label: false, required: true, prompt: "Subject matter of drawing"
             .form-group.text-center
-              = f.input :mood_rating, as: :select, collection: [["1 🙁", 1], ["2", 2], ["3", 3], ["4", 4], ["5", 5], ["6", 6], ["7", 7], ["8", 8], ["9", 9], ["10 😃", 10],], include_blank: "How would you rate the mood of the picture from 1 (sad/tragic) to 10 (happy/joyful)", label: false
+              = f.input :mood_rating, as: :select, collection: mood_select_box, include_blank: "How would you rate the mood of the picture from 1 (sad/tragic) to 10 (happy/joyful)", label: false
             .form-group.text-center
               = f.input :country, priority: TOP_COUNTRIES, selected: (@drawing.new_record? ? current_user.country : @drawing.country), label: false, include_blank: "Country picture was drawn in", class: 'form-control'
 
