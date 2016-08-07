@@ -2,11 +2,17 @@ class Drawing < ActiveRecord::Base
   enum status: %i(pending complete)
 
   validates :image, presence: true
-  validates :age, presence: true, numericality: { only_integer: true }
-  validates :gender, presence: true
-  validates :subject_matter, presence: true
-  validates :mood_rating, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 1, less_than_or_equal_to: 10 }
   validates :status, presence: true
+
+  with_options if: :complete? do |complete|
+    complete.validates :description, presence: true
+    complete.validates :subject_matter, presence: true
+    complete.validates :mood_rating, presence: true
+    complete.validates :country, presence: true
+  end
+
+  validates :age, numericality: { only_integer: true }, allow_nil: true
+  validates :mood_rating, numericality: { only_integer: true, greater_than_or_equal_to: 1, less_than_or_equal_to: 10 }, allow_nil: true
 
   has_attached_file :image, styles: { medium: "640x" }
   validates_attachment_content_type :image, content_type: %r{\Aimage\/.*\Z}
