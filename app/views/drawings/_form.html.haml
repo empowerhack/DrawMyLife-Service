@@ -29,7 +29,10 @@
 
               = f.input :mood_rating, type: 'number', required: true, label: false, placeholder: 'Mood rating (1 to 10)'
             .form-group.text-center
-              = f.input :country, priority: TOP_COUNTRIES, selected: (current_user.country if @drawing.new_record?), label: false, include_blank: "Country picture was drawn in", class: 'form-control'
+              = f.input :country, priority: TOP_COUNTRIES, selected: (@drawing.new_record? ? current_user.country : @drawing.country), label: false, include_blank: "Country picture was drawn in", class: 'form-control'
+            .form-group.text-center
+              %label_tag{for: "status"} Status (leave this as Pending if you need to enter required details later)
+              = f.input :status, collection: radio_statuses, label_method: lambda {|k| k.last.capitalize }, as: :radio_buttons, required: true, label: false
             .form-group.text-center
               = f.button :submit, class: 'btn-success btn-block'
 

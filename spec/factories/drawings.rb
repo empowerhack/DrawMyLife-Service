@@ -8,6 +8,7 @@ FactoryGirl.define do
     subject_matter "Camp life"
     story "Context of the drawing, e.g. child's back story, cultural notes"
     country "GR"
+    status "complete"
 
     user
   end

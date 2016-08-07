@@ -61,10 +61,10 @@ class DrawingsController < ApplicationController
   end
 
   def drawing_params
-    params.require(:drawing).permit(:image, :description, :gender, :age, :mood_rating, :subject_matter, :story, :country)
+    params.require(:drawing).permit(:image, :description, :gender, :age, :mood_rating, :subject_matter, :story, :country, :status)
   end
 
   def set_drawing
-    @drawing = Drawing.find(params[:id])
+    @drawing ||= Drawing.find(params[:id])
   end
 end
