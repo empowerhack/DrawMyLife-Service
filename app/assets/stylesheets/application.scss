@@ -151,6 +151,13 @@ html, body {
   margin: 0px auto;
 }
 
+.drawing-status-pending {
+  color: #CB6264;
+  font-weight: 500;
+  font-size: 0.9em;
+  padding-top: 5px;
+}
+
 .drawing-bottom {
   .user-name, .comment-content {
     display: inline;
