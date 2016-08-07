@@ -84,6 +84,11 @@ You can also set up your path to use tools directly on your command line as per 
 
     $ echo 'export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin' >> ~/.bash_profile
 
+*Create your development and test databases*
+
+		$ createdb drawmylife_development
+		$ createdb travis_ci_test
+
 #### ImageMagick
 
 For image uploads, you'll need [ImageMagick](https://github.com/ImageMagick/ImageMagick) installed. You can install nice and easily using our friend Homebrew:
