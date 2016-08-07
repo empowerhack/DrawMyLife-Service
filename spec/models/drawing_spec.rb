@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Drawing, type: :model do
   describe "validations" do
     context "presence" do
-      %i(image age gender subject_matter mood_rating).each do |attr|
+      %i(image age gender subject_matter mood_rating status).each do |attr|
         it { is_expected.to validate_presence_of attr }
       end
     end
@@ -19,5 +19,7 @@ RSpec.describe Drawing, type: :model do
       is_expected.to validate_numericality_of(:mood_rating)
         .is_less_than_or_equal_to(10)
     end
+
+    it { is_expected.to define_enum_for(:status).with(%i(pending complete)) }
   end
 end
