@@ -19,12 +19,7 @@
             .form-group.text-center
               = f.input :subject_matter, collection: ["Home / Country of origin", "Transit", "Camp life", "Future hopes / destination"], label: false, required: true, prompt: "Subject matter of drawing"
             .form-group.text-center
-              .ranger-group
-                .ranger-emoji
-                %label_tag.ranger-label{:for => "range"} Range
-                %input.ranger-range#range{:type => "range", :name => "range", :min => "0", :max => "4", :step => "1", :value => "2"}
-
-              = f.input :mood_rating, type: 'number', required: true, label: false, placeholder: 'Mood rating (1 to 10)'
+              = f.input :mood_rating, as: :select, collection: mood_select_box, include_blank: "How would you rate the mood of the picture from 1 (sad/tragic) to 10 (happy/joyful)", label: false
             .form-group.text-center
               = f.input :country, priority: TOP_COUNTRIES, selected: (@drawing.new_record? ? current_user.country : @drawing.country), label: false, include_blank: "Country picture was drawn in", class: 'form-control'
 
@@ -43,18 +38,3 @@
               = f.input :status, collection: radio_statuses, label_method: lambda {|k| k.last.capitalize }, as: :radio_buttons, required: true, label: false
             .form-group.text-center
               = f.button :submit, class: 'btn-success btn-block'
-
-
-:javascript
-  var ranger = function($elem) {
-    var $parent = $elem.parent(),
-        moods = ["joyous","happy","neutral", "sad","tragic"],
-        rangeVal = parseInt($elem.val());
-        defaultMood = rangeVal;
-    $parent.attr("data-mood",moods[defaultMood]);
-    $elem.change(function(){
-      rangeVal = parseInt($elem.val());
-      $parent.attr('data-mood',moods[rangeVal]);
-    });
-  }
-  ranger($('.ranger-range'));

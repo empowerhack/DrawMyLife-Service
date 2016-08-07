@@ -18,4 +18,14 @@ module DrawingsHelper
       Drawing.statuses.keys.each { |s| arr << [s, s] }
     end
   end
+
+  def mood_select_box
+    # Example output: [ ["1 (sad face)", 1], ["2", 2] ... ["9", 9] ["10 (happy face)", 10] ]
+    selections = [].tap do |arr|
+      (1..10).each { |n| arr << [n.to_s, n] }
+    end
+    selections[0][0] += " 😢"
+    selections[-1][0] += " 😃"
+    selections
+  end
 end
