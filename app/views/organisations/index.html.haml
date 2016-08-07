@@ -1,0 +1,10 @@
+.container
+  .row
+    .col-md-10.col-md-offset-1
+      %h1 Organisations
+      = link_to "Add new organisation", new_organisation_path
+      - @organisations.each do |organisation|
+        %h3= organisation.name
+        = link_to "Edit", edit_organisation_path(organisation), class: "btn btn-default"
+        = link_to "Delete", organisation_path(organisation), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger"
+
