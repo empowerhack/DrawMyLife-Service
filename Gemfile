@@ -10,8 +10,6 @@ gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.1.0'
-# See https://github.com/rails/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -47,30 +45,29 @@ gem 'puma'
 # Country lists
 gem 'country_select'
 
+# Rack middleware for handling Cross-Origin Resource Sharing (CORS)
 gem 'rack-cors', '~> 0.3.1'
 
+# Ruby linting
 gem 'rubocop', '~> 0.42.0', require: false
-
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
-
-# Use Unicorn as the app server
-# gem 'unicorn'
-
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+  # Rspec support for rails
   gem 'rspec-rails'
+  # Use factories to set up test data
   gem 'factory_girl_rails', '~> 4.0'
+  # For acceptance testing
   gem 'capybara'
+  # To run specs automatically on file changes
   gem 'guard-rspec'
 end
 
 group :test do
+  # Clean up data after testing
   gem 'database_cleaner'
+  # Handy testing matchers
   gem 'shoulda-matchers'
 end
 
@@ -84,8 +81,9 @@ group :development do
 end
 
 group :production do
-  # Asset hosting: Stick to this version for now http://ruby.awsblog.com/post/TxFKSK2QJE6RPZ/Upcoming-Stable-Release-of-AWS-SDK-for-Ruby-Version-2
+  # Make running the Rails app easier on production
   gem 'rails_12factor'
+  # Asset hosting: Stick to this version for now http://ruby.awsblog.com/post/TxFKSK2QJE6RPZ/Upcoming-Stable-Release-of-AWS-SDK-for-Ruby-Version-2
   gem 'aws-sdk', '< 2.0'
 end
 
