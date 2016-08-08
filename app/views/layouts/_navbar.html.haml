@@ -5,8 +5,15 @@
     #bs-example-navbar-collapse-1.collapse.navbar-collapse
       %ul.nav.navbar-nav.navbar-right
         - if user_signed_in?
+          %li.divider{:role => "separator"}
           %li
-            = link_to "Add New drawing", new_drawing_path
+            -# TODO fix font awesome icon to be included in the link_to
+            %i.fa.fa-home
+            = link_to "Content Management", root_path
+          %li
+            -# TODO fix font awesome icon to be included in the link_to
+            %i.fa.fa-plus
+            = link_to "Upload", new_drawing_path
           %li.dropdown
             %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
               = current_user.email
