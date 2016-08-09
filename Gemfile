@@ -26,6 +26,7 @@ gem 'haml-rails'
 
 # Pretty things
 gem 'bootstrap-sass', '~> 3.3.6'
+gem 'font-awesome-sass'
 
 # Pretty forms
 gem 'simple_form'

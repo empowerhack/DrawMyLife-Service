@@ -1,0 +1,24 @@
+@import "variables";
+
+.navbar {
+  margin-bottom: 0px;
+}
+
+.navbar-brand {
+  a {
+    color: $chathamsBlue;
+  }
+}
+
+.navbar-default {
+  background-color: $white;
+  height: 54px;
+  .navbar-nav li a {
+    color: $chathamsBlue;
+  }
+}
+
+.navbar-container {
+  width: 70%;
+  margin: 0 auto;
+}

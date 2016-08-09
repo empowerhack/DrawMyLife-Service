@@ -1,3 +1,94 @@
-// Place all the styles related to the drawings controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+@import "variables";
+
+.drawings-wrapper {
+  padding-top: 40px;
+  margin: 0 auto;
+}
+
+.drawings-full {
+  max-width: 642px;
+  width: 100%;
+}
+
+.drawing {
+  background-color: $white;
+  border-color: $lightGray;
+  border-style: solid;
+  border-radius: 3px;
+  border-width: 1px;
+  margin-bottom: 60px;
+  .drawing-head {
+    flex-direction: row;
+    height: 64px;
+    padding-left: $drawingsPadding;
+    padding-right: $drawingsPadding;
+    padding-top: $drawingsPadding;
+    color: $chathamsBlue;
+    font-size: 15px;
+    line-height: 18px;
+    .user-name, .time-ago {
+      display: inline;
+    }
+    .user-name {
+      font-weight: 500;
+    }
+    .time-ago {
+      color: $aluminium;
+      float: right;
+    }
+  }
+  .image {
+    position: relative;
+    overflow: hidden;
+    padding-bottom: 100%;
+    border-bottom: 1px solid $lightGray;
+    border-top: 1px solid $lightGray;
+  }
+  .image img{
+    position: absolute;
+    max-width: 100%;
+    max-height: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+  }
+}
+
+#image-preview {
+  margin: 0px auto;
+}
+
+#drawing_image {
+  padding: 1em;
+  margin: 0px auto;
+}
+
+.drawing-status-pending {
+  color: $rose;
+  font-weight: 500;
+  font-size: 0.9em;
+  padding-top: 5px;
+}
+
+.drawing-bottom {
+  .user-name, .comment-content {
+    display: inline;
+  }
+  .caption {
+    margin-bottom: 7px;
+  }
+  .user-name {
+    font-weight: 500;
+    margin-right: 0.3em;
+    color: $chathamsBlue;
+    font-size: 15px;
+  }
+
+  margin-bottom: 7px;
+  padding-top: $drawingsPadding;
+  padding-left: $drawingsPadding;
+  padding-right: $drawingsPadding;
+  padding-bottom: 10px;
+  font-size: 15px;
+  line-height: 18px;
+}

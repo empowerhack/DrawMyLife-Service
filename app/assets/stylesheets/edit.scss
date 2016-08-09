@@ -1,0 +1,52 @@
+@import "variables";
+
+.form-wrapper {
+  width: 60%;
+  margin: 20px auto;
+  background-color: $white;
+  padding: 40px;
+  border: 1px solid $lightGray;
+  border-radius: 3px;
+}
+
+.edit-links {
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
+#paginator {
+  color: $midGray;
+  background-color: $aubergine;
+  height: 80px;
+  width: 80px;
+  margin: 60px auto 40px;
+  position: relative;
+  display: table;
+  border-radius: 50%;
+  :hover {
+    background-color: lighten($aubergine, 10%);
+    border-radius: 50%;
+  }
+}
+
+#load_more {
+  color: $midGray;
+  display: table-cell;
+  font-size: 12px;
+  padding: 0px 5px;
+  vertical-align: middle;
+  text-decoration: none;
+  a :hover {
+    color: $midGray;
+  }
+}
+
+.panel {
+  border-radius: 8px;
+}
+
+.panel-heading {
+  h2 {
+    text-align: center;
+  }
+}
