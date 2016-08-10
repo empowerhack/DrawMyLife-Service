@@ -16,12 +16,18 @@
   @include border-radius(0);
   border: none;
 
-  .navbar-nav li a {
-    color: $white;
+  .navbar-nav li {
+    &.separator>a {
+      border-right: 2px solid $white;
+    }
 
-    &:hover {
-      background-color: darken($white, 30%);
+    a {
       color: $white;
+
+      &:hover {
+        background-color: darken($white, 30%);
+        color: $white;
+      }
     }
   }
 }

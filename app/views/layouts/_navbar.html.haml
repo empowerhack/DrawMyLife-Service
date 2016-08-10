@@ -6,13 +6,13 @@
       %ul.nav.navbar-nav.navbar-right
         - if user_signed_in?
           %li.divider{:role => "separator"}
-          %li
+          %li.separator
             = link_to root_path do 
               %i.fa.fa-home{"aria-hidden" => "true"}
               Content Management
-          %li
+          %li.separator
             = link_to new_drawing_path do
-              %i.fa.fa-cloud-upload{"aria-hidden" => "true"}
+              %i.fa.fa-plus{"aria-hidden" => "true"}
               Upload
           %li.dropdown
             %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
