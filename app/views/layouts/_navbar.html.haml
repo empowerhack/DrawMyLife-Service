@@ -7,13 +7,13 @@
         - if user_signed_in?
           %li.divider{:role => "separator"}
           %li
-            -# TODO fix font awesome icon to be included in the link_to
-            %i.fa.fa-home
-            = link_to "Content Management", root_path
+            = link_to root_path do 
+              %i.fa.fa-home{"aria-hidden" => "true"}
+              Content Management
           %li
-            -# TODO fix font awesome icon to be included in the link_to
-            %i.fa.fa-plus
-            = link_to "Upload", new_drawing_path
+            = link_to new_drawing_path do
+              %i.fa.fa-cloud-upload{"aria-hidden" => "true"}
+              Upload
           %li.dropdown
             %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
               = current_user.email
