@@ -6,7 +6,9 @@
       %ul.nav.navbar-nav.navbar-right
         - if user_signed_in?
           %li
-            = link_to "Add New drawing", new_drawing_path
+            = link_to new_drawing_path do
+              %i.fa.fa-cloud-upload{"aria-hidden" => "true"}
+              Upload
           %li.dropdown
             %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
               = current_user.email

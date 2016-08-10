@@ -12,16 +12,34 @@
 
 .navbar-default {
   background-color: $dark-grey;
-  height: 54px;
+  height: $navbar-height;
   @include border-radius(0);
   border: none;
 
   .navbar-nav li a {
     color: $white;
+
+    &:hover {
+      background-color: darken($white, 30%);
+      color: $white;
+    }
   }
 }
 
 .navbar-container {
   width: 70%;
   margin: 0 auto;
+}
+
+.nav {
+  ul.dropdown-menu {
+    background-color: $dark-grey;
+
+    li a {
+      &:hover {
+        background-color: lighten($dark-grey, 15%);
+        color: $white;
+      }
+    }
+  }
 }
