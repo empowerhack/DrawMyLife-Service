@@ -1,4 +1,4 @@
-@import "variables";
+@import "variables", "mixins";
 
 .navbar {
   margin-bottom: 0px;
@@ -6,15 +6,18 @@
 
 .navbar-brand {
   a {
-    color: $chathamsBlue;
+    color: $white;
   }
 }
 
 .navbar-default {
-  background-color: $white;
+  background-color: $dark-grey;
   height: 54px;
+  @include border-radius(0);
+  border: none;
+
   .navbar-nav li a {
-    color: $chathamsBlue;
+    color: $white;
   }
 }
 
