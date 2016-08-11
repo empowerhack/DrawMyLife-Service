@@ -1,2 +1,5 @@
 #drawings
   = render 'drawings'
+
+#paginator.text-center
+  = link_to_next_page @drawings, 'MORE', remote: true, id: 'load_more'
