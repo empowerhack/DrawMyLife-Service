@@ -16,13 +16,13 @@
           = f.input :age, type: 'number', label: false, required: true, placeholder: 'Age of artist'
         .form-group
           = f.label :gender, class: "btn" do
-            = f.radio_button :gender, "Female"
+            = f.radio_button :gender, "female"
             Female
           = f.label :gender, class: "btn btn-primary" do
-            = f.radio_button :gender, "Male"
+            = f.radio_button :gender, "male"
             Male
           = f.label :gender, class: "btn" do
-            = f.radio_button :gender, "Other"
+            = f.radio_button :gender, "other"
             Other
         .form-group
           = f.input :story, label: false, required: false, placeholder: 'Context / story of the artist, e.g. interesting cultural or psychological notes (optional)'
