@@ -1,4 +1,56 @@
-.drawings-wrapper
+.container
+  %h3 Upload Drawing
+  .row.drawings-wrapper
+    = simple_form_for @drawing, html: { multipart: true } do |f|
+      .col-md-7
+        %h4 Details of Drawing
+        .form-group
+          = f.input :country, priority: TOP_COUNTRIES, selected: (@drawing.new_record? ? current_user.country : @drawing.country), label: "Country of Origin", include_blank: "Country picture was drawn in", class: 'form-control'
+        .form-group
+          = f.input :subject_matter, collection: ["Home / Country of origin", "Transit", "Camp life", "Future hopes / destination"], label: false, required: true, prompt: "Subject matter of drawing"
+        .form-group
+          = f.input :description, label: false, placeholder: 'The description, e.g. Children playing in the garden, mountains in background'
+        %hr
+        %h4 Details of Artist
+        .form-group
+          = f.input :age, type: 'number', label: false, required: true, placeholder: 'Age of artist'
+        .form-group
+          = f.label :gender, class: "btn" do
+            = f.radio_button :gender, "female"
+            Female
+          = f.label :gender, class: "btn btn-primary" do
+            = f.radio_button :gender, "male"
+            Male
+          = f.label :gender, class: "btn" do
+            = f.radio_button :gender, "other"
+            Other
+        .form-group
+          = f.input :story, label: false, required: false, placeholder: 'Context / story of the artist, e.g. interesting cultural or psychological notes (optional)'
+          -# .form-group
+          -#   = f.input{"data-slider-id" => "emoji-slider", "data-slider-min" => 0, "data-slider-max" => 10, "data-slider-step" => 1, "data-slider-value" => 4}
+        .form-group.text-center
+          = f.input :mood_rating, as: :select, collection: mood_select_box, include_blank: "How would you rate the mood of the picture from 1 (sad/tragic) to 10 (happy/joyful)", label: false
+        %hr
+        .form-group
+          %label{for: "status"} Status (leave this as Pending if you need to enter required details later)
+          = f.input :status, collection: radio_statuses, label_method: lambda {|k| k.last.capitalize }, as: :radio_buttons, required: true, label: false
+      .col-md-5
+        .image-wrap.text-center
+          = image_tag preview_image(@drawing), id: 'image-preview', class: 'img-responsive'
+          %h5 Upload an image (this is required):
+          = f.input :image, label: false, required: true, input_html: { onChange: 'loadFile(event)' }
+          %h5 Details of drawing (required when marked complete)
+      .form-group.text-center
+        = f.button :submit, class: 'btn-success btn-block'
+
+:javascript
+  var slider = new Slider('#emoji-slider', {
+  	formatter: function(value) {
+  		return 'Current value: ' + value;
+  	}
+  });
+
+-# .drawings-wrapper
   .drawing
     .drawing-body
       .image-wrap
