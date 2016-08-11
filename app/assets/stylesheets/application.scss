@@ -6,6 +6,7 @@
 @import "edit";
 @import "login";
 @import "components/navbar";
+@import "components/form";
 @import "variables";
 
 html, body {
@@ -16,4 +17,16 @@ html, body {
 
 .alert {
   margin-bottom: 0px;
+}
+
+$emotions: (
+  'joyous' : '\1F602',
+  'happy' : '\1F60A',
+  'neutral' : '\1F610',
+  'sad' : '\1F61E',
+  'tragic' : '\1F622'
+);
+
+#emoji-slider .slider-selection {
+	background: #BABABA;
 }
