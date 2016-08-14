@@ -28,9 +28,9 @@
             .h4 Details of artist
 
             .form-group.text-center
-              = f.input :age, type: 'number', label: false, required: true, placeholder: 'Age of artist'
+              = f.input :age, type: 'number', label: false, required: false, placeholder: 'Age of artist'
             .form-group.text-center
-              = f.input :gender, collection: ["Female", "Male"], label: false, required: true, prompt: "Gender of artist"
+              = f.input :gender, collection: radio_genders, label_method: lambda {|k| k.humanize }, as: :radio_buttons, required: false label: false
             .form-group.text-center
               = f.input :story, label: false, required: false, placeholder: 'Context / story of the artist, e.g. interesting cultural or psychological notes (optional)'
             .form-group.text-center
