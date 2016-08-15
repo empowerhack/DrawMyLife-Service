@@ -1,6 +1,6 @@
 = render 'drawing', drawing: @drawing
 .text-center.edit-links
-  = link_to "Cancel", drawings_path
-  - if current_user == @drawing.user
+  = link_to "Back To List", drawings_path
+  - if @drawing.viewer_can_change?(current_user)
     |
     = link_to "Edit Drawing", edit_drawing_path(@drawing)

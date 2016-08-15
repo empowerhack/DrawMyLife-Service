@@ -19,6 +19,5 @@
             - if drawing.country.present?
               drawn in
               = ISO3166::Country.find_country_by_alpha2(drawing.country).name
-          - if drawing.pending?
-            .drawing-status-pending
-              = "Pending".upcase
+          .drawing-status-pending
+            = drawing.status.upcase

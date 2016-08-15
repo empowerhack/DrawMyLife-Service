@@ -3,7 +3,8 @@
     %td
       = drawing.id
     %td
-      = image_tag drawing.image.url(:thumb)
+      = link_to drawing_path(drawing) do
+        = image_tag drawing.image.url(:thumb)
     %td
       = drawing.subject_matter
     %td
@@ -17,17 +18,15 @@
     %td
       = drawing.mood_rating
     %td
-      = link_to drawing_path(drawing) do
-        %i.fa.fa-pencil{"aria-hidden" => "true"}
+      - if drawing.viewer_can_change?(current_user)
+        = link_to edit_drawing_path(drawing) do
+          %i.fa.fa-pencil{"aria-hidden" => "true"}
     %td
-      = link_to drawing_path(drawing.id), method: :delete, data: { confirm: 'Are you sure?' } do
-        %i.fa.fa-trash{"aria-hidden" => "true"}
+      - if drawing.viewer_can_change?(current_user)
+        = link_to drawing_path(drawing.id), method: :delete, data: { confirm: 'Are you sure?' } do
+          %i.fa.fa-trash{"aria-hidden" => "true"}
     %td
       = drawing.user.email
     %td
-      - if drawing.pending?
-        .drawing-status-pending
-          = "Pending".upcase
-      - else
-        .drawing-status-pending
-          = "Completed".upcase
+      .drawing-status-pending
+        = drawing.status.upcase
