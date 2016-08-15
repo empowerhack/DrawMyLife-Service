@@ -42,4 +42,7 @@ Rails.application.configure do
 
   # Prevent multiple copies of Paperclip test files with a custom path
   Paperclip::Attachment.default_options[:path] = "#{Rails.root}/spec/test_files/:class/:id_partition/:style.:extension"
+
+  # User support email
+  config.support_email = ENV.fetch('SUPPORT_EMAIL', '')
 end

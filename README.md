@@ -110,6 +110,10 @@ Enter your new project folder:
 
 	$ cd DrawMyLife-Service
 
+Copy the example development ENV vars to your own .env file:
+
+	$ cp .env.development.example .env
+
 ***The following steps should be done now any time you pull new changes in from the remote:***
 
 Install all the dependencies from your Gemfile using Bundler:

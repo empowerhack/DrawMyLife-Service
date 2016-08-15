@@ -52,7 +52,12 @@ gem 'rack-cors', '~> 0.3.1'
 # Ruby linting
 gem 'rubocop', '~> 0.42.0', require: false
 
+# Decorators
+gem 'draper'
+
 group :development, :test do
+  # Load environment variables in dev and test envs
+  gem 'dotenv-rails'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
   # Rspec support for rails

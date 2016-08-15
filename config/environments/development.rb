@@ -39,4 +39,7 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  # User support email
+  config.support_email = ENV.fetch('SUPPORT_EMAIL', '')
 end
