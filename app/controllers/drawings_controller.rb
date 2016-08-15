@@ -4,7 +4,8 @@ class DrawingsController < ApplicationController
   before_action :owned_drawing, only: [:edit, :update, :destroy]
 
   def index
-    @drawings = Drawing.desc.page params[:page]
+    @drawings = (Drawing.desc.page params[:page]).decorate
+
     respond_to do |format|
       format.html
       format.js
@@ -65,6 +66,6 @@ class DrawingsController < ApplicationController
   end
 
   def set_drawing
-    @drawing ||= Drawing.find(params[:id])
+    @drawing ||= Drawing.find(params[:id]).decorate
   end
 end
