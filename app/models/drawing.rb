@@ -25,4 +25,8 @@ class Drawing < ActiveRecord::Base
   belongs_to :user
 
   scope :desc, -> { order("drawings.created_at DESC") }
+
+  def viewer_can_change?(viewer)
+    viewer.organisation == user.organisation
+  end
 end

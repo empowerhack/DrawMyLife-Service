@@ -1,7 +1,7 @@
 class DrawingsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_drawing, only: [:show, :edit, :update, :destroy]
-  before_action :owned_drawing, only: [:edit, :update, :destroy]
+  before_action :check_access_to_drawing, only: [:edit, :update, :destroy]
 
   def index
     @drawings = (Drawing.desc.page params[:page]).decorate
@@ -55,9 +55,9 @@ class DrawingsController < ApplicationController
 
   private
 
-  def owned_drawing
-    return unless current_user != @drawing.user
-    flash[:alert] = "That's not your drawing."
+  def check_access_to_drawing
+    return if @drawing.viewer_can_change?(current_user)
+    flash[:alert] = "Only users from the same organisation can edit or delete drawings."
     redirect_to root_path
   end
 
