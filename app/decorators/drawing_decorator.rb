@@ -16,7 +16,7 @@ class DrawingDecorator < Draper::Decorator
 
   private
 
-  def text_concat(text, max_length = 30)
-    text[0, max_length-1].concat('...')
+  def text_concat(text, max_length=30)
+    text[0, max_length - 1].concat('...')
   end
 end
