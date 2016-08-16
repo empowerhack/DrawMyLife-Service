@@ -1,5 +1,6 @@
 class Drawing < ActiveRecord::Base
   enum status: %i(pending complete)
+  enum gender: %i(not_specified female male other)
 
   validates :image, presence: true
   validates :status, presence: true
