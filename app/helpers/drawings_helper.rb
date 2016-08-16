@@ -19,6 +19,13 @@ module DrawingsHelper
     end
   end
 
+  def radio_genders
+    # Example output: [ ["gender0", "gender0"], ["gender1", "gender1"] ... ]
+    [].tap do |arr|
+      Drawing.genders.keys.each { |s| arr << [s, s] }
+    end
+  end
+
   def mood_select_box
     # Example output: [ ["1 (sad face)", 1], ["2", 2] ... ["9", 9] ["10 (happy face)", 10] ]
     selections = [].tap do |arr|
