@@ -7,11 +7,11 @@ class DrawingDecorator < Draper::Decorator
   end
 
   def description_concat
-    text_concat(object.description)
+    text_concat(object.description) unless object.description.nil?
   end
 
   def story_concat
-    text_concat(object.story)
+    text_concat(object.story) unless object.story.nil?
   end
 
   private
