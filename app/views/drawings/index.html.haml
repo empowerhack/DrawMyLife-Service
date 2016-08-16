@@ -1,5 +1,23 @@
 #drawings
-  = render 'drawings'
+  .container
+    %h3 Manage Drawings
+    %table.table.table-bordered.table-condensed.table-hover.table-responsive
+      %thead
+        %tr
+          %th ID
+          %th File
+          %th Subject Matter
+          %th Description
+          %th Artist's Age
+          %th Artist's Gender
+          %th Artist's Background
+          %th Mood Rate
+          %th Edit
+          %th Delete
+          %th Added By User
+          %th Status
+      %tbody
+        = render 'drawings'
 
 #paginator.text-center
   = link_to_next_page @drawings, 'MORE', remote: true, id: 'load_more'

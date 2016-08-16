@@ -1,51 +1,32 @@
-.container
-  %h3 Manage Drawings
-  %table.table.table-bordered.table-condensed.table-hover.table-responsive
-    %thead
-      %tr
-        %th ID
-        %th File
-        %th Subject Matter
-        %th Description
-        %th Artist's Age
-        %th Artist's Gender
-        %th Artist's Background
-        %th Mood Rate
-        %th Edit
-        %th Delete
-        %th User Admin
-        %th Status
-    %tbody
-    - @drawings.each do |drawing|
-      %tr
-        %td
-          = drawing.id
-        %td
-          = image_tag drawing.image.url(:thumb)
-        %td
-          = drawing.subject_matter
-        %td
-          = drawing.description[0, 29].concat('...')
-        %td
-          = drawing.age
-        %td
-          = drawing.gender.humanize
-        %td
-          = drawing.story
-        %td
-          = drawing.mood_rating
-        %td
-          = link_to drawing_path(drawing) do
-            %i.fa.fa-pencil{"aria-hidden" => "true"}
-        %td
-          = link_to drawing_path(drawing.id), method: :delete, data: { confirm: 'Are you sure?' } do
-            %i.fa.fa-trash{"aria-hidden" => "true"}
-        %td
-          = drawing.user.email
-        %td
-          - if drawing.pending?
-            .drawing-status-pending
-              = "Pending".upcase
-          - else
-            .drawing-status-pending
-              = "Completed".upcase
+- @drawings.each do |drawing|
+  %tr
+    %td
+      = drawing.id
+    %td
+      = link_to drawing_path(drawing) do
+        = image_tag drawing.image.url(:thumb)
+    %td
+      = drawing.subject_matter
+    %td
+      = drawing.description_concat
+    %td
+      = drawing.age
+    %td
+      = drawing.gender
+    %td
+      = drawing.story_concat
+    %td
+      = drawing.mood_rating
+    %td
+      - if drawing.viewer_can_change?(current_user)
+        = link_to edit_drawing_path(drawing) do
+          %i.fa.fa-pencil{"aria-hidden" => "true"}
+    %td
+      - if drawing.viewer_can_change?(current_user)
+        = link_to drawing_path(drawing.id), method: :delete, data: { confirm: 'Are you sure?' } do
+          %i.fa.fa-trash{"aria-hidden" => "true"}
+    %td
+      = drawing.user.email
+    %td
+      .drawing-status-pending
+        = drawing.status.upcase
