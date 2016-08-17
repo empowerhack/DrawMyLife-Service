@@ -14,5 +14,5 @@
         = content_tag :div, msg, class: [:alert, alert_for(name)]
     = yield
 
-    = javascript_include_tag 'hotjar.js'
-    
+    - if Rails.env.production?
+      = javascript_include_tag 'hotjar.js'
