@@ -3,8 +3,8 @@
   .row.drawings-wrapper
     = simple_form_for @drawing, html: { multipart: true } do |f|
       .col-md-7.col-sm-12.col-xs-12
-
-        %h4 Details of Drawing
+        = f.error_notification
+        %h4 Details of Drawing (required when marked complete)
         .form-group
           = f.input :country, priority: TOP_COUNTRIES, selected: (@drawing.new_record? ? current_user.country : @drawing.country), label: "Country of Origin", include_blank: "Country picture was drawn in", class: 'form-control'
         .form-group
@@ -17,16 +17,10 @@
         %h4 Details of Artist
         .form-group
           = f.input :age, type: 'number', label: false, required: true, placeholder: 'Age of artist'
-        .form-group
-          = f.label :gender, class: "btn" do
-            = f.radio_button :gender, "female"
-            Female
-          = f.label :gender, class: "btn btn-primary" do
-            = f.radio_button :gender, "male"
-            Male
-          = f.label :gender, class: "btn" do
-            = f.radio_button :gender, "other"
-            Other
+        .form-group.genders
+          = f.collection_radio_buttons :gender, radio_genders, :first, :last do |b|
+            = b.radio_button
+            = b.label(class: "btn")
         .form-group
           = f.input :story, label: false, required: false, placeholder: 'Context / story of the artist, e.g. interesting cultural or psychological notes (optional)'
         .form-group.text-center
@@ -41,10 +35,11 @@
           %b Allowed image types: jpg/jpeg, png, tiff, gif, bmp
           = f.input :image, label: false, required: true, input_html: { onChange: 'loadFile(event)' }
 
+      .row.drawings-wrapper
       %hr
-
-      .form-group.text-center
-        %label{for: "status"} Status (leave this as Pending if you need to enter required details later)
-        = f.input :status, collection: radio_statuses, label_method: lambda {|k| k.last.capitalize }, as: :radio_buttons, required: true, label: false
-      .form-group.text-center
-        = f.button :submit, class: 'btn-success btn-block'
+      .col-md-12
+        .form-group.text-center
+          %label{for: "status"} Status (leave this as Pending if you need to enter required details later)
+          = f.input :status, collection: radio_statuses, label_method: lambda {|k| k.last.capitalize }, as: :radio_buttons, required: true, label: false
+        .form-group.text-center
+          = f.button :submit, class: 'btn-success btn-block'
