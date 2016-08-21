@@ -16,8 +16,9 @@ class Drawing < ActiveRecord::Base
   validates :mood_rating, numericality: { only_integer: true, greater_than_or_equal_to: 1, less_than_or_equal_to: 10 }, allow_nil: true
 
   has_attached_file :image, styles: {
-    medium: "640x",
-    thumb: "100x100#"
+    medium: ["640x", :jpg],
+    thumb: ["100x100#", :jpg],
+    original: ["100%", :jpg]
   }
 
   validates_attachment_content_type :image, content_type: %r{\Aimage\/(jpeg|png|gif|tiff|bmp)\z},
