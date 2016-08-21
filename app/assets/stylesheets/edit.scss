@@ -23,3 +23,24 @@
     text-align: center;
   }
 }
+
+/* THIS IS A HACK. PLEASE FIX! */
+.form-group.genders {
+  label {
+    border-radius: 5px;
+    padding-left: 15px;
+    margin-right: 5px;
+  }
+  label[for=drawing_gender_not_specified] {
+    background-color: #D3D3D3;
+  }
+  label[for=drawing_gender_female] {
+    background-color: #FFB6C1;
+  }
+  label[for=drawing_gender_male] {
+    background-color: #ADD8E6;
+  }
+  label[for=drawing_gender_other] {
+    background-color: #FFE8CD;
+  }
+}
