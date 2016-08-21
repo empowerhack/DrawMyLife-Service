@@ -20,7 +20,8 @@ class Drawing < ActiveRecord::Base
     thumb: "100x100#"
   }
 
-  validates_attachment_content_type :image, content_type: %r{\Aimage\/.*\Z}
+  validates_attachment_content_type :image, content_type: %r{\Aimage\/(jpeg|png|gif|tiff|bmp)\z},
+                                            message: "Accepted image formats are: jpg/jpeg, png, tiff, gif, bmp"
 
   belongs_to :user
 
