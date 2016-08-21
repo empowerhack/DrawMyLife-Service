@@ -1,0 +1,10 @@
+var loadFile = function(event) {
+  var output = document.getElementById('image-preview');
+  var imgFile = event.target.files[0];
+
+  if (imgFile.type === "image/tiff") {
+    output.src = '<%= asset_path "placeholder-green.png" %>';
+  } else {
+    output.src = URL.createObjectURL(imgFile);
+  }
+};
