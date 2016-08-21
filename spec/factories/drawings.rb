@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :drawing do
-    image { Rack::Test::UploadedFile.new("#{Rails.root}/spec/support/factories/sloth.jpg", "image/jpg") }
+    image { Rack::Test::UploadedFile.new("#{Rails.root}/spec/support/factories/sloth.jpg", "image/jpeg") }
     description "Description of the content of this drawing"
     gender "other"
     age 10
