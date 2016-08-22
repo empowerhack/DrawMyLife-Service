@@ -9,7 +9,7 @@
           = image_tag preview_image(@drawing), id: 'image-preview', class: 'img-responsive'
           %br
           %b Allowed image types: jpg/jpeg, png, tiff, gif, bmp
-          = f.input :image, label: false, required: true, input_html: { onChange: 'loadFile(event)' }
+          = f.input :image, label: false, required: false, input_html: { onChange: 'loadFile(event)' }
 
       .col-md-7.col-sm-12.col-xs-12
         = f.error_notification
@@ -17,23 +17,25 @@
         .form-group
           = f.input :country, priority: TOP_COUNTRIES, selected: (@drawing.new_record? ? current_user.country : @drawing.country), label: "Country of Origin", include_blank: "Country picture was drawn in", class: 'form-control'
         .form-group
-          = f.input :subject_matter, collection: ["Home / Country of origin", "Transit", "Camp life", "Future hopes / destination"], label: false, required: true, prompt: "Subject matter of drawing"
+          = f.input :subject_matter, collection: ["Home / Country of origin", "Transit", "Camp life", "Future hopes / destination"], label: 'Subject matter of drawing', required: false, prompt: "--select an option--"
         .form-group
-          = f.input :description, label: false, placeholder: 'The description, e.g. Children playing in the garden, mountains in background'
+          = f.input :description, label: 'Description of Drawing', placeholder: 'e.g. Children playing in the garden, mountains in background'
 
         %hr
 
         %h4 Details of Artist
         .form-group
-          = f.input :age, type: 'number', label: false, required: true, placeholder: 'Age of artist'
+          = f.input :age, type: 'number', label: 'Age of artist', required: false, placeholder: 'e.g. 8'
         .form-group.genders
+          = f.label 'Gender of Artist'
+          %br
           = f.collection_radio_buttons :gender, radio_genders, :first, :last do |b|
             = b.radio_button
             = b.label(class: "btn")
         .form-group
-          = f.input :story, label: false, required: false, placeholder: 'Context / story of the artist, e.g. interesting cultural or psychological notes (optional)'
-        .form-group.text-center
-          = f.input :mood_rating, as: :select, collection: mood_select_box, include_blank: "How would you rate the mood of the picture from 1 (sad/tragic) to 10 (happy/joyful)", label: false
+          = f.input :story, label: 'Context / story of the artist', required: false, placeholder: 'e.g. interesting cultural or psychological notes (optional)'
+        .form-group
+          = f.input :mood_rating, as: :select, collection: mood_select_box, label: 'How would you rate the mood of the picture?', prompt: "Scale is from 1 (sad/tragic) to 10 (happy/joyful)"
 
       .row.drawings-wrapper
       %hr
