@@ -2,6 +2,15 @@
   %h3 Upload Drawing
   .row.drawings-wrapper
     = simple_form_for @drawing, html: { multipart: true } do |f|
+      .col-md-5.col-sm-12.col-xs-12
+        .image-wrap.text-center
+          %h4 Upload an image
+          %i (this is required)
+          = image_tag preview_image(@drawing), id: 'image-preview', class: 'img-responsive'
+          %br
+          %b Allowed image types: jpg/jpeg, png, tiff, gif, bmp
+          = f.input :image, label: false, required: true, input_html: { onChange: 'loadFile(event)' }
+
       .col-md-7.col-sm-12.col-xs-12
         = f.error_notification
         %h4 Details of Drawing (required when marked complete)
@@ -25,15 +34,6 @@
           = f.input :story, label: false, required: false, placeholder: 'Context / story of the artist, e.g. interesting cultural or psychological notes (optional)'
         .form-group.text-center
           = f.input :mood_rating, as: :select, collection: mood_select_box, include_blank: "How would you rate the mood of the picture from 1 (sad/tragic) to 10 (happy/joyful)", label: false
-
-      .col-md-5.col-sm-12.col-xs-12
-        .image-wrap.text-center
-          %h4 Upload an image
-          %i (this is required)
-          = image_tag preview_image(@drawing), id: 'image-preview', class: 'img-responsive'
-          %br
-          %b Allowed image types: jpg/jpeg, png, tiff, gif, bmp
-          = f.input :image, label: false, required: true, input_html: { onChange: 'loadFile(event)' }
 
       .row.drawings-wrapper
       %hr
