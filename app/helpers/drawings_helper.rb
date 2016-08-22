@@ -20,9 +20,9 @@ module DrawingsHelper
   end
 
   def radio_genders
-    # Example output: [ ["gender0", "gender0"], ["gender1", "gender1"] ... ]
+    # Example output: [ ["gender0", "Gender 0"], ["gender1", "Gender 1"] ... ]
     [].tap do |arr|
-      Drawing.genders.keys.each { |s| arr << [s, s] }
+      Drawing.genders.keys.each { |s| arr << [s, s.humanize] }
     end
   end
 
