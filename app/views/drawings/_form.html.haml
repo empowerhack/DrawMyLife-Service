@@ -1,40 +1,45 @@
-.drawings-wrapper
-  .drawing
-    .drawing-body
-      .image-wrap
-        = image_tag preview_image(@drawing), id: 'image-preview', class: 'img-responsive'
-        = simple_form_for @drawing, html: { multipart: true } do |f|
-          .row
-            .col-md-12.text-center
-              = f.error_notification
-          .container-fluid
-            .form-group.text-center
-              %h4 Upload an image (this is required):
-              = f.input :image, label: false, required: true, input_html: { onChange: 'loadFile(event)' }
+.container
+  %h3 Upload Drawing
+  .row.drawings-wrapper
+    = simple_form_for @drawing, html: { multipart: true } do |f|
+      .col-md-5.col-sm-12.col-xs-12
+        .image-wrap.text-center
+          %h4 Upload an image
+          %i (this is required)
+          = image_tag preview_image(@drawing), id: 'image-preview', class: 'img-responsive'
+          %br
+          %b Allowed image types: jpg/jpeg, png, tiff, gif, bmp
+          = f.input :image, label: false, required: true, input_html: { onChange: 'loadFile(event)' }
 
-            .h4 Details of drawing (required when marked complete)
+      .col-md-7.col-sm-12.col-xs-12
+        = f.error_notification
+        %h4 Details of Drawing (required when marked complete)
+        .form-group
+          = f.input :country, priority: TOP_COUNTRIES, selected: (@drawing.new_record? ? current_user.country : @drawing.country), label: "Country of Origin", include_blank: "Country picture was drawn in", class: 'form-control'
+        .form-group
+          = f.input :subject_matter, collection: ["Home / Country of origin", "Transit", "Camp life", "Future hopes / destination"], label: false, required: true, prompt: "Subject matter of drawing"
+        .form-group
+          = f.input :description, label: false, placeholder: 'The description, e.g. Children playing in the garden, mountains in background'
 
-            .form-group.text-center
-              = f.input :description, label: false, placeholder: 'The description, e.g. Children playing in the garden, mountains in background'
-            .form-group.text-center
-              = f.input :subject_matter, collection: ["Home / Country of origin", "Transit", "Camp life", "Future hopes / destination"], label: false, required: true, prompt: "Subject matter of drawing"
-            .form-group.text-center
-              = f.input :mood_rating, as: :select, collection: mood_select_box, include_blank: "How would you rate the mood of the picture from 1 (sad/tragic) to 10 (happy/joyful)", label: false
-            .form-group.text-center
-              = f.input :country, priority: TOP_COUNTRIES, selected: (@drawing.new_record? ? current_user.country : @drawing.country), label: false, include_blank: "Country picture was drawn in", class: 'form-control'
+        %hr
 
-            %hr
+        %h4 Details of Artist
+        .form-group
+          = f.input :age, type: 'number', label: false, required: true, placeholder: 'Age of artist'
+        .form-group.genders
+          = f.collection_radio_buttons :gender, radio_genders, :first, :last do |b|
+            = b.radio_button
+            = b.label(class: "btn")
+        .form-group
+          = f.input :story, label: false, required: false, placeholder: 'Context / story of the artist, e.g. interesting cultural or psychological notes (optional)'
+        .form-group.text-center
+          = f.input :mood_rating, as: :select, collection: mood_select_box, include_blank: "How would you rate the mood of the picture from 1 (sad/tragic) to 10 (happy/joyful)", label: false
 
-            .h4 Details of artist
-
-            .form-group.text-center
-              = f.input :age, type: 'number', label: false, required: false, placeholder: 'Age of artist'
-            .form-group.text-center
-              = f.input :gender, collection: radio_genders, label_method: lambda {|k| k.last.humanize }, as: :radio_buttons, required: false, label: false
-            .form-group.text-center
-              = f.input :story, label: false, required: false, placeholder: 'Context / story of the artist, e.g. interesting cultural or psychological notes (optional)'
-            .form-group.text-center
-              %label_tag{for: "status"} Status (leave this as Pending if you need to enter required details later)
-              = f.input :status, collection: radio_statuses, label_method: lambda {|k| k.last.capitalize }, as: :radio_buttons, required: true, label: false
-            .form-group.text-center
-              = f.button :submit, class: 'btn-success btn-block'
+      .row.drawings-wrapper
+      %hr
+      .col-md-12
+        .form-group.text-center
+          %label{for: "status"} Status (leave this as Pending if you need to enter required details later)
+          = f.input :status, collection: radio_statuses, label_method: lambda {|k| k.last.capitalize }, as: :radio_buttons, required: true, label: false
+        .form-group.text-center
+          = f.button :submit, class: 'btn-success btn-block'
