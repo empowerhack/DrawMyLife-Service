@@ -35,8 +35,8 @@ RSpec.describe Drawing, type: :model do
 
       it do
         is_expected.to validate_attachment_content_type(:image)
-          .allowing('image/png', 'image/gif', 'image/jpeg', 'image/tiff', 'image/bmp')
-          .rejecting('application/pdf', 'image/x-png')
+          .allowing('image/png', 'image/gif', 'image/jpeg', 'image/tiff', 'image/bmp', 'application/pdf')
+          .rejecting('application/zip', 'image/x-png')
       end
     end
 
