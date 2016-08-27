@@ -19,6 +19,8 @@ class Drawing < ActiveRecord::Base
     medium: ["640x", :jpg],
     thumb: ["100x100#", :jpg],
     large: ["100%", :jpg]
+  }, convert_options: {
+    all: "-bordercolor none -border 1 -trim"
   }
 
   validates_attachment_content_type :image, content_type: %r{\A(image\/(jpeg|png|gif|tiff|bmp)|application\/pdf)\z},
