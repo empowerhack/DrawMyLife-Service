@@ -12,7 +12,6 @@
           = f.input :image, label: false, required: false, input_html: { onChange: 'loadFile(event)' }
 
       .col-md-7.col-sm-12.col-xs-12
-        = f.error_notification
         %h4 Details of Drawing (required when marked complete)
         .form-group
           = f.input :country, priority: TOP_COUNTRIES, selected: (@drawing.new_record? ? current_user.country : @drawing.country), label: "Country of Origin", include_blank: "Country picture was drawn in", class: 'form-control'
