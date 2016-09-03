@@ -1,5 +1,7 @@
 [![Build Status](https://travis-ci.org/empowerhack/DrawMyLife-Service.svg?branch=master)](https://travis-ci.org/empowerhack/DrawMyLife-Service)
 
+![Screenshot - Upload New Drawing](./app/assets/images/screenshot.png "Screenshot - Upload New Drawing")
+
 # Draw My Life API / Admin
 
 **Draw My Life** is an open source, volunteer-led initiative in partnership with [Terre Des Hommes](terredeshommes.org), born at an [EmpowerHack](empowerhack.com) hackathon for refugee women and girls in 2016. The initiative consists of multiple, separate and inter-related projects aiming to improve mental health support for refugee children.
@@ -37,6 +39,7 @@ To get an overview of the journey so far, you can view [these slides](https://sl
 	- [Debugging](#debugging)
 	- [Running tests](#running-tests)
 - [Deployment and Production Notes](#deployment-and-production-notes)
+	- [Staging environment](#staging-environment)
 
 ### Install Prerequisites
 
@@ -151,9 +154,14 @@ Or for just one set of tests:
 
 	$ bundle exec rspec spec/models/drawing_spec.rb
 
-
 ### Deployment and Production Notes
 
 Draw My Life is currently hosted on [Heroku](https://www.heroku.com/), with images automagically hosted on a free tier [Amazon Simple Storage Service (S3)](https://aws.amazon.com/documentation/s3/) instance. The `.env.production.example` file holds a template of the ENV vars required to be set on the live production environment.
 
 Please ask the team for details if you need deployment instructions.
+
+#### Staging Environment
+
+We have a staging environment set up which is auto-deployed to from the `staging` branch in GitHub. Pushing any changes to this branch will update the staging environment.
+
+The staging environment is set up as a replica of the Production environment, hosted on Heroku using an Amazon Simple Storage (S3) instance for image storage.
