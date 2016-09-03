@@ -19,6 +19,8 @@
           = f.input :subject_matter, collection: ["Home / Country of origin", "Transit", "Camp life", "Future hopes / destination"], label: 'Subject matter of drawing', required: false, prompt: "--select an option--"
         .form-group
           = f.input :description, label: 'Description of Drawing', placeholder: 'e.g. Children playing in the garden, mountains in background'
+        .form-group
+          = f.input :mood_rating, as: :select, collection: mood_select_box, label: 'How would you rate the mood of the picture?', prompt: "Scale is from 1 (sad/tragic) to 10 (happy/joyful)"
 
         %hr
 
@@ -33,8 +35,6 @@
             = b.label(class: "btn")
         .form-group
           = f.input :story, label: 'Context / story of the artist', required: false, placeholder: 'e.g. interesting cultural or psychological notes (optional)'
-        .form-group
-          = f.input :mood_rating, as: :select, collection: mood_select_box, label: 'How would you rate the mood of the picture?', prompt: "Scale is from 1 (sad/tragic) to 10 (happy/joyful)"
 
       .row.drawings-wrapper
       %hr
