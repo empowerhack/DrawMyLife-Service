@@ -6,18 +6,49 @@
     .drawing-bottom
       .caption
         .caption-content
-          .drawing-description
-            = drawing.description
-          .user-name
-            Uploaded by:
-            = drawing.user.email
-          .time-ago
-            uploaded
-            = time_ago_in_words drawing.created_at
-            ago
-          .country
-            - if drawing.country.present?
-              drawn in
-              = ISO3166::Country.find_country_by_alpha2(drawing.country).name
-          .drawing-status-pending
+          .drawing-row
+            %strong
+              = drawing.description
+          .drawing-row
+            %em
+              Uploaded by
+              .user-name
+                = drawing.user.email
+          .drawing-row.time-ago
+            %em
+              Created
+              = time_ago_in_words drawing.created_at
+              ago
+          .drawing-row.time-ago
+            %em
+              Updated
+              = time_ago_in_words drawing.updated_at
+              ago
+          .drawing-row.drawing-status-pending
             = drawing.status.upcase
+          .drawing-details
+            %h3 Details of Drawing
+            .drawing-row
+              %strong Country Drawn In:
+              - if drawing.country.present?
+                = ISO3166::Country.find_country_by_alpha2(drawing.country).name
+              - else
+                n/a
+            .drawing-row
+              %strong Subject Matter:
+              = drawing.subject_matter
+            .drawing-row
+              %strong Mood Rating:
+              = drawing.mood_rating
+
+          .artist-details
+            %h3 Details of Artist
+            .drawing-row
+              %strong Age:
+              = drawing.age
+            .drawing-row
+              %strong Gender:
+              = drawing.gender.humanize
+            .drawing-row
+              %strong Context / Story:
+              = drawing.story
