@@ -7,6 +7,10 @@ module DrawingsHelper
     end
   end
 
+  def form_title
+    @drawing.new_record? ? "Add Drawing" : "Edit Drawing"
+  end
+
   def drawings_class
     index_view = current_page?(root_path) || current_page?(controller: "drawings", action: "index")
     index_view ? "col-xs-6 col-sm-4" : "drawings-full"

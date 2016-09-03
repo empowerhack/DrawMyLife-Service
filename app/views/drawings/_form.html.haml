@@ -1,5 +1,6 @@
 .container
-  %h3 Upload Drawing
+  %h3
+    = form_title
   .row.drawings-wrapper
     = simple_form_for @drawing, html: { multipart: true } do |f|
       .col-md-5.col-sm-12.col-xs-12
@@ -14,13 +15,13 @@
       .col-md-7.col-sm-12.col-xs-12
         %h4 Details of Drawing (required when marked complete)
         .form-group
-          = f.input :country, priority: TOP_COUNTRIES, selected: (@drawing.new_record? ? current_user.country : @drawing.country), label: "Country of Origin", include_blank: "Country picture was drawn in", class: 'form-control'
+          = f.input :country, priority: TOP_COUNTRIES, selected: (@drawing.new_record? ? current_user.country : @drawing.country), label: "Country drawn in", include_blank: "Country picture was drawn in", class: 'form-control'
         .form-group
           = f.input :subject_matter, collection: ["Home / Country of origin", "Transit", "Camp life", "Future hopes / destination"], label: 'Subject matter of drawing', required: false, prompt: "--select an option--"
         .form-group
-          = f.input :description, label: 'Description of Drawing', placeholder: 'e.g. Children playing in the garden, mountains in background'
+          = f.input :description, label: 'Description of drawing', placeholder: 'e.g. Children playing in the garden, mountains in background'
         .form-group
-          = f.input :mood_rating, as: :select, collection: mood_select_box, label: 'How would you rate the mood of the picture?', prompt: "Scale is from 1 (sad/tragic) to 10 (happy/joyful)"
+          = f.input :mood_rating, as: :select, collection: mood_select_box, label: 'How would you rate the mood of the drawing?', prompt: "Scale is from 1 (sad/tragic) to 10 (happy/joyful)"
 
         %hr
 
