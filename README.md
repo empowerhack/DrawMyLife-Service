@@ -1,5 +1,7 @@
 [![Build Status](https://travis-ci.org/empowerhack/DrawMyLife-Service.svg?branch=master)](https://travis-ci.org/empowerhack/DrawMyLife-Service)
 
+[![Project Introduction](http://img.youtube.com/vi/chG9_jWdJL8/0.jpg)](http://www.youtube.com/watch?v=chG9_jWdJL8 "Draw my Life project introduction")
+
 ![Screenshot - Upload New Drawing](./app/assets/images/screenshot.png "Screenshot - Upload New Drawing")
 
 # Draw My Life API / Admin
