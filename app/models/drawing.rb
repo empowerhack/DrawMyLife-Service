@@ -31,7 +31,7 @@ class Drawing < ActiveRecord::Base
   scope :desc, -> { order("drawings.created_at DESC") }
 
   def self.to_csv(hxl: false)
-    fields = %w(org country age gender mood_rating description created_at)
+    fields = %w(org country age gender mood_rating description story created_at)
 
     CSV.generate do |csv|
       csv << fields.map(&:capitalize)
