@@ -30,6 +30,21 @@ class Drawing < ActiveRecord::Base
 
   scope :desc, -> { order("drawings.created_at DESC") }
 
+  def self.to_csv(hxl: false)
+    fields = %w(org country age gender mood_rating description story created_at)
+
+    CSV.generate do |csv|
+      csv << fields.map(&:capitalize)
+      csv << fields.map { |field| "#" + field } if hxl
+
+      # Only export completed entries
+      complete.each do |drawing|
+        values = drawing.attributes.values_at(*fields.drop(1))
+        csv << values.unshift(drawing.user.organisation.name)
+      end
+    end
+  end
+
   def viewer_can_change?(viewer)
     viewer.organisation == user.organisation
   end

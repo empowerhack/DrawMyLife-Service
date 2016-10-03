@@ -4,12 +4,14 @@ class DrawingsController < ApplicationController
   before_action :check_access_to_drawing, only: [:edit, :update, :destroy]
 
   def index
-    @drawings = (Drawing.desc.page params[:page]).decorate
+    drawings = (Drawing.desc.page params[:page])
+    @drawings = drawings.decorate
 
     respond_to do |format|
       format.html
       format.js
       format.json { render json: @drawings }
+      format.csv { render text: drawings.to_csv(hxl: params[:hxl].present?) }
     end
   end
 
