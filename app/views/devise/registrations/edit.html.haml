@@ -5,7 +5,7 @@
         .log-in.panel
           .panel-heading
             %h2
-              Edit #{resource_name.to_s.humanize}
+              Edit My Profile
           .panel-body
             = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
               = f.error_notification
