@@ -1,24 +1,25 @@
 module ControllerHelpers
-  def login_admin
-    login_with_scope(:admin)
+
+  def login_as_admin
+    login_with_role
   end
 
-  def login_user
-    login_with_scope(:user)
+  def login_as_org_admin
+    login_with_role(:org_admin)
+  end
+
+  def login_as_super_admin
+    login_with_role(:super_admin)
   end
 
   private
 
-  def login_with_scope(scope=:user)
+  def login_with_role(role=:admin)
     before do
-      @request.env["devise.mapping"] = Devise.mappings[scope]
-      user = FactoryGirl.create(scope)
+      @request.env["devise.mapping"] = Devise.mappings[:user]
+      user = FactoryGirl.create(:user, role)
 
-      if scope == :user
-        sign_in user
-      else
-        sign_in :user, user
-      end
+      sign_in user
     end
   end
 end

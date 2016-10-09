@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe OrganisationsController, type: :controller do
-  login_user
+  login_as_admin
 
   describe "GET index" do
     subject(:perform) { get :index }
