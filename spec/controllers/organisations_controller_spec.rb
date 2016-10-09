@@ -3,6 +3,23 @@ require 'rails_helper'
 RSpec.describe OrganisationsController, type: :controller do
   login_user
 
+  describe "GET index" do
+    subject(:perform) { get :index }
+
+    it { expect(perform).to have_http_status :success }
+    it { perform; expect(assigns(:organisations)).not_to be_nil }
+    it { expect(perform).to render_template :index }
+  end
+
+  describe "GET show" do
+    subject(:perform) { get :show, id: organisation }
+    let(:organisation) { FactoryGirl.create(:organisation) }
+
+    it { expect(perform).to have_http_status :success }
+    it { perform; expect(assigns(:organisation)).not_to be_nil }
+    it { expect(perform).to render_template :show }
+  end
+
   describe "POST create" do
     let(:perform) { post :create, organisation: params }
     let(:params) { FactoryGirl.attributes_for(:organisation) }

@@ -1,0 +1,5 @@
+= render 'organisation', organisation: @organisation
+.text-center.edit-links
+  = link_to "View all organisations", organisations_path
+  |
+  = link_to "Edit Organisation", edit_organisation_path(@organisation)
