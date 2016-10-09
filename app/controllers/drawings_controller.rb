@@ -4,7 +4,7 @@ class DrawingsController < ApplicationController
   before_action :check_access_to_drawing, only: [:edit, :update, :destroy]
 
   def index
-    drawings = (Drawing.desc.page params[:page])
+    drawings = Drawing.desc.page params[:page]
     @drawings = drawings.decorate
 
     respond_to do |format|
