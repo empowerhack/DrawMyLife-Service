@@ -1,0 +1,13 @@
+- @users.each do |user|
+  %tr
+    %td
+      = user.id
+    %td
+      = user.email
+    %td
+      = link_to organisation_path(user.organisation) do
+        = user.organisation_name
+    %td
+      = user.country
+    %td
+      = user.created_at

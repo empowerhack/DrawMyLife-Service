@@ -1,0 +1,16 @@
+#users
+  .container
+    %h3 Manage Users
+    %table.table.table-bordered.table-condensed.table-hover.table-responsive
+      %thead
+        %tr
+          %th ID
+          %th Email
+          %th Organisation
+          %th Country
+          %th Created At
+      %tbody
+        = render 'users'
+
+#paginator.text-center
+  = link_to_next_page @users, 'MORE', remote: true, id: 'load_more'

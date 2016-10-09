@@ -1,4 +1,6 @@
 class RegistrationsController < Devise::RegistrationsController
+  layout 'application'
+
   def destroy
     resource.soft_delete
 

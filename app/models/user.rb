@@ -9,6 +9,8 @@ class User < ActiveRecord::Base
   belongs_to :organisation
   has_many :drawings, dependent: :destroy
 
+  scope :active, -> { where(deleted_at: nil) }
+
   def soft_delete
     update_attribute(:deleted_at, Time.current)
   end
