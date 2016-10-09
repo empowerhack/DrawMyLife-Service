@@ -2,14 +2,18 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   describe "validations" do
-    subject { FactoryGirl.build(:user) }
+    subject { FactoryGirl.build(:user, attrs) }
 
-    %i(email country).each do |attr|
+    let(:attrs) { FactoryGirl.attributes_for(:user) }
+
+    it { is_expected.to define_enum_for(:role).with(%i(admin org_admin super_admin)) }
+
+    %i(email country role).each do |attr|
       it { is_expected.to validate_presence_of attr }
     end
 
-    it 'validates length of email' do
-      should validate_length_of(:email)
+    it do
+      is_expected.to validate_length_of(:email)
         .is_at_least(4)
         .is_at_most(60)
     end

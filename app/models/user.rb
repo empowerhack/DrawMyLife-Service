@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+  enum role: %i(admin org_admin super_admin)
+
+  validates :role, presence: true
   validates :email, presence: true, length: { minimum: 4, maximum: 60 }
   validates :country, presence: true
   # Include default devise modules. Others available are:
