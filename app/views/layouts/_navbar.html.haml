@@ -1,16 +1,18 @@
-%nav.navbar.navbar-default
-  .navbar-container
-    .navbar-header
-      .navbar-brand= link_to "Draw My Life", root_path
-    #bs-example-navbar-collapse-1.collapse.navbar-collapse
+.navbar.navbar-default.navbar-static-top
+  .container
+    %button.navbar-toggle(type="button" data-toggle="collapse" data-target=".navbar-responsive-collapse")
+      %span.icon-bar
+      %span.icon-bar
+      %span.icon-bar
+    .navbar-brand= link_to "Draw My Life", root_path
+    .navbar-collapse.collapse.navbar-responsive-collapse
       %ul.nav.navbar-nav.navbar-right
         - if user_signed_in?
-          %li.divider{:role => "separator"}
-          %li.separator
-            = link_to root_path do 
+          %li
+            = link_to root_path do
               %i.fa.fa-home{"aria-hidden" => "true"}
               Manage Drawings
-          %li.separator
+          %li
             = link_to new_drawing_path do
               %i.fa.fa-plus{"aria-hidden" => "true"}
               Upload
