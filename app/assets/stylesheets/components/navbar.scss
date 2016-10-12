@@ -10,17 +10,16 @@
   }
 }
 
-.navbar-default {
+.navbar-toggle {
+  background-color: $ice-white;
+}
+
+.navbar-default, .navbar-collapse {
   background-color: $dark-grey;
-  height: $navbar-height;
   @include border-radius(0);
   border: none;
 
   .navbar-nav li {
-    &.separator>a {
-      border-right: 2px solid $white;
-    }
-
     a {
       color: $white;
 
@@ -48,4 +47,10 @@
       }
     }
   }
+}
+
+@media (max-width: 767px) {
+  .navbar-collapse .navbar-nav .open .dropdown-menu > li > a {
+      color: $ice-white;
+    }
 }
