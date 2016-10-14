@@ -12,7 +12,7 @@
 
 .drawing {
   background-color: $white;
-  border-color: $lightGray;
+  border-color: $light-gray;
   border-style: solid;
   border-radius: 3px;
   border-width: 1px;
@@ -23,7 +23,7 @@
     padding-left: $drawingsPadding;
     padding-right: $drawingsPadding;
     padding-top: $drawingsPadding;
-    color: $chathamsBlue;
+    color: $chathams-blue;
     font-size: 15px;
     line-height: 18px;
     .user-name, .time-ago {
@@ -41,8 +41,8 @@
     position: relative;
     overflow: hidden;
     padding-bottom: 100%;
-    border-bottom: 1px solid $lightGray;
-    border-top: 1px solid $lightGray;
+    border-bottom: 1px solid $light-gray;
+    border-top: 1px solid $light-gray;
   }
   .image img{
     position: absolute;
@@ -80,7 +80,7 @@
   .user-name {
     font-weight: 500;
     margin-right: 0.3em;
-    color: $chathamsBlue;
+    color: $chathams-blue;
     font-size: 15px;
   }
 
