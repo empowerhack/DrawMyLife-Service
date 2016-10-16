@@ -21,7 +21,7 @@
         .form-group
           = f.input :description, label: 'Description of drawing', placeholder: 'e.g. Children playing in the garden, mountains in background'
         .form-group
-          = f.input :mood_rating, as: :select, collection: mood_select_box, label: 'How would you rate the mood of the drawing?', prompt: "Scale is from 1 (sad/tragic) to 10 (happy/joyful)"
+          = f.input :mood_rating, as: :select, collection: mood_select_box, label: 'How would you rate the mood of the drawing?', prompt: "Scale is from 1 (sad/tragic) to 5 (happy/joyful)"
 
         %hr
 
