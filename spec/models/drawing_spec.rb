@@ -15,7 +15,6 @@ RSpec.describe Drawing, type: :model do
       it { is_expected.to validate_presence_of attr }
     end
 
-
     it { is_expected.to validate_numericality_of(:age) }
 
     it do
