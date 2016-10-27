@@ -68,6 +68,7 @@ group :development, :test do
   gem 'capybara'
   # To run specs automatically on file changes
   gem 'guard-rspec'
+  gem 'pry-rails'
 end
 
 group :test do
