@@ -192,6 +192,8 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
+    pry-rails (0.3.4)
+      pry (>= 0.9.10)
     puma (3.4.0)
     rack (1.6.4)
     rack-cors (0.3.1)
@@ -342,6 +344,7 @@ DEPENDENCIES
   kaminari (~> 0.16.3)
   paperclip (~> 4.3)
   pg
+  pry-rails
   puma
   rack-cors (~> 0.3.1)
   rails (= 4.2.6)
@@ -362,4 +365,4 @@ RUBY VERSION
    ruby 2.3.1p112
 
 BUNDLED WITH
-   1.12.5
+   1.13.6
