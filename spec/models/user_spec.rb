@@ -2,42 +2,53 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   describe "validations" do
-    USER_FIELDS = %i(email country).freeze
     subject { FactoryGirl.build(:user) }
 
-    USER_FIELDS.each do |attr|
+      %i(email country).each do |attr|
       it { is_expected.to validate_presence_of attr }
     end
 
-    it { is_expected.to validate_length_of :email }
+      it { is_expected.to validate_length_of(:email).
+        is_at_least(4).is_at_most(60) }
   end
 
-  context "active user" do
-    it "#active_for_authentication?" do
-      expect(subject.active_for_authentication?).to be true
+  describe "#active_for_authentication?" do
+    context "active user" do
+      it "returns true" do
+        expect(subject.active_for_authentication?).to be true
+      end
     end
-
-    it "#inactive message?" do
-      expect(subject.inactive_message).to eq :inactive
-    end
-
-    it "#soft_delete" do
-      @current_time = Time.now
-      allow(Time).to receive(:current).and_return(@current_time)
-      subject.soft_delete
-      expect(subject.deleted_at).to eq(@current_time)
+    context "deleted user" do
+      it "returns false" do
+        subject.soft_delete
+        expect(subject.active_for_authentication?).to be false
+      end
     end
   end
 
-  context "deleted user" do
-    it "#active_for_authentication?" do
-      subject.soft_delete
-      expect(subject.active_for_authentication?).to be false
+  describe "#inactive message?" do
+    context "active user" do
+      it "returns inactive" do
+        expect(subject.inactive_message).to eq :inactive
+      end
     end
+    context "deleted user" do
+      it "returns deleted account" do
+        subject.soft_delete
+        expect(subject.inactive_message).to eq :deleted_account
+      end
+    end
+  end
 
-    it "#inactive_message" do
-      subject.soft_delete
-      expect(subject.inactive_message).to eq :deleted_account
+  describe "#soft_delete" do
+    before do
+      Timecop.freeze(Time.local(2016))
+    end
+    context "deleting a user" do
+      it 'records deletion time' do
+        subject.soft_delete
+        expect(subject.deleted_at).to eq(Time.local(2016))
+      end
     end
   end
 end

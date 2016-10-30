@@ -75,6 +75,7 @@ group :test do
   gem 'database_cleaner'
   # Handy testing matchers
   gem 'shoulda-matchers'
+  gem 'timecop'
 end
 
 group :development do
