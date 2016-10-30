@@ -4,15 +4,15 @@ RSpec.describe User, type: :model do
   describe "validations" do
     subject { FactoryGirl.build(:user) }
 
-      %i(email country).each do |attr|
-        it { is_expected.to validate_presence_of attr }
-      end
+    %i(email country).each do |attr|
+      it { is_expected.to validate_presence_of attr }
+    end
 
-      it 'validates length of email' do
-        should validate_length_of(:email)
+    it 'validates length of email' do
+      should validate_length_of(:email)
         .is_at_least(4)
         .is_at_most(60)
-      end
+    end
   end
 
   describe "#active_for_authentication?" do
