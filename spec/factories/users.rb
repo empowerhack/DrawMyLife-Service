@@ -5,6 +5,8 @@ FactoryGirl.define do
     password_confirmation 'my53cur3pa55word'
     country "GR"
     role "admin"
+    confirmed_at "2015-01-01 10:00:00"
+    confirmation_sent_at "2015-01-01 10:00:00"
 
     organisation
 

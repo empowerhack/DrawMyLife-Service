@@ -1,4 +1,4 @@
-class RegistrationsController < Devise::RegistrationsController
+class Profiles::RegistrationsController < Devise::RegistrationsController
   layout 'application'
 
   def destroy
@@ -15,10 +15,6 @@ class RegistrationsController < Devise::RegistrationsController
 
   def sign_out_check
     Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name)
-  end
-
-  def sign_up_params
-    params.require(:user).permit(:email, :password, :password_confirmation, :country, :organisation_id)
   end
 
   def account_update_params

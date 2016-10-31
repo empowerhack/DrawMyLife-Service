@@ -5,7 +5,7 @@ class UserDecorator < Draper::Decorator
     PaginatingDecorator
   end
 
-  def email
+  def email_link
     if object.deleted_at.present?
       "<em>Deleted user</em>".html_safe
     else

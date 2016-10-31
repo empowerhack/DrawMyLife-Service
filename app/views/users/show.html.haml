@@ -1,0 +1,9 @@
+.container
+  %h3 User Details
+
+  = render 'user', user: @user
+  .text-center.edit-links
+    = link_to "Back To List", users_path
+    - if current_user.super_admin?
+      |
+      = link_to "Edit User", edit_user_path(@user)
