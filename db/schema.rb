@@ -11,15 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160815092330) do
+ActiveRecord::Schema.define(version: 20161102222517) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "drawings", force: :cascade do |t|
     t.string   "description"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
@@ -32,6 +32,8 @@ ActiveRecord::Schema.define(version: 20160815092330) do
     t.string   "country"
     t.integer  "status",             default: 0
     t.integer  "gender",             default: 0
+    t.string   "stage_of_journey"
+    t.boolean  "image_consent",      default: false, null: false
   end
 
   add_index "drawings", ["user_id"], name: "index_drawings_on_user_id", using: :btree
