@@ -14,6 +14,10 @@ class DrawingDecorator < Draper::Decorator
     text_concat(object.story) unless object.story.nil?
   end
 
+  def image_consent_text
+    "Consent given by artist to share image on open source data platforms as deemed appropriate"
+  end
+
   private
 
   def text_concat(text, max_length=100)
