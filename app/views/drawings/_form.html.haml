@@ -35,9 +35,9 @@
             = b.radio_button
             = b.label(class: "btn")
         .form-group
-          = f.input :story, label: 'Context / story of the artist', required: false, placeholder: 'e.g. interesting cultural or psychological notes (optional)'
-        .form-group
           = f.input :stage_of_journey, collection: ["At home", "In temporary shelter", "Awaiting transit", "On the move", "Arrived at destination"], label: 'Stage of journey', required: false, prompt: "--select an option--"
+        .form-group
+          = f.input :story, label: 'Context / story of the artist', required: false, placeholder: 'e.g. interesting cultural or psychological notes (optional)'
 
       .row.drawings-wrapper
       %hr
