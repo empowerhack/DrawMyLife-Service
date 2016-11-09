@@ -4,6 +4,7 @@ FactoryGirl.define do
     description "Description of the content of this drawing"
     gender "other"
     age 10
+    stage_of_journey "At home"
     mood_rating 7
     subject_matter "Camp life"
     story "Context of the drawing, e.g. child's back story, cultural notes"
