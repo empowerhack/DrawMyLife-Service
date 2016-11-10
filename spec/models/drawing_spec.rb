@@ -25,7 +25,7 @@ RSpec.describe Drawing, type: :model do
 
     it do
       is_expected.to validate_numericality_of(:mood_rating)
-        .is_less_than_or_equal_to(10)
+        .is_less_than_or_equal_to(5)
     end
 
     context "images/paperclip" do
