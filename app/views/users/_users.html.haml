@@ -14,8 +14,7 @@
     %td
       = user.created_at
     %td
+      = user.active_status
+    %td
       = link_to edit_user_path(user) do
         %i.fa.fa-pencil{"aria-hidden" => "true"}
-    %td
-      = link_to user_path(user.id), method: :delete, data: { confirm: 'Are you sure? Note: this will NOT delete the user\'s uploaded drawings.' } do
-        %i.fa.fa-trash{"aria-hidden" => "true"}

@@ -4,6 +4,19 @@ class Profiles::ConfirmationsController < Devise::ConfirmationsController
   skip_before_filter :require_no_authentication
   skip_before_filter :authenticate_user!
 
+  # POST /resource/confirmation
+  def create
+    self.resource = resource_class.send_confirmation_instructions(resource_params)
+    yield resource if block_given?
+
+    if successfully_sent?(resource)
+      set_flash_message :notice, :send_instructions
+      respond_with({}, location: root_path)
+    else
+      respond_with(resource)
+    end
+  end
+
   # PUT /resource/confirmation
   def update
     with_unconfirmed_confirmable do
@@ -13,6 +26,7 @@ class Profiles::ConfirmationsController < Devise::ConfirmationsController
           do_confirm
         else
           do_show
+          set_flash_message :notice, :password_update_failure
           @confirmable.errors.clear #so that we wont render :new
         end
       else
