@@ -4,8 +4,9 @@ en:
   devise:
     confirmations:
       confirmed: "Your email address has been successfully confirmed."
-      send_instructions: "You will receive an email with instructions for how to confirm your email address in a few minutes."
+      send_instructions: "The owner of this email address will receive a message with confirmation instructions in a few minutes."
       send_paranoid_instructions: "If your email address exists in our database, you will receive an email with instructions for how to confirm your email address in a few minutes."
+      password_update_failure: "Your password failed validation. Please try again."
     failure:
       already_authenticated: "You are already signed in."
       inactive: "Your account is not activated yet."

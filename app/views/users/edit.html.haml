@@ -1,6 +1,6 @@
 = render 'form'
 
 .text-center.edit-links
-  = link_to "Cancel", user_path(@user)
+  = link_to "Back to Profile", user_path(@user)
   |
-  = link_to "Delete User", user_path(@user), method: :delete, data: { confirm: 'Are you sure? Note: this will NOT delete the user\'s uploaded drawings.' }
+  = link_to "Permanently Delete User", user_path(@user), method: :delete, data: { confirm: 'Are you sure you want to permanently delete this user? Note: this will NOT remove the user\'s uploaded drawings.' }

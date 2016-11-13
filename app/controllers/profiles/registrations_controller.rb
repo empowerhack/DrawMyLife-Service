@@ -18,6 +18,10 @@ class Profiles::RegistrationsController < Devise::RegistrationsController
   end
 
   def account_update_params
-    params.require(:user).permit(:email, :password, :password_confirmation, :country, :organisation_id, :current_password)
+    if current_user.super_admin?
+      params.require(:user).permit(:email, :password, :password_confirmation, :country, :organisation_id, :current_password)
+    else
+      params.require(:user).permit(:email, :password, :password_confirmation, :country, :current_password)
+    end
   end
 end

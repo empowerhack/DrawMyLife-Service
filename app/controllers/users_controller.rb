@@ -1,9 +1,9 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!, :authorize_user, :set_devise_mapping
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :deactivate, :reactivate]
 
   def index
-    @users = (User.active.page params[:page]).decorate
+    @users = (User.desc.page params[:page]).decorate
 
     respond_to do |format|
       format.html
@@ -50,6 +50,27 @@ class UsersController < ApplicationController
     redirect_to users_path
   end
 
+
+  def deactivate
+    @user.soft_delete
+
+    # TODO
+    # Notify user by email
+
+    flash[:success] = "The user account for #{@user.email} was deactivated."
+    redirect_to user_path(@user)
+  end
+
+  def reactivate
+    @user.reactivate
+
+    # TODO
+    # Notify user by email
+
+    flash[:success] = "The user account for #{@user.email} was reactivated."
+    redirect_to user_path(@user)
+  end
+
   private
 
   def authorize_user
@@ -64,7 +85,7 @@ class UsersController < ApplicationController
   end
 
   def set_user
-    @user ||= User.find(params[:id]).decorate
+    @user ||= User.find(params[:id] || params[:user_id]).decorate
   end
 
   def set_devise_mapping

@@ -12,7 +12,10 @@ Rails.application.routes.draw do
     patch 'my/users/confirmation' => 'profiles/confirmations#update', via: :patch, as: :update_user_confirmation
   end
 
-  resources :users
+  resources :users do
+    put :deactivate
+    put :reactivate
+  end
 
   resources :drawings, :organisations
 

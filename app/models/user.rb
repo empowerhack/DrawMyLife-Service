@@ -8,13 +8,20 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  validates_presence_of :password, if: :password_required?
+
   belongs_to :organisation
   has_many :drawings, dependent: :destroy
 
   scope :active, -> { where(deleted_at: nil) }
+  scope :desc, -> { order("users.created_at DESC") }
 
   def soft_delete
     update_attribute(:deleted_at, Time.current)
+  end
+
+  def reactivate
+    update_attribute(:deleted_at, nil)
   end
 
   def active_for_authentication?
@@ -28,7 +35,7 @@ class User < ActiveRecord::Base
   def password_required?
     # Password is required if it is being set, but not for new records
     if persisted?
-      password.present? || password_confirmation.present?
+      !confirmed? || password.present? || password_confirmation.present?
     else
       false
     end

@@ -5,13 +5,22 @@
   .row.col-md-12
     = simple_form_for @user, html: { multipart: true } do |f|
       .form-group
-        .alert.alert-warning Note: Only confirmed email addresses will be able to log in and use the admin portal. When adding or changing an email address, the user will be sent an email with a secure link to confirm their address, (re)activate their account and update their password.
+        .alert.alert-warning
+          Notes:
+          %ul
+            %li Only confirmed email addresses will be able to log in and use the admin portal.
+            %li When adding a new user or changing an email address, the user will be sent an email with a secure link to confirm their new address.
+            %li While awaiting email confirmation for a new user, you will be able to deactivate or delete their account but will not be able to edit their details.
       .form-group
         = f.input :email, label: "Email", required: true
-
-        - if @devise_mapping.confirmable? && @user.pending_reconfirmation?
-          %div
-            Currently waiting confirmation for: #{@user.unconfirmed_email}
+      - if @user.persisted?
+        .form-group
+          %strong Status
+          %br
+          = @user.active_status
+          (
+          = @user.active_status_toggle_link
+          )
       .form-group
         = f.label 'Role'
         %br
