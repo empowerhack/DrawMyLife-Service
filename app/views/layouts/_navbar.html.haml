@@ -8,8 +8,7 @@
     .navbar-collapse.collapse.navbar-responsive-collapse
       %ul.nav.navbar-nav.navbar-right
         - if user_signed_in?
-          %li.divider{:role => "separator"}
-          %li.separator
+          %li
             = link_to root_path do
               %i.fa.fa-home{"aria-hidden" => "true"}
               Manage Drawings
