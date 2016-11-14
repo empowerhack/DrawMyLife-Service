@@ -20,7 +20,7 @@ class Profiles::ConfirmationsController < Devise::ConfirmationsController
   # PUT /resource/confirmation
   def update
     with_unconfirmed_confirmable do
-      if @confirmable.has_no_password?
+      if @confirmable.no_password?
         @confirmable.attempt_set_password(params[:user])
         if @confirmable.valid?
           do_confirm
@@ -43,7 +43,7 @@ class Profiles::ConfirmationsController < Devise::ConfirmationsController
   # GET /resource/confirmation?confirmation_token=abcdef
   def show
     with_unconfirmed_confirmable do
-      if @confirmable.has_no_password?
+      if @confirmable.no_password?
         do_show
       else
         do_confirm

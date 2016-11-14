@@ -19,49 +19,53 @@ class UserDecorator < Draper::Decorator
   end
 
   def active_status
-    unless object.active_for_authentication?
-      unless object.confirmed?
-        "New Account Awaiting Confirmation"
-      else
-        "Inactive"
-      end
-    else
-      if devise_mapping.confirmable? && object.pending_reconfirmation?
+    if object.active_for_authentication?
+      if awaiting_reconfirmation?
         "Active - Waiting on confirmation for new email address: <strong>#{object.unconfirmed_email}</strong>".html_safe
       else
         "Active"
       end
+    else
+      object.confirmed? ? "Inactive" : "New Account Awaiting Confirmation"
     end
   end
 
   def active_status_toggle_link
     if object.active_for_authentication?
-      action = "deactivate user"
-      url = Rails.application.routes.url_helpers.user_deactivate_path(object)
-      confirmation = "Are you sure you want to deactivate this user? Note: this will NOT remove the user's uploaded drawings."
-      request_method = :put
-      link_data = { confirm: confirmation }
+      user_deactivation_link
     else
-      if object.confirmed?
-        action = "reactivate user"
-        url = Rails.application.routes.url_helpers.user_reactivate_path(object)
-        confirmation = "Are you sure you want to reactivate this user?"
-        request_method = :put
-        link_data = { confirm: confirmation }
-      else
-        action = "resend confirmation email"
-        url = Rails.application.routes.url_helpers.new_user_confirmation_path(email: object.email)
-        request_method = :get
-        link_data = {}
-      end
+      object.confirmed? ? user_reactivation_link : user_resend_confirmation_link
     end
+  end
 
-      link_to "#{action.capitalize}?", url, method: request_method, data: link_data
+  def user_deactivation_link
+    url = url_helper_class.user_deactivate_path(object)
+    confirmation = "Are you sure you want to deactivate this user? Note: this will NOT remove the user's uploaded drawings."
+    link_to "Deactivate User?", url, method: :put, data: { confirm: confirmation }
+  end
+
+  def user_reactivation_link
+    url = url_helper_class.user_reactivate_path(object)
+    confirmation = "Are you sure you want to reactivate this user?"
+    link_to "Reactivate User?", url, method: :put, data: { confirm: confirmation }
+  end
+
+  def user_resend_confirmation_link
+    url = url_helper_class.new_user_confirmation_path(email: object.email)
+    link_to "Resend Confirmation Email?", url
   end
 
   private
 
   def devise_mapping
     @devise_mapping ||= Devise.mappings[:user]
+  end
+
+  def awaiting_reconfirmation?
+    devise_mapping.confirmable? && object.pending_reconfirmation?
+  end
+
+  def url_helper_class
+    Rails.application.routes.url_helpers
   end
 end

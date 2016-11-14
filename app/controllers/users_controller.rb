@@ -50,7 +50,6 @@ class UsersController < ApplicationController
     redirect_to users_path
   end
 
-
   def deactivate
     @user.soft_delete
 
