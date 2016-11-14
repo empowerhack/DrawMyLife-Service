@@ -7,7 +7,10 @@ RSpec.describe OrganisationsController, type: :controller do
     subject(:perform) { get :index }
 
     it { expect(perform).to have_http_status :success }
-    it { perform; expect(assigns(:organisations)).not_to be_nil }
+    it do
+      perform
+      expect(assigns(:organisations)).not_to be_nil
+    end
     it { expect(perform).to render_template :index }
   end
 
@@ -16,7 +19,10 @@ RSpec.describe OrganisationsController, type: :controller do
     let(:organisation) { FactoryGirl.create(:organisation) }
 
     it { expect(perform).to have_http_status :success }
-    it { perform; expect(assigns(:organisation)).not_to be_nil }
+    it do
+      perform
+      expect(assigns(:organisation)).not_to be_nil
+    end
     it { expect(perform).to render_template :show }
   end
 

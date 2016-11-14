@@ -1,12 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe UsersController, type: :controller do
-
   shared_examples_for "an action only accessible to super_admins" do
     context "current user is super admin" do
       login_as_super_admin
 
-      it { perform; expect(controller).to_not set_flash[:error] }
+      it do
+        perform
+        expect(controller).to_not set_flash[:error]
+      end
     end
 
     context "current user is admin" do
@@ -86,7 +88,7 @@ RSpec.describe UsersController, type: :controller do
     context "with invalid params" do
       login_as_super_admin
 
-      let(:params) { { country: -1 } }
+      let(:params) { { email: "notanemail" } }
 
       it "does not update the user" do
         perform

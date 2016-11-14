@@ -1,5 +1,4 @@
 module ControllerHelpers
-
   def login_as_admin
     login_with_role
   end

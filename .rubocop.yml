@@ -6,6 +6,7 @@ AllCops:
   Exclude:
     - db/schema.rb
     - bin/setup
+    - app/controllers/profiles/*
 
 Style/StringLiterals:
   Enabled: false
@@ -29,4 +30,7 @@ Metrics/MethodLength:
   Max: 15
 
 Metrics/AbcSize:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
   Enabled: false
