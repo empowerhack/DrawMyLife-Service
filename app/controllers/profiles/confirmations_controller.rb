@@ -71,7 +71,7 @@ class Profiles::ConfirmationsController < Devise::ConfirmationsController
     @confirmable = User.find_or_initialize_with_error_by(:confirmation_token, confirmation_token)
     @requires_password = true
     self.resource = @confirmable
-    render 'profiles/confirmations/show' #Change this if you don't have the views on default path
+    render 'profiles/confirmations/show'
   end
 
   def do_confirm
