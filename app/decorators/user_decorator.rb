@@ -15,7 +15,16 @@ class UserDecorator < Draper::Decorator
   end
 
   def organisation_name
-    object.organisation.name
+    object.organisation ? object.organisation.name : "N/A"
+  end
+
+  def organisation_link
+    if object.organisation
+      url = url_helper_class.organisation_path(object.organisation)
+      link_to organisation_name, url
+    else
+      organisation_name
+    end
   end
 
   def active_status
