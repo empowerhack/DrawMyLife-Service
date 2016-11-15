@@ -27,7 +27,7 @@ class Profiles::ConfirmationsController < Devise::ConfirmationsController
         else
           do_show
           set_flash_message :notice, :password_update_failure
-          @confirmable.errors.clear #so that we wont render :new
+          @confirmable.errors.clear # so that we wont render :new
         end
       else
         @confirmable.errors.add(:email, :password_already_set)
@@ -36,7 +36,7 @@ class Profiles::ConfirmationsController < Devise::ConfirmationsController
 
     if !@confirmable.errors.empty?
       self.resource = @confirmable
-      render 'profiles/confirmations/new' #Change this if you don't have the views on default path
+      render 'profiles/confirmations/new'
     end
   end
 
@@ -51,7 +51,7 @@ class Profiles::ConfirmationsController < Devise::ConfirmationsController
     end
     unless @confirmable.errors.empty?
       self.resource = @confirmable
-      render 'profiles/confirmations/new' #Change this if you don't have the views on default path
+      render 'profiles/confirmations/new'
     end
   end
 
@@ -62,7 +62,7 @@ class Profiles::ConfirmationsController < Devise::ConfirmationsController
     @confirmable = User.find_or_initialize_with_error_by(:confirmation_token, confirmation_token)
 
     if !@confirmable.new_record?
-      @confirmable.only_if_unconfirmed {yield}
+      @confirmable.only_if_unconfirmed { yield }
     end
   end
 
