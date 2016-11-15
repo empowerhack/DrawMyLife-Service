@@ -26,7 +26,7 @@
                     %br
                     = resource.organisation.name
                     %br
-                    %em (NB: only super_admins can change this)
+                    %em (NB: only super admins can change this)
                 = f.input :current_password, hint: "we need your current password to confirm your changes", required: true, label: "Current Password"
               .form-actions
                 = f.submit "Update", class: 'btn-lg btn-primary btn-block'
