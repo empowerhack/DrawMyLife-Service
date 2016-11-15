@@ -14,8 +14,7 @@
     = ISO3166::Country.find_country_by_alpha2(user.country).name
 .row.col-md-12
   %strong Organisation:
-  = link_to organisation_path(user.organisation) do
-    = user.organisation_name
+  = user.organisation_link
 .row.col-md-12
   %strong Created at:
   = user.created_at
