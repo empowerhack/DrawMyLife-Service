@@ -39,4 +39,8 @@ module DrawingsHelper
     selections[-1][0] += " 😃"
     selections
   end
+
+  def image_consent_default
+    @drawing.new_record? ? true : @drawing.image_consent
+  end
 end

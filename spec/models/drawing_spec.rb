@@ -39,6 +39,8 @@ RSpec.describe Drawing, type: :model do
       end
     end
 
+    it { should_not allow_value(nil).for(:image_consent) }
+
     context "status is complete" do
       PRIORITY_FIELDS.each do |attr|
         it { is_expected.to validate_presence_of attr }
