@@ -1,11 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
+  subject { FactoryGirl.build(:user, attrs) }
+  let(:attrs) { FactoryGirl.attributes_for(:user) }
+
   describe "validations" do
-    subject { FactoryGirl.build(:user, attrs) }
-
-    let(:attrs) { FactoryGirl.attributes_for(:user) }
-
     it { is_expected.to define_enum_for(:role).with(%i(admin org_admin super_admin)) }
 
     %i(email country role).each do |attr|
