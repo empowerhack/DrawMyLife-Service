@@ -10,6 +10,7 @@ FactoryGirl.define do
     story "Context of the drawing, e.g. child's back story, cultural notes"
     country "GR"
     status "complete"
+    image_consent true
 
     user
   end

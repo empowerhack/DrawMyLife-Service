@@ -4,6 +4,7 @@ class Drawing < ActiveRecord::Base
 
   validates :image, presence: true
   validates :status, presence: true
+  validates_inclusion_of :image_consent, in: [true, false]
 
   with_options if: :complete? do |complete|
     complete.validates :description, presence: true

@@ -11,6 +11,8 @@
           %br
           %b Allowed image types: jpg/jpeg, png, tiff, gif, bmp
           = f.input :image, label: false, required: false, input_html: { onChange: 'loadFile(event)' }
+        .form-group.form-consent
+          = f.input :image_consent, label: @drawing.image_consent_text, input_html: { checked: image_consent_default }
 
       .col-md-7.col-sm-12.col-xs-12
         %h4 Details of Drawing (required when marked complete)
