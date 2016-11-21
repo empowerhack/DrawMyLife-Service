@@ -1,4 +1,4 @@
-.drawings-wrapper{ class: drawings_class }
+.drawings-wrapper.drawings-full
   .drawing
     .image.center-block
       = link_to (image_tag drawing.image.url(:medium), class:'img-responsive'),
@@ -13,7 +13,7 @@
             %em
               Uploaded by
               .user-name
-                = drawing.user.email
+                = drawing.user.email_link
           .drawing-row.time-ago
             %em
               Created

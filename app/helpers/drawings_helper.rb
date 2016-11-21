@@ -11,11 +11,6 @@ module DrawingsHelper
     @drawing.new_record? ? "Add Drawing" : "Edit Drawing"
   end
 
-  def drawings_class
-    index_view = current_page?(root_path) || current_page?(controller: "drawings", action: "index")
-    index_view ? "col-xs-6 col-sm-4" : "drawings-full"
-  end
-
   def radio_statuses
     # Example output: [ ["status1", "status1"], ["status2", "status2"] ]
     [].tap do |arr|

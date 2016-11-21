@@ -1,0 +1,34 @@
+.container
+  %h3
+    = form_title
+
+  .row.col-md-12
+    = simple_form_for @user, html: { multipart: true } do |f|
+      .form-group
+        .alert.alert-warning
+          Notes:
+          %ul
+            %li Only confirmed email addresses will be able to log in and use the admin portal.
+            %li When adding a new user or changing an email address, the user will be sent an email with a secure link to confirm their new address.
+            %li While awaiting email confirmation for a new user, you will be able to deactivate or delete their account but will not be able to edit their details.
+      .form-group
+        = f.input :email, label: "Email", required: true
+      - if @user.persisted?
+        .form-group
+          %strong Status
+          %br
+          = @user.active_status
+          (
+          = @user.active_status_toggle_link
+          )
+      .form-group
+        = f.label 'Role'
+        %br
+        = f.collection_radio_buttons :role, radio_roles, :first, :last do |b|
+          = b.radio_button
+          = b.label(class: "btn")
+      .form-group
+        = f.input :country, label: "Country", priority: TOP_COUNTRIES, placeholder: "Select a country", required: true
+        = f.input :organisation_id, as: :select, label: "Organisation", collection: Organisation.all, placeholder: "Select an organisation (optional)"
+      .form-group
+        = f.button :submit, class: 'btn-success btn-block'

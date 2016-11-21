@@ -28,7 +28,7 @@
         = link_to drawing_path(drawing.id), method: :delete, data: { confirm: 'Are you sure?' } do
           %i.fa.fa-trash{"aria-hidden" => "true"}
     %td
-      = drawing.user.email
+      = drawing.user.email_link
     %td
       .drawing-status-pending
         = drawing.status.upcase

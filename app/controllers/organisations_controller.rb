@@ -1,9 +1,12 @@
 class OrganisationsController < ApplicationController
   before_action :authenticate_user!
-  before_action :find_organisation, only: [:edit, :update, :destroy]
+  before_action :find_organisation, only: [:edit, :show, :update, :destroy]
 
   def index
     @organisations = Organisation.all.order("name ASC")
+  end
+
+  def show
   end
 
   def new
