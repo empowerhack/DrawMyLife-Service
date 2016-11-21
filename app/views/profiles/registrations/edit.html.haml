@@ -24,7 +24,7 @@
                   - else
                     %strong Organisation
                     %br
-                    = resource.organisation.name
+                    = resource.decorate.organisation_link
                     %br
                     %em (NB: only super admins can change this)
                 = f.input :current_password, hint: "we need your current password to confirm your changes", required: true, label: "Current Password"
