@@ -1,4 +1,6 @@
-class RegistrationsController < Devise::RegistrationsController
+class Profiles::RegistrationsController < Devise::RegistrationsController
+  layout 'application'
+
   def destroy
     resource.soft_delete
 
@@ -15,11 +17,11 @@ class RegistrationsController < Devise::RegistrationsController
     Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name)
   end
 
-  def sign_up_params
-    params.require(:user).permit(:email, :password, :password_confirmation, :country, :organisation_id)
-  end
-
   def account_update_params
-    params.require(:user).permit(:email, :password, :password_confirmation, :country, :organisation_id, :current_password)
+    if current_user.super_admin?
+      params.require(:user).permit(:email, :password, :password_confirmation, :country, :organisation_id, :current_password)
+    else
+      params.require(:user).permit(:email, :password, :password_confirmation, :country, :current_password)
+    end
   end
 end

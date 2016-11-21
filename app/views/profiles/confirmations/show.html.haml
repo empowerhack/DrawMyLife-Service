@@ -1,0 +1,19 @@
+.container
+  %h2 Account Activation
+
+  .row
+    = simple_form_for(resource, as: resource_name, url: update_user_confirmation_path, html: { method: :patch }, id: 'activation-form') do |f|
+      = f.error_notification
+      .form-group
+        .alert.alert-notice Please enter your new password to activate your account.
+        - if resource.try(:user_name)
+          for
+          = resource.user_name
+      - if @requires_password
+        .form-group
+          = f.input :password, autocomplete: "off", label: "Password", required: true
+          = f.input :password_confirmation, autocomplete: "off", label: "Password Confirmation", required: true
+
+        .form-group
+          = f.input :confirmation_token, as: :hidden
+          = f.submit "Activate", class: 'btn-lg btn-primary btn-block'
