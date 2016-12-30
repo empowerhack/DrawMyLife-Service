@@ -1,11 +1,8 @@
-.container
-  .row
-    %h2 Resend confirmation instructions
-    = simple_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f|
-      = f.error_notification
-      = f.full_error :confirmation_token
-      .form-inputs
-        = f.input :email, required: true, autofocus: true, input_html: { value: params[:email] }
-      .form-actions
-        = f.button :submit, "Resend confirmation instructions"
-    = render "profiles/shared/links"
+= render layout: 'layouts/logged_out', locals: { heading: "Resend confirmation instructions", links: true } do
+  = simple_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f|
+    = f.error_notification
+    = f.full_error :confirmation_token
+    .form-inputs
+      = f.input :email, required: true, autofocus: true, label: false, placeholder: 'Email', input_html: { value: params[:email], class: 'input-lg' }
+    .form-actions
+      = f.button :submit, "Resend instructions", class: 'btn-lg btn-primary btn-block'

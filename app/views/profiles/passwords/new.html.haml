@@ -1,12 +1,7 @@
-.container
-
-  %h2 Forgot your password?
-
-  .row
-    = simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
-      = f.error_notification
-      .form-inputs
-        = f.input :email, required: true, autofocus: true
-      .form-actions
-        = f.button :submit, "Send me reset password instructions"
-    = render "profiles/shared/links"
+= render layout: 'layouts/logged_out', locals: { heading: "Forgot your password?", links: true } do
+  = simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
+    = f.error_notification
+    .form-inputs
+      = f.input :email, required: true, autofocus: true, label: false, placeholder: 'Email', input_html: { class: 'input-lg' }
+    .form-actions
+      = f.button :submit, "Reset my password", class: 'btn-lg btn-primary btn-block'
