@@ -2,7 +2,6 @@
 
 organisation = Organisation.create(name: "EmpowerHack")
 
-
 # Super Admin
 User.create!(
   email: "super_admin@example.com",
