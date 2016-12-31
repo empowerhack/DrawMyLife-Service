@@ -1,4 +1,7 @@
 class DrawingsController < ApplicationController
+  include Roar::Rails::ControllerAdditions
+  respond_to :hal
+
   before_action :authenticate_user!
   before_action :set_drawing, only: [:show, :edit, :update, :destroy]
   before_action :check_access_to_drawing, only: [:edit, :update, :destroy]
@@ -10,7 +13,7 @@ class DrawingsController < ApplicationController
     respond_to do |format|
       format.html
       format.js
-      format.json { render json: @drawings }
+      format.hal { respond_with drawings, represent_with: DrawingCollectionRepresenter }
       format.csv { render text: drawings.to_csv(hxl: params[:hxl].present?) }
     end
   end
@@ -33,7 +36,7 @@ class DrawingsController < ApplicationController
   def show
     respond_to do |format|
       format.html
-      format.json { render json: @drawing }
+      format.hal { respond_with @drawing, represent_with: DrawingRepresenter }
     end
   end
 
