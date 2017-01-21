@@ -68,6 +68,7 @@ group :development, :test do
   gem 'capybara'
   # To run specs automatically on file changes
   gem 'guard-rspec'
+  gem 'pry-rails'
 end
 
 group :test do
@@ -75,6 +76,7 @@ group :test do
   gem 'database_cleaner'
   # Handy testing matchers
   gem 'shoulda-matchers'
+  gem 'timecop'
 end
 
 group :development do

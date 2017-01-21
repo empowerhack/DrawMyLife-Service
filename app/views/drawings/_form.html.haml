@@ -11,6 +11,8 @@
           %br
           %b Allowed image types: jpg/jpeg, png, tiff, gif, bmp
           = f.input :image, label: false, required: false, input_html: { onChange: 'loadFile(event)' }
+        .form-group.form-consent
+          = f.input :image_consent, label: @drawing.image_consent_text, input_html: { checked: image_consent_default }
 
       .col-md-7.col-sm-12.col-xs-12
         %h4 Details of Drawing (required when marked complete)
@@ -21,7 +23,7 @@
         .form-group
           = f.input :description, label: 'Description of drawing', placeholder: 'e.g. Children playing in the garden, mountains in background'
         .form-group
-          = f.input :mood_rating, as: :select, collection: mood_select_box, label: 'How would you rate the mood of the drawing?', prompt: "Scale is from 1 (sad/tragic) to 10 (happy/joyful)"
+          = f.input :mood_rating, as: :select, collection: mood_select_box, label: 'How would you rate the mood of the drawing?', prompt: "Scale is from 1 (sad/tragic) to 5 (happy/joyful)"
 
         %hr
 
@@ -34,6 +36,8 @@
           = f.collection_radio_buttons :gender, radio_genders, :first, :last do |b|
             = b.radio_button
             = b.label(class: "btn")
+        .form-group
+          = f.input :stage_of_journey, collection: ["At home", "In temporary shelter", "Awaiting transit", "On the move", "Arrived at destination"], label: 'Stage of journey', required: false, prompt: "--select an option--"
         .form-group
           = f.input :story, label: 'Context / story of the artist', required: false, placeholder: 'e.g. interesting cultural or psychological notes (optional)'
 

@@ -1,0 +1,37 @@
+.login-bg
+  .container
+    .row
+      .col-md-4.col-md-offset-4
+        .log-in.panel
+          .panel-heading
+            %h2
+              Edit My Profile
+          .panel-body
+            = simple_form_for(resource, as: resource_name, url: user_registration_path, html: { method: :put }) do |f|
+              = f.error_notification
+              .form-inputs
+                = f.input :email, autofocus: true, label: "Email"
+                - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+                  %div
+                    Currently waiting confirmation for: #{resource.unconfirmed_email}
+                = f.input :password, autocomplete: "off", hint: "leave it blank if you don't want to change it", required: false, label: "New Password"
+                = f.input :password_confirmation, required: false, label: "New Password Confirmation"
+                .form-group
+                  = f.input :country, priority: TOP_COUNTRIES, include_blank: "Select a country", label: "Current Location", required: true, class: 'form-control'
+                .form-group
+                  - if current_user.super_admin?
+                    = f.input :organisation_id, as: :select, collection: Organisation.all, include_blank: "Select an organisation (optional)", label: "Organisation"
+                  - else
+                    %strong Organisation
+                    %br
+                    = resource.decorate.organisation_link
+                    %br
+                    %em (NB: only super admins can change this)
+                = f.input :current_password, hint: "we need your current password to confirm your changes", required: true, label: "Current Password"
+              .form-actions
+                = f.submit "Update", class: 'btn-lg btn-primary btn-block'
+        %h3 Deactivate my account
+        %p
+          Want to deactivate your account?
+        = link_to "Back", :back, class: 'btn btn-default'
+        = link_to "Deactivate my account", user_registration_path, data: { confirm: "Are you sure?" }, method: :delete, class: 'btn btn-default'

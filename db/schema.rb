@@ -11,15 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160815092330) do
+ActiveRecord::Schema.define(version: 20161102222517) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "drawings", force: :cascade do |t|
     t.string   "description"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
@@ -32,6 +32,8 @@ ActiveRecord::Schema.define(version: 20160815092330) do
     t.string   "country"
     t.integer  "status",             default: 0
     t.integer  "gender",             default: 0
+    t.string   "stage_of_journey"
+    t.boolean  "image_consent",      default: false, null: false
   end
 
   add_index "drawings", ["user_id"], name: "index_drawings_on_user_id", using: :btree
@@ -58,8 +60,14 @@ ActiveRecord::Schema.define(version: 20160815092330) do
     t.integer  "organisation_id"
     t.string   "country"
     t.datetime "deleted_at"
+    t.integer  "role",                   default: 0
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email"
   end
 
+  add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 

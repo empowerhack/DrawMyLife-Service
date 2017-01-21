@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe DrawingsController, type: :controller do
-  login_user
+  login_as_admin
 
   describe "POST create" do
     let(:perform) { post :create, drawing: params }

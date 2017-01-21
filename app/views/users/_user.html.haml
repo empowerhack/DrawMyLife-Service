@@ -1,0 +1,22 @@
+.row.col-md-12
+  %strong Email:
+  = user.email_link(mask_deleted: false)
+.row.col-md-12
+  %strong Status:
+  = user.active_status
+.row.col-md-12
+  %strong Role:
+  = user.role.humanize
+.row.col-md-12
+  %strong Country:
+  - if user.country.present?
+    = ISO3166::Country.find_country_by_alpha2(user.country).name
+.row.col-md-12
+  %strong Organisation:
+  = user.organisation_link
+.row.col-md-12
+  %strong Created at:
+  = user.created_at
+.row.col-md-12
+  %strong Updated at:
+  = user.updated_at

@@ -1,0 +1,19 @@
+- @users.each do |user|
+  %tr
+    %td
+      = user.id
+    %td
+      = user.email
+    %td
+      = user.role.humanize
+    %td
+      = user.organisation_link
+    %td
+      = user.country
+    %td
+      = user.created_at
+    %td
+      = user.active_status
+    %td
+      = link_to edit_user_path(user) do
+        %i.fa.fa-pencil{"aria-hidden" => "true"}
