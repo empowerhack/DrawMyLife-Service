@@ -1,12 +1,12 @@
 [![Build Status](https://travis-ci.org/empowerhack/DrawMyLife-Service.svg?branch=master)](https://travis-ci.org/empowerhack/DrawMyLife-Service)
 
-[![Project Introduction](http://img.youtube.com/vi/chG9_jWdJL8/0.jpg)](http://www.youtube.com/watch?v=chG9_jWdJL8 "Draw my Life project introduction")
-
 ![Screenshot - Upload New Drawing](./app/assets/images/screenshot.png "Screenshot - Upload New Drawing")
 
 # Draw My Life API / Admin
 
 **Draw My Life** is an open source, volunteer-led initiative in partnership with [Terre Des Hommes](terredeshommes.org), born at an [EmpowerHack](empowerhack.com) hackathon for refugee women and girls in 2016. The initiative consists of multiple, separate and inter-related projects aiming to improve mental health support for refugee children.
+
+[![Project Introduction](./app/assets/images/video-screenshot.png)](http://www.youtube.com/watch?v=chG9_jWdJL8 "Draw my Life project introduction")
 
 **This repository holds an API and administration system built with the [Ruby on Rails](http://rubyonrails.org/) framework for storing images and data collected by field workers during art therapy sessions.**
 
