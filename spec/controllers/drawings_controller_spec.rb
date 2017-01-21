@@ -63,4 +63,65 @@ RSpec.describe DrawingsController, type: :controller do
       end
     end
   end
+
+  describe "GET index" do
+    subject(:perform) { get :index }
+
+    it { expect(perform).to have_http_status :success }
+
+    context "HTML request" do
+      it do
+        perform
+        expect(assigns(:drawings)).not_to be_nil
+      end
+      it { expect(perform).to render_template :index }
+    end
+
+    context "JSON HAL request" do
+      let(:perform) { get :index, format: :hal }
+
+      it do
+        perform
+        expect(assigns(:drawings)).not_to be_nil
+      end
+
+      context "body" do
+        subject { JSON.parse(perform.body) }
+        it { is_expected.to include("drawings") }
+      end
+    end
+  end
+
+  describe "GET show" do
+    let(:drawing) { FactoryGirl.create(:drawing) }
+
+    subject(:perform) { get :show, id: drawing }
+
+    it { expect(perform).to have_http_status :success }
+
+    context "HTML request" do
+      subject(:perform) { get :show, id: drawing }
+
+      it do
+        perform
+        expect(assigns(:drawing)).not_to be_nil
+      end
+
+      it { expect(perform).to render_template :show }
+    end
+
+    context "JSON HAL request" do
+      let(:perform) { get :show, id: drawing, format: :hal }
+
+      it do
+        perform
+        expect(assigns(:drawing)).not_to be_nil
+      end
+
+      context "body" do
+        subject { JSON.parse(perform.body) }
+        it { is_expected.to include("description" => drawing.description) }
+      end
+    end
+  end
 end
