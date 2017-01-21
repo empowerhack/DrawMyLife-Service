@@ -55,6 +55,11 @@ gem 'rubocop', '~> 0.42.0', require: false
 # Decorators
 gem 'draper'
 
+# Serializers to JSON-HAL
+gem 'responders'
+gem 'roar-rails'
+gem 'roar-contrib'
+
 group :development, :test do
   # Load environment variables in dev and test envs
   gem 'dotenv-rails'
@@ -62,6 +67,7 @@ group :development, :test do
   gem 'byebug'
   # Rspec support for rails
   gem 'rspec-rails'
+  gem 'rspec-its'
   # Use factories to set up test data
   gem 'factory_girl_rails', '~> 4.0'
   # For acceptance testing
