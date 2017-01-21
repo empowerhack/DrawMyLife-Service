@@ -29,5 +29,7 @@ module DrawMyLifeService
         resource '*', headers: :any, methods: [:get]
       end
     end
+
+    config.action_controller.include_all_helpers = false
   end
 end

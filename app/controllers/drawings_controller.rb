@@ -4,7 +4,7 @@ class DrawingsController < ApplicationController
   before_action :check_access_to_drawing, only: [:edit, :update, :destroy]
 
   def index
-    drawings = (Drawing.desc.page params[:page])
+    drawings = Drawing.desc.page params[:page]
     @drawings = drawings.decorate
 
     respond_to do |format|
@@ -16,7 +16,7 @@ class DrawingsController < ApplicationController
   end
 
   def new
-    @drawing = current_user.drawings.build
+    @drawing = current_user.drawings.build.decorate
   end
 
   def create
@@ -64,7 +64,8 @@ class DrawingsController < ApplicationController
   end
 
   def drawing_params
-    params.require(:drawing).permit(:image, :description, :gender, :age, :mood_rating, :subject_matter, :story, :country, :status)
+    params.require(:drawing).permit(:image, :description, :gender, :age, :mood_rating, :subject_matter,
+                                    :story, :stage_of_journey, :country, :status, :image_consent)
   end
 
   def set_drawing

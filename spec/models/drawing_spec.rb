@@ -8,7 +8,6 @@ RSpec.describe Drawing, type: :model do
 
     let(:attrs) { FactoryGirl.attributes_for(:drawing, status: status) }
     let(:status) { "complete" }
-
     it { is_expected.to define_enum_for(:status).with(%i(pending complete)) }
     it { is_expected.to define_enum_for(:gender).with(%i(not_specified female male other)) }
 
@@ -39,6 +38,8 @@ RSpec.describe Drawing, type: :model do
           .rejecting('application/zip', 'image/x-png')
       end
     end
+
+    it { should_not allow_value(nil).for(:image_consent) }
 
     context "status is complete" do
       PRIORITY_FIELDS.each do |attr|

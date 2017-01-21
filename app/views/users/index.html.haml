@@ -1,0 +1,26 @@
+#users
+  .container
+    %h3 Manage Users
+
+    %p
+      %strong
+        (
+        = link_to "Add New User", new_user_path
+        )
+
+    %table.table.table-bordered.table-condensed.table-hover.table-responsive
+      %thead
+        %tr
+          %th ID
+          %th Email
+          %th Role
+          %th Organisation
+          %th Country
+          %th Created At
+          %th Status
+          %th Edit
+      %tbody
+        = render 'users'
+
+#paginator.text-center
+  = link_to_next_page @users, 'MORE', remote: true, id: 'load_more'

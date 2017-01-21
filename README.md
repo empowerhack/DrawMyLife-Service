@@ -6,6 +6,8 @@
 
 **Draw My Life** is an open source, volunteer-led initiative in partnership with [Terre Des Hommes](terredeshommes.org), born at an [EmpowerHack](empowerhack.com) hackathon for refugee women and girls in 2016. The initiative consists of multiple, separate and inter-related projects aiming to improve mental health support for refugee children.
 
+[![Project Introduction](./app/assets/images/video-screenshot.png)](http://www.youtube.com/watch?v=chG9_jWdJL8 "Draw my Life project introduction")
+
 **This repository holds an API and administration system built with the [Ruby on Rails](http://rubyonrails.org/) framework for storing images and data collected by field workers during art therapy sessions.**
 
 ***Related pending projects include:***
@@ -36,6 +38,7 @@ To get an overview of the journey so far, you can view [these slides](https://sl
 	- [ImageMagick](#imagemagick)
 - [Get Up and Running](#get-up-and-running)
 	- [Run the app](#run-the-app)
+	- [Set up emails](#set-up-emails)
 	- [Debugging](#debugging)
 	- [Running tests](#running-tests)
 - [Deployment and Production Notes](#deployment-and-production-notes)
@@ -123,16 +126,21 @@ Install all the dependencies from your Gemfile using Bundler:
 
 	$ bundle install
 
-Run any database migrations:
+Set up your database and seed sample data (including admin users to log in!):
 
 	$ bundle exec rake db:migrate
+	$ bundle exec rake db:seed
 
 Run the Rails server:
 
 	$ bundle exec rails s
 
 
-**You should now be able to access the app in your browser at [localhost:3000](http://localhost:3000)**!
+**You should now be able to access the app in your browser at [localhost:3000](http://localhost:3000). If you ran the database seed task you can log in with super_admin@example.com or admin@example.com (password is 'password')**!
+
+### Set up emails
+
+In development, emails are configured to send to localhost:1025. You can install the [mailcatcher](https://mailcatcher.me) gem for an interface to see these emails (follow instructions on the site and do not add this to the Gemfile!).
 
 
 #### Debugging

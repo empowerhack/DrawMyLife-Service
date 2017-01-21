@@ -23,6 +23,9 @@
             %ul.dropdown-menu
               %li
                 = link_to "My Profile", edit_user_registration_path(current_user)
+              - if current_user.super_admin?
+                %li
+                  = link_to "Users", users_path
               %li
                 = link_to "Organisations", organisations_path
               %li
@@ -36,6 +39,9 @@
               %li
                 = link_to "Login", new_user_session_path
               %li
-                = link_to "Register", new_user_registration_path
+                = link_to "Re-Send Password", new_user_password_path
+              %li
+                = link_to "Re-send Activation Details", new_user_confirmation_path
+
     / /.navbar-collapse
   / /.container-fluid

@@ -5,10 +5,12 @@ FactoryGirl.define do
     gender "other"
     age 10
     mood_rating 4
+    stage_of_journey "At home"
     subject_matter "Camp life"
     story "Context of the drawing, e.g. child's back story, cultural notes"
     country "GR"
     status "complete"
+    image_consent true
 
     user
   end
