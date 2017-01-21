@@ -1,0 +1,12 @@
+.login-bg
+  .container
+    .row
+      .col-md-4.col-md-offset-4
+        .log-in.panel
+          .panel-heading
+            %h2
+              = heading
+          .panel-body
+            = yield
+        - if links
+          = render "profiles/shared/links"
