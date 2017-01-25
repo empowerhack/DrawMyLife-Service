@@ -14,7 +14,7 @@ class Drawing < ActiveRecord::Base
   end
 
   validates :age, numericality: { only_integer: true }, allow_nil: true
-  validates :mood_rating, numericality: { only_integer: true, greater_than_or_equal_to: 1, less_than_or_equal_to: 10 }, allow_nil: true
+  validates :mood_rating, numericality: { only_integer: true, greater_than_or_equal_to: 1, less_than_or_equal_to: 5 }, allow_nil: true
 
   has_attached_file :image, styles: {
     medium: ["640x", :jpg],
