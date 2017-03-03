@@ -17,13 +17,13 @@
       .col-md-7.col-sm-12.col-xs-12
         %h4 Details of Drawing (required when marked complete)
         .form-group
-          = f.input :country, priority: TOP_COUNTRIES, selected: (@drawing.new_record? ? current_user.country : @drawing.country), label: "Country drawn in", include_blank: "Country picture was drawn in", class: 'form-control'
+          = f.input :country, priority: TOP_COUNTRIES, selected: (@drawing.new_record? ? current_user.country : @drawing.country), label: "Country drawn in", include_blank: "-- select country that picture was drawn in --", class: 'form-control'
         .form-group
-          = f.input :subject_matter, collection: ["Home / Country of origin", "Transit", "Camp life", "Future hopes / destination"], label: 'Subject matter of drawing', required: false, prompt: "--select an option--"
+          = f.input :subject_matter, collection: ["Home / Country of origin", "Transit", "Camp life", "Future hopes / destination"], label: 'Subject matter of drawing', required: false, prompt: "-- select an option --"
         .form-group
           = f.input :description, label: 'Description of drawing', placeholder: 'e.g. Children playing in the garden, mountains in background'
         .form-group
-          = f.input :mood_rating, as: :select, collection: mood_select_box, label: 'How would you rate the mood of the drawing?', prompt: "Scale is from 1 (sad/tragic) to 5 (happy/joyful)"
+          = f.input :mood_rating, as: :select, collection: mood_select_box, label: 'How would you rate the mood of the drawing?', prompt: "-- scale is from 1 (sad/tragic) to 5 (happy/joyful) --"
 
         %hr
 
@@ -37,7 +37,9 @@
             = b.radio_button
             = b.label(class: "btn")
         .form-group
-          = f.input :stage_of_journey, collection: ["At home", "In temporary shelter", "Awaiting transit", "On the move", "Arrived at destination"], label: 'Stage of journey', required: false, prompt: "--select an option--"
+          = f.input :origin_country, priority: TOP_ORIGIN_COUNTRIES, selected: @drawing.origin_country, label: "Country of origin", include_blank: "-- select country that artist comes from --", class: 'form-control'
+        .form-group
+          = f.input :stage_of_journey, collection: ["At home", "In temporary shelter", "Awaiting transit", "On the move", "Arrived at destination"], label: 'Stage of journey', required: false, prompt: "-- select an option --"
         .form-group
           = f.input :story, label: 'Context / story of the artist', required: false, placeholder: 'e.g. interesting cultural or psychological notes (optional)'
 
