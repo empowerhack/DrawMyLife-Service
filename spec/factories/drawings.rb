@@ -11,6 +11,7 @@ FactoryGirl.define do
     country "GR"
     status "complete"
     image_consent true
+    origin_country "SY"
 
     user
   end

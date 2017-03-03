@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161102222517) do
+ActiveRecord::Schema.define(version: 20170303152046) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 20161102222517) do
     t.integer  "gender",             default: 0
     t.string   "stage_of_journey"
     t.boolean  "image_consent",      default: false, null: false
+    t.string   "origin_country"
   end
 
   add_index "drawings", ["user_id"], name: "index_drawings_on_user_id", using: :btree

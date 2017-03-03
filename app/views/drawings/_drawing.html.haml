@@ -30,10 +30,7 @@
             %h3 Details of Drawing
             .drawing-row
               %strong Country Drawn In:
-              - if drawing.country.present?
-                = ISO3166::Country.find_country_by_alpha2(drawing.country).name
-              - else
-                n/a
+              = ISO3166::Country.find_country_by_alpha2(drawing.country).name if drawing.country.present?
             .drawing-row
               %strong Subject Matter:
               = drawing.subject_matter
@@ -49,6 +46,9 @@
             .drawing-row
               %strong Gender:
               = drawing.gender.humanize
+            .drawing-row
+              %strong Country of Origin:
+              = ISO3166::Country.find_country_by_alpha2(drawing.origin_country).name if drawing.origin_country.present?
             .drawing-row
               %strong Stage of Journey:
               = drawing.stage_of_journey
