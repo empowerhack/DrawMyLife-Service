@@ -1,7 +1,29 @@
 require 'rails_helper'
 
 RSpec.describe DrawingsController, type: :controller do
-  login_as_admin
+  login_as_super_admin
+
+  before do
+    allow_any_instance_of(Drawing).to receive(:can_view?).and_return(true)
+    allow_any_instance_of(Drawing).to receive(:can_modify?).and_return(true)
+  end
+
+  shared_examples_for "any modifying action" do
+    context "with incorrect access" do
+      before do
+        allow_any_instance_of(Drawing).to receive(:can_modify?).and_return(false)
+      end
+
+      it "redirects to root path" do
+        expect(perform).to redirect_to root_path
+      end
+
+      it "renders a flash error" do
+        perform
+        expect(flash[:alert]).to have_content("You do not have permission to edit or delete this drawing.")
+      end
+    end
+  end
 
   describe "POST create" do
     let(:perform) { post :create, drawing: params }
@@ -62,6 +84,8 @@ RSpec.describe DrawingsController, type: :controller do
         expect(response).to render_template :edit
       end
     end
+
+    it_behaves_like "any modifying action"
   end
 
   describe "GET index" do
@@ -123,5 +147,36 @@ RSpec.describe DrawingsController, type: :controller do
         it { is_expected.to include("description" => drawing.description) }
       end
     end
+
+    context "with incorrect access" do
+      before do
+        allow_any_instance_of(Drawing).to receive(:can_view?).and_return(false)
+      end
+
+      it "redirects to root path" do
+        expect(perform).to redirect_to root_path
+      end
+
+      it "renders a flash error" do
+        perform
+        expect(flash[:alert]).to have_content("You do not have permission to view this drawing.")
+      end
+    end
+  end
+
+  describe "GET edit" do
+    let(:drawing) { FactoryGirl.create(:drawing) }
+
+    subject(:perform) { get :edit, id: drawing }
+
+    it_behaves_like "any modifying action"
+  end
+
+  describe "DELETE destroy" do
+    let(:drawing) { FactoryGirl.create(:drawing) }
+
+    subject(:perform) { delete :destroy, id: drawing }
+
+    it_behaves_like "any modifying action"
   end
 end
