@@ -4,10 +4,12 @@ class DrawingsController < ApplicationController
 
   before_action :authenticate_user!
   before_action :set_drawing, only: [:show, :edit, :update, :destroy]
-  before_action :check_access_to_drawing, only: [:edit, :update, :destroy]
+  before_action :authorize_read, only: :show
+  before_action :authorize_write, only: [:edit, :update, :destroy]
 
   def index
-    drawings = Drawing.desc.page params[:page]
+    query = current_user.super_admin? ? Drawing.desc : Drawing.within_org(current_user.organisation).desc
+    drawings = query.page params[:page]
     @drawings = drawings.decorate
 
     respond_to do |format|
@@ -60,9 +62,15 @@ class DrawingsController < ApplicationController
 
   private
 
-  def check_access_to_drawing
-    return if @drawing.viewer_can_change?(current_user)
-    flash[:alert] = "Only users from the same organisation can edit or delete drawings."
+  def authorize_read
+    return if @drawing.can_view?(current_user)
+    flash[:alert] = "You do not have permission to view this drawing."
+    redirect_to root_path
+  end
+
+  def authorize_write
+    return if @drawing.can_modify?(current_user)
+    flash[:alert] = "You do not have permission to edit or delete this drawing."
     redirect_to root_path
   end
 

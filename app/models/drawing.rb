@@ -30,6 +30,9 @@ class Drawing < ActiveRecord::Base
   belongs_to :user
 
   scope :desc, -> { order("drawings.created_at DESC") }
+  scope :within_org, lambda { |org_id|
+    joins(:user).where("users.organisation_id" => org_id)
+  }
 
   def self.to_csv(hxl: false)
     fields = %w(org country age gender mood_rating description story created_at)
@@ -46,7 +49,17 @@ class Drawing < ActiveRecord::Base
     end
   end
 
-  def viewer_can_change?(viewer)
-    viewer.organisation == user.organisation
+  def can_view?(current_user)
+    super_admin_or_same_org?(current_user)
+  end
+
+  def can_modify?(current_user)
+    super_admin_or_same_org?(current_user)
+  end
+
+  private
+
+  def super_admin_or_same_org?(current_user)
+    current_user.super_admin? || current_user.organisation_id == user.organisation_id
   end
 end
