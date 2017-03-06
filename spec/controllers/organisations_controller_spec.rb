@@ -1,7 +1,22 @@
 require 'rails_helper'
 
 RSpec.describe OrganisationsController, type: :controller do
-  login_as_admin
+  login_as_super_admin
+
+  shared_examples_for "an unauthorized user" do
+    context "with incorrect access" do
+      login_as_admin
+
+      it "redirects to root path" do
+        expect(perform).to redirect_to root_path
+      end
+
+      it "renders a flash error" do
+        perform
+        expect(flash[:error]).to have_content("Sorry, you may be a super human being, but you need to be a super admin to do that.")
+      end
+    end
+  end
 
   describe "GET index" do
     subject(:perform) { get :index }
@@ -12,6 +27,8 @@ RSpec.describe OrganisationsController, type: :controller do
       expect(assigns(:organisations)).not_to be_nil
     end
     it { expect(perform).to render_template :index }
+
+    it_behaves_like "an unauthorized user"
   end
 
   describe "GET show" do
@@ -24,6 +41,8 @@ RSpec.describe OrganisationsController, type: :controller do
       expect(assigns(:organisation)).not_to be_nil
     end
     it { expect(perform).to render_template :show }
+
+    it_behaves_like "an unauthorized user"
   end
 
   describe "POST create" do
@@ -53,6 +72,8 @@ RSpec.describe OrganisationsController, type: :controller do
         expect(response).to render_template :new
       end
     end
+
+    it_behaves_like "an unauthorized user"
   end
 
   describe "PUT update" do
@@ -85,5 +106,7 @@ RSpec.describe OrganisationsController, type: :controller do
         expect(response).to render_template :edit
       end
     end
+
+    it_behaves_like "an unauthorized user"
   end
 end
