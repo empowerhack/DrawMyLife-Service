@@ -68,7 +68,7 @@ class DrawingsController < ApplicationController
 
   def drawing_params
     params.require(:drawing).permit(:image, :description, :gender, :age, :mood_rating, :subject_matter,
-                                    :story, :stage_of_journey, :country, :status, :image_consent)
+                                    :story, :stage_of_journey, :country, :status, :image_consent, :origin_country)
   end
 
   def set_drawing

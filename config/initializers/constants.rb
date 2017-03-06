@@ -1,1 +1,2 @@
 TOP_COUNTRIES = %w(GR HU RS).freeze
+TOP_ORIGIN_COUNTRIES = %w(AF IQ SY).freeze
