@@ -1,5 +1,5 @@
 class OrganisationsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, :authorize_super_admin!
   before_action :find_organisation, only: [:edit, :show, :update, :destroy]
 
   def index

@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!, :authorize_user, :set_devise_mapping
+  before_action :authenticate_user!, :authorize_super_admin!, :set_devise_mapping
   before_action :set_user, only: [:show, :edit, :update, :destroy, :deactivate, :reactivate]
 
   def index
@@ -71,13 +71,6 @@ class UsersController < ApplicationController
   end
 
   private
-
-  def authorize_user
-    unless current_user.super_admin?
-      flash[:error] = "Sorry, you may be a super human being, but you need to be a super admin to do that."
-      redirect_to root_path
-    end
-  end
 
   def user_params
     params.require(:user).permit(:email, :role, :country, :organisation_id)
