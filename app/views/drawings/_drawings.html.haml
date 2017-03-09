@@ -20,11 +20,11 @@
     %td
       = drawing.mood_rating
     %td
-      - if drawing.viewer_can_change?(current_user)
+      - if drawing.can_modify?(current_user)
         = link_to edit_drawing_path(drawing) do
           %i.fa.fa-pencil{"aria-hidden" => "true"}
     %td
-      - if drawing.viewer_can_change?(current_user)
+      - if drawing.can_modify?(current_user)
         = link_to drawing_path(drawing.id), method: :delete, data: { confirm: 'Are you sure?' } do
           %i.fa.fa-trash{"aria-hidden" => "true"}
     %td
