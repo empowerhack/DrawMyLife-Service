@@ -20,12 +20,21 @@ To get an overview of the journey so far, you can view [these slides](https://sl
 
 ## Project Status/Timeline
 
+**2017**
+
+**Q1**: [Project Sprint Board](https://github.com/empowerhack/DrawMyLife-Service/projects/1)
+
 **2016**
 
 * **April**: ~~Initial Prototype of API / admin + mockups of advocacy tool~~
-* **August**: Pilot the API / admin system
+* **August**: ~~Pilot the API / admin system~~
 
+## For New Volunteers
 
+* Say hi to the team on [Slack](https://empowerhackteam.slack.com/messages/project_drawmylife/)
+* Read the starter [HackPad](https://hackpad.com/Draw-My-Life-Team-Info-8vFpl0IOk3U)
+* Check the current [Project Sprint Board](https://github.com/empowerhack/DrawMyLife-Service/projects) for issues in the Pick Me Up column
+* Follow the instructions below to set up (feel free to holler if it looks out of date)
 
 ## Development Setup
 
