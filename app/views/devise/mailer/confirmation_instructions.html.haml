@@ -5,6 +5,6 @@
 %p
   Please click the link below
   - unless Devise.confirm_within.nil?
-    %b within #{time_ago_in_words(Devise.confirm_within.seconds.from_now)}
+    %b within #{Devise.confirm_within.inspect}
   to confirm your Draw My Life account email address and set your password:
 %p= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token)
