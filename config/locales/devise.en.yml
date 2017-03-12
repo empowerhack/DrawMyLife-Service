@@ -26,7 +26,7 @@ en:
       unlock_instructions:
         subject: "Draw My Life: Unlock instructions"
       password_change:
-        subject: "Draw My Life: Password Changed"
+        subject: "Draw My Life: Password changed"
     omniauth_callbacks:
       failure: "Could not authenticate you from %{kind} because \"%{reason}\"."
       success: "Successfully authenticated from %{kind} account."
