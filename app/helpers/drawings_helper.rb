@@ -35,6 +35,14 @@ module DrawingsHelper
     selections
   end
 
+  def gender_options
+    selections = ["Male", "Female", "Other", "Prefer not to say"]
+  end
+
+  def journey_options
+    selections = ["At home", "In temporary shelter", "Awaiting transit", "On the move", "Arrived at destination"]
+  end
+
   def image_consent_default
     @drawing.new_record? ? true : @drawing.image_consent
   end

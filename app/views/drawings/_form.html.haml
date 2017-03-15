@@ -1,53 +1,48 @@
 .container
-  %h3
-    = form_title
+  .row
+    .col-xs-12.text-center
+      %h1
+        = form_title
   .row.drawings-wrapper
-    = simple_form_for @drawing, html: { multipart: true } do |f|
-      .col-md-5.col-sm-12.col-xs-12
+    = simple_form_for @drawing, html: {multipart: true } do |f|
+      .col-xs-12
         .image-wrap.text-center
-          %h4 Upload an image
-          %i (this is required)
           = image_tag preview_image(@drawing), id: 'image-preview', class: 'img-responsive'
-          %br
-          %b Allowed image types: jpg/jpeg, png, tiff, gif, bmp
-          = f.input :image, label: false, required: false, input_html: { onChange: 'loadFile(event)' }
-        .form-group.form-consent
+          %b Allowed image types: jpg, jpeg, png, tiff, gif, bmp
+          =f.input :image, label: false, required: false, input_html: { onChange: 'loadFile(event)' }
+
+      .col-xs-12.col-sm-6
+        %h2.text-center Drawing Details
+        .form-group
+          = f.input :country, priority: TOP_COUNTRIES, selected: (@drawing.new_record? ? current_user.country : @drawing.country), label: "Country drawn in", class: 'form-control'
+          .form-group
+          = f.input :subject_matter, collection: ["Home/Country of origin", "In transit", "Camp life", "Future hopes/destination"], label: "Subject matter of drawing", required: false
+        .form-group
+          = f.input :mood_rating, as: :radio_buttons, collection: mood_select_box, label: 'How would you rate the mood of the drawing?'
+        .form-group
+          = f.input :description, as: :text, label: 'Description of drawing'
+
+      .col-xs-12.col-sm-6
+        %h2.text-center Artist Details
+        .form-group
+          = f.input :age, type: 'number', label: 'Age of artist', required: false
+        .form-group
+          = f.input :gender, as: :radio_buttons, collection: gender_options, label: 'Gender'
+        .form-group
+          = f.input :origin_country, priority: TOP_ORIGIN_COUNTRIES, selected: @drawing.origin_country, label: "Country of origin", class: 'form-control'
+        .form-group
+          = f.input :stage_of_journey, as: :radio_buttons, collection: journey_options, required: false
+        .form-group
+          = f.input :story, label: 'Story of the artist', required: false
+
+      .col-xs-12
+        .form-group.form-consent.text-center
           = f.input :image_consent, label: @drawing.image_consent_text, input_html: { checked: image_consent_default }
 
-      .col-md-7.col-sm-12.col-xs-12
-        %h4 Details of Drawing (required when marked complete)
-        .form-group
-          = f.input :country, priority: TOP_COUNTRIES, selected: (@drawing.new_record? ? current_user.country : @drawing.country), label: "Country drawn in", include_blank: "-- select country that picture was drawn in --", class: 'form-control'
-        .form-group
-          = f.input :subject_matter, collection: ["Home / Country of origin", "Transit", "Camp life", "Future hopes / destination"], label: 'Subject matter of drawing', required: false, prompt: "-- select an option --"
-        .form-group
-          = f.input :description, label: 'Description of drawing', placeholder: 'e.g. Children playing in the garden, mountains in background'
-        .form-group
-          = f.input :mood_rating, as: :select, collection: mood_select_box, label: 'How would you rate the mood of the drawing?', prompt: "-- scale is from 1 (sad/tragic) to 5 (happy/joyful) --"
-
-        %hr
-
-        %h4 Details of Artist
-        .form-group
-          = f.input :age, type: 'number', label: 'Age of artist', required: false, placeholder: 'e.g. 8'
-        .form-group.genders
-          = f.label 'Gender of Artist'
-          %br
-          = f.collection_radio_buttons :gender, radio_genders, :first, :last do |b|
-            = b.radio_button
-            = b.label(class: "btn")
-        .form-group
-          = f.input :origin_country, priority: TOP_ORIGIN_COUNTRIES, selected: @drawing.origin_country, label: "Country of origin", include_blank: "-- select country that artist comes from --", class: 'form-control'
-        .form-group
-          = f.input :stage_of_journey, collection: ["At home", "In temporary shelter", "Awaiting transit", "On the move", "Arrived at destination"], label: 'Stage of journey', required: false, prompt: "-- select an option --"
-        .form-group
-          = f.input :story, label: 'Context / story of the artist', required: false, placeholder: 'e.g. interesting cultural or psychological notes (optional)'
-
       .row.drawings-wrapper
-      %hr
-      .col-md-12
-        .form-group.text-center
-          %label{for: "status"} Status (leave this as Pending if you need to enter required details later)
-          = f.input :status, collection: radio_statuses, label_method: lambda {|k| k.last.capitalize }, as: :radio_buttons, required: true, label: false
-        .form-group.text-center
-          = f.button :submit, class: 'btn-success btn-block'
+        .col-xs-12.col-sm-6.col-md-4
+          .form-group
+            %label{for: "status"} Status
+            = f.input :status, collection: radio_statuses, label_method: lambda {|k| k.last.capitalize }, as: :radio_buttons, required: true, label: false
+          .form-group.text-center
+            = f.button :submit, class: 'btn-success btn-block'
