@@ -12,7 +12,7 @@
           =f.input :image, label: false, required: false, input_html: { onChange: 'loadFile(event)' }
 
       .col-xs-12.col-sm-6
-        .col-xs-12.col-sm-10.col-md-8
+        .col-xs-12.col-sm-10.col-md-8.position.central
           %h2.text-center Drawing Details
           .form-group
             = f.input :country, priority: TOP_COUNTRIES, selected: (@drawing.new_record? ? current_user.country : @drawing.country), label: "Country drawn in", class: 'form-control'
@@ -24,7 +24,7 @@
             = f.input :description, as: :text, label: 'Description of drawing'
 
       .col-xs-12.col-sm-6
-        .col-xs-12.col-sm-10.col-md-8
+        .col-xs-12.col-sm-10.col-md-8.position.central
           %h2.text-center Artist Details
           .form-group
             = f.input :age, type: 'number', label: 'Age of artist', required: false

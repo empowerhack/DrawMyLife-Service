@@ -1,0 +1,8 @@
+.position {
+  float: none;
+
+  &.central {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
