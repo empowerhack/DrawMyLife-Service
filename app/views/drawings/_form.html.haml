@@ -12,28 +12,30 @@
           =f.input :image, label: false, required: false, input_html: { onChange: 'loadFile(event)' }
 
       .col-xs-12.col-sm-6
-        %h2.text-center Drawing Details
-        .form-group
-          = f.input :country, priority: TOP_COUNTRIES, selected: (@drawing.new_record? ? current_user.country : @drawing.country), label: "Country drawn in", class: 'form-control'
+        .col-xs-12.col-sm-10.col-md-8
+          %h2.text-center Drawing Details
           .form-group
-          = f.input :subject_matter, collection: ["Home/Country of origin", "In transit", "Camp life", "Future hopes/destination"], label: "Subject matter of drawing", required: false
-        .form-group
-          = f.input :mood_rating, as: :radio_buttons, collection: mood_select_box, label: 'How would you rate the mood of the drawing?'
-        .form-group
-          = f.input :description, as: :text, label: 'Description of drawing'
+            = f.input :country, priority: TOP_COUNTRIES, selected: (@drawing.new_record? ? current_user.country : @drawing.country), label: "Country drawn in", class: 'form-control'
+            .form-group
+            = f.input :subject_matter, collection: ["Home/Country of origin", "In transit", "Camp life", "Future hopes/destination"], label: "Subject matter of drawing", required: false
+          .form-group
+            = f.input :mood_rating, as: :radio_buttons, collection: mood_select_box, label: 'How would you rate the mood of the drawing?'
+          .form-group
+            = f.input :description, as: :text, label: 'Description of drawing'
 
       .col-xs-12.col-sm-6
-        %h2.text-center Artist Details
-        .form-group
-          = f.input :age, type: 'number', label: 'Age of artist', required: false
-        .form-group
-          = f.input :gender, as: :radio_buttons, collection: gender_options, label: 'Gender'
-        .form-group
-          = f.input :origin_country, priority: TOP_ORIGIN_COUNTRIES, selected: @drawing.origin_country, label: "Country of origin", class: 'form-control'
-        .form-group
-          = f.input :stage_of_journey, as: :radio_buttons, collection: journey_options, required: false
-        .form-group
-          = f.input :story, label: 'Story of the artist', required: false
+        .col-xs-12.col-sm-10.col-md-8
+          %h2.text-center Artist Details
+          .form-group
+            = f.input :age, type: 'number', label: 'Age of artist', required: false
+          .form-group
+            = f.input :gender, as: :radio_buttons, collection: gender_options, label: 'Gender'
+          .form-group
+            = f.input :origin_country, priority: TOP_ORIGIN_COUNTRIES, selected: @drawing.origin_country, label: "Country of origin", class: 'form-control'
+          .form-group
+            = f.input :stage_of_journey, as: :radio_buttons, collection: journey_options, required: false
+          .form-group
+            = f.input :story, label: 'Story of the artist', required: false
 
       .col-xs-12
         .form-group.form-consent.text-center
