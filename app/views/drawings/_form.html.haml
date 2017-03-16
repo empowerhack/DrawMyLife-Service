@@ -13,7 +13,8 @@
       .forms-wrapper.col-xs.12.col-sm-8
         .col-xs-12.col-sm-6
           .col-xs-12.col-sm-11.col-md-10.position.central.form-section
-            %h2.text-center 1. Drawing Details
+            .form-title
+              %h2 Drawing Details
             .form-group
               = f.input :country, priority: TOP_COUNTRIES, selected: (@drawing.new_record? ? current_user.country : @drawing.country), label: "Country drawn in", class: 'form-control'
               .form-group
@@ -27,7 +28,8 @@
 
         .col-xs-12.col-sm-6
           .col-xs-12.col-sm-11.col-md-10.position.central.form-section
-            %h2.text-center 2. Artist Details
+            .form-title
+              %h2 Artist Details
             .form-group
               = f.input :age, type: 'number', label: 'Age of artist', required: false
             .form-group
@@ -35,13 +37,12 @@
             .form-group
               = f.input :origin_country, priority: TOP_ORIGIN_COUNTRIES, selected: @drawing.origin_country, label: "Country of origin", class: 'form-control'
             .form-group
-              = f.input :stage_of_journey, as: :radio_buttons, collection: journey_options, required: false
+              = f.input :stage_of_journey, collection: ["At home", "In temporary shelter", "Awaiting transit", "On the move", "Arrived at destination"], label: 'Stage of journey', required: false
             .form-group
               = f.input :story, label: 'Story of the artist', required: false
           
-          .col-xs-12.col-sm-11.col-md-10.position.central
             .form-group
-              %label{for: "status"} Status
+              %label.radio_buttons{for: "status"} Status
               = f.input :status, collection: radio_statuses, label_method: lambda {|k| k.last.capitalize }, as: :radio_buttons, required: true, label: false
             .form-group.text-center
               = f.button :submit, class: 'btn-success btn-block'
