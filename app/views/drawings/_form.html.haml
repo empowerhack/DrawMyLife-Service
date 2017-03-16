@@ -12,7 +12,7 @@
           =f.input :image, label: false, required: false, input_html: { onChange: 'loadFile(event)' }
 
       .col-xs-12.col-sm-6
-        .col-xs-12.col-sm-10.col-md-8.position.central
+        .col-xs-12.col-sm-10.col-md-9.position.central
           %h2.text-center Drawing Details
           .form-group
             = f.input :country, priority: TOP_COUNTRIES, selected: (@drawing.new_record? ? current_user.country : @drawing.country), label: "Country drawn in", class: 'form-control'
@@ -22,9 +22,11 @@
             = f.input :mood_rating, as: :radio_buttons, collection: mood_select_box, label: 'How would you rate the mood of the drawing?'
           .form-group
             = f.input :description, as: :text, label: 'Description of drawing'
+          .form-group.form-consent
+            = f.input :image_consent, label: @drawing.image_consent_text, input_html: { checked: image_consent_default }
 
       .col-xs-12.col-sm-6
-        .col-xs-12.col-sm-10.col-md-8.position.central
+        .col-xs-12.col-sm-10.col-md-9.position.central
           %h2.text-center Artist Details
           .form-group
             = f.input :age, type: 'number', label: 'Age of artist', required: false
@@ -37,12 +39,8 @@
           .form-group
             = f.input :story, label: 'Story of the artist', required: false
 
-      .col-xs-12
-        .form-group.form-consent.text-center
-          = f.input :image_consent, label: @drawing.image_consent_text, input_html: { checked: image_consent_default }
-
       .row.drawings-wrapper
-        .col-xs-12.col-sm-6.col-md-4
+        .col-xs-12.col-sm-5.position.central
           .form-group
             %label{for: "status"} Status
             = f.input :status, collection: radio_statuses, label_method: lambda {|k| k.last.capitalize }, as: :radio_buttons, required: true, label: false
