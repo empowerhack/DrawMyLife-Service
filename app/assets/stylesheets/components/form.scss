@@ -4,3 +4,17 @@ input.btn.btn-default.btn-success.btn-block {
   width: 60%;
   display: inline;
 }
+
+.forms-wrapper {
+    overflow: hidden; 
+}
+
+.forms-wrapper [class*="col-"]{
+    margin-bottom: -99999px;
+    padding-bottom: 99999px;
+}
+
+.form-section {
+	background-color: $white;
+	padding: $spacing-unit calc( #{$spacing-unit * 2} );
+}

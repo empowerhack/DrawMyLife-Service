@@ -1,48 +1,47 @@
-.container
-  .row
-    .col-xs-12.text-center
-      %h1
-        = form_title
-  .row.drawings-wrapper
+.col-xs-12.text-center
+  %h1
+    = form_title
+.row.drawings-wrapper
+  .col-xs-12.col-sm-11.position.central
     = simple_form_for @drawing, html: {multipart: true } do |f|
-      .col-xs-12
+      .col-xs-12.col-sm-4
         .image-wrap.text-center
           = image_tag preview_image(@drawing), id: 'image-preview', class: 'img-responsive'
           %b Allowed image types: jpg, jpeg, png, tiff, gif, bmp
           =f.input :image, label: false, required: false, input_html: { onChange: 'loadFile(event)' }
 
-      .col-xs-12.col-sm-6
-        .col-xs-12.col-sm-10.col-md-9.position.central
-          %h2.text-center Drawing Details
-          .form-group
-            = f.input :country, priority: TOP_COUNTRIES, selected: (@drawing.new_record? ? current_user.country : @drawing.country), label: "Country drawn in", class: 'form-control'
+      .forms-wrapper.col-xs.12.col-sm-8
+        .col-xs-12.col-sm-6
+          .col-xs-12.col-sm-11.col-md-10.position.central.form-section
+            %h2.text-center 1. Drawing Details
             .form-group
-            = f.input :subject_matter, collection: ["Home/Country of origin", "In transit", "Camp life", "Future hopes/destination"], label: "Subject matter of drawing", required: false
-          .form-group
-            = f.input :mood_rating, as: :radio_buttons, collection: mood_select_box, label: 'How would you rate the mood of the drawing?'
-          .form-group
-            = f.input :description, as: :text, label: 'Description of drawing'
-          .form-group.form-consent
-            = f.input :image_consent, label: @drawing.image_consent_text, input_html: { checked: image_consent_default }
+              = f.input :country, priority: TOP_COUNTRIES, selected: (@drawing.new_record? ? current_user.country : @drawing.country), label: "Country drawn in", class: 'form-control'
+              .form-group
+              = f.input :subject_matter, collection: ["Home/Country of origin", "In transit", "Camp life", "Future hopes/destination"], label: "Subject matter of drawing", required: false
+            .form-group
+              = f.input :mood_rating, as: :radio_buttons, collection: mood_select_box, label: 'How would you rate the mood of the drawing?'
+            .form-group
+              = f.input :description, as: :text, label: 'Description of drawing'
+            .form-group.form-consent
+              = f.input :image_consent, label: @drawing.image_consent_text, input_html: { checked: image_consent_default }
 
-      .col-xs-12.col-sm-6
-        .col-xs-12.col-sm-10.col-md-9.position.central
-          %h2.text-center Artist Details
-          .form-group
-            = f.input :age, type: 'number', label: 'Age of artist', required: false
-          .form-group
-            = f.input :gender, as: :radio_buttons, collection: gender_options, label: 'Gender'
-          .form-group
-            = f.input :origin_country, priority: TOP_ORIGIN_COUNTRIES, selected: @drawing.origin_country, label: "Country of origin", class: 'form-control'
-          .form-group
-            = f.input :stage_of_journey, as: :radio_buttons, collection: journey_options, required: false
-          .form-group
-            = f.input :story, label: 'Story of the artist', required: false
-
-      .row.drawings-wrapper
-        .col-xs-12.col-sm-5.position.central
-          .form-group
-            %label{for: "status"} Status
-            = f.input :status, collection: radio_statuses, label_method: lambda {|k| k.last.capitalize }, as: :radio_buttons, required: true, label: false
-          .form-group.text-center
-            = f.button :submit, class: 'btn-success btn-block'
+        .col-xs-12.col-sm-6
+          .col-xs-12.col-sm-11.col-md-10.position.central.form-section
+            %h2.text-center 2. Artist Details
+            .form-group
+              = f.input :age, type: 'number', label: 'Age of artist', required: false
+            .form-group
+              = f.input :gender, as: :radio_buttons, collection: gender_options, label: 'Gender'
+            .form-group
+              = f.input :origin_country, priority: TOP_ORIGIN_COUNTRIES, selected: @drawing.origin_country, label: "Country of origin", class: 'form-control'
+            .form-group
+              = f.input :stage_of_journey, as: :radio_buttons, collection: journey_options, required: false
+            .form-group
+              = f.input :story, label: 'Story of the artist', required: false
+          
+          .col-xs-12.col-sm-11.col-md-10.position.central
+            .form-group
+              %label{for: "status"} Status
+              = f.input :status, collection: radio_statuses, label_method: lambda {|k| k.last.capitalize }, as: :radio_buttons, required: true, label: false
+            .form-group.text-center
+              = f.button :submit, class: 'btn-success btn-block'

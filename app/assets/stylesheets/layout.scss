@@ -1,5 +1,6 @@
 .position {
   float: none;
+  overflow: auto;
 
   &.central {
     margin-left: auto;
