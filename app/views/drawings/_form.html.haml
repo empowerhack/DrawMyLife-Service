@@ -33,7 +33,7 @@
             .form-group
               = f.input :age, type: 'number', label: 'Age of artist', required: false
             .form-group
-              = f.input :gender, as: :radio_buttons, collection: gender_options, label: 'Gender'
+              = f.input :gender, as: :radio_buttons, collection: radio_genders, label: 'Gender'
             .form-group
               = f.input :origin_country, priority: TOP_ORIGIN_COUNTRIES, selected: @drawing.origin_country, label: "Country of origin", class: 'form-control'
             .form-group

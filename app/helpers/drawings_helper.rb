@@ -21,7 +21,7 @@ module DrawingsHelper
   def radio_genders
     # Example output: [ ["gender0", "Gender 0"], ["gender1", "Gender 1"] ... ]
     [].tap do |arr|
-      Drawing.genders.keys.each { |s| arr << [s, s.humanize] }
+      Drawing.genders.keys.each { |s| arr << [s.humanize, s] }
     end
   end
 
@@ -33,10 +33,6 @@ module DrawingsHelper
     selections[0][0] += " 😢"
     selections[-1][0] += " 😃"
     selections
-  end
-
-  def gender_options
-    selections = ["Male", "Female", "Other", "Prefer not to say"]
   end
 
   def journey_options
