@@ -1,0 +1,11 @@
+@import "variables";
+
+.add-margin {
+  &.top {
+    margin-top: $spacing-unit;
+  }
+
+  &.bottom {
+    margin-bottom: $spacing-unit;
+  }
+}
