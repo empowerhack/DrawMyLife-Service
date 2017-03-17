@@ -12,17 +12,11 @@ module DrawingsHelper
   end
 
   def radio_statuses
-    # Example output: [ ["status1", "status1"], ["status2", "status2"] ]
-    [].tap do |arr|
-      Drawing.statuses.keys.each { |s| arr << [s, s] }
-    end
+    get_humanized_options(Drawing.statuses)
   end
 
   def radio_genders
-    # Example output: [ ["gender0", "Gender 0"], ["gender1", "Gender 1"] ... ]
-    [].tap do |arr|
-      Drawing.genders.keys.each { |s| arr << [s.humanize, s] }
-    end
+    get_humanized_options(Drawing.genders)
   end
 
   def mood_select_box
@@ -36,10 +30,18 @@ module DrawingsHelper
   end
 
   def journey_options
-    selections = ["At home", "In temporary shelter", "Awaiting transit", "On the move", "Arrived at destination"]
+    get_humanized_options(Drawing.journeys)
   end
 
   def image_consent_default
     @drawing.new_record? ? true : @drawing.image_consent
   end
+
+  def get_humanized_options(options)
+    # Example output: [ ["gender0", "Gender 0"], ["gender1", "Gender 1"] ... ]
+    options.keys.map do |option|
+      [option.humanize, option]
+    end
+  end
+
 end
