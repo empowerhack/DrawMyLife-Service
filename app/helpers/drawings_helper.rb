@@ -34,6 +34,10 @@ module DrawingsHelper
     get_humanized_options(Drawing.journeys)
   end
 
+  def subject_matter_options
+    get_humanized_options(Drawing.subject_matters)
+  end
+
   def image_consent_default
     @drawing.new_record? ? true : @drawing.image_consent
   end

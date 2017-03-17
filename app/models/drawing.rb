@@ -2,6 +2,7 @@ class Drawing < ActiveRecord::Base
   enum status: %i(pending complete)
   enum gender: %i(not_specified female male other)
   enum journey: %i(at_home in_temporary_shelter awaiting_transit on_the_move arrived_at_destination)
+  enum subject_matter: %i(home/Country_of_origin in_transit camp_life Future_hopes/destination)
 
   validates :image, presence: true
   validates :status, presence: true

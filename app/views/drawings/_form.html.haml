@@ -18,7 +18,7 @@
             .form-group
               = f.input :country, priority: TOP_COUNTRIES, selected: (@drawing.new_record? ? current_user.country : @drawing.country), label: "Country drawn in", class: 'form-control'
               .form-group
-              = f.input :subject_matter, collection: ["Home/Country of origin", "In transit", "Camp life", "Future hopes/destination"], label: "Subject matter of drawing", required: false
+              = f.input :subject_matter, collection: subject_matter_options, label: "Subject matter of drawing", required: false
             .form-group
               = f.input :mood_rating, as: :radio_buttons, collection: mood_select_box, label: 'How would you rate the mood of the drawing?'
             .form-group
@@ -37,7 +37,7 @@
             .form-group
               = f.input :origin_country, priority: TOP_ORIGIN_COUNTRIES, selected: @drawing.origin_country, label: "Country of origin", class: 'form-control'
             .form-group
-              = f.input :stage_of_journey, collection: ["At home", "In temporary shelter", "Awaiting transit", "On the move", "Arrived at destination"], label: 'Stage of journey', required: false
+              = f.input :stage_of_journey, collection: journey_options, label: 'Stage of journey', required: false
             .form-group
               = f.input :story, label: 'Story of the artist', required: false
 
