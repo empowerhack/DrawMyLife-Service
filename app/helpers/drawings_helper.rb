@@ -21,9 +21,10 @@ module DrawingsHelper
 
   def mood_select_box
     # Example output: [ ["1 (sad face)", 1], ["2", 2] ... ["4", 4] ["5 (happy face)", 5] ]
-    selections = [].tap do |arr|
-      (1..5).each { |n| arr << [n.to_s, n] }
+    selections = (1..5).map do |number| 
+      [number.to_s, number]
     end
+
     selections[0][0] += " 😢"
     selections[-1][0] += " 😃"
     selections
