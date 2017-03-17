@@ -12,7 +12,7 @@
 
       .forms-wrapper.col-xs.12.col-sm-8
         .col-xs-12.col-sm-6
-          .col-xs-12.col-sm-11.col-md-10.position.central.form-section
+          .position.central.form-section
             .form-title
               %h2 Drawing Details
             .form-group
@@ -27,7 +27,7 @@
               = f.input :image_consent, label: @drawing.image_consent_text, input_html: { checked: image_consent_default }
 
         .col-xs-12.col-sm-6
-          .col-xs-12.col-sm-11.col-md-10.position.central.form-section
+          .position.central.form-section
             .form-title
               %h2 Artist Details
             .form-group
@@ -40,7 +40,7 @@
               = f.input :stage_of_journey, collection: ["At home", "In temporary shelter", "Awaiting transit", "On the move", "Arrived at destination"], label: 'Stage of journey', required: false
             .form-group
               = f.input :story, label: 'Story of the artist', required: false
-          
+
             .form-group
               %label.radio_buttons{for: "status"} Status
               = f.input :status, collection: radio_statuses, label_method: lambda {|k| k.last.capitalize }, as: :radio_buttons, required: true, label: false
