@@ -33,7 +33,7 @@ To get an overview of the journey so far, you can view [these slides](https://sl
 
 * Say hi to the team on [Slack](https://empowerhackteam.slack.com/messages/project_drawmylife/)
 * Read the starter [HackPad](https://hackpad.com/Draw-My-Life-Team-Info-8vFpl0IOk3U)
-* Check the spwrint boards [Project Sprint Board](https://github.com/empowerhack/DrawMyLife-Service/projects) for issues in the Pick Me Up column. The boards are organised by goal.
+* Check the sprint boards [Project Sprint Board](https://github.com/empowerhack/DrawMyLife-Service/projects) for issues in the Pick Me Up column. The boards are organised by goal and may have a milestone associated.
 * If creating or picking up a ticket, please ensure the task is discrete (i.e. easily transferred to a new assignee), clearly described, and has no more than 3 labels. Ideally we should clearly separate UX/design and dev tasks.
 * Follow the instructions below to set up (feel free to holler if it looks out of date)
 
