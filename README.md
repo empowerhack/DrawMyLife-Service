@@ -22,7 +22,7 @@ To get an overview of the journey so far, you can view [these slides](https://sl
 
 **2017**
 
-**Q1**: [Project Sprint Board](https://github.com/empowerhack/DrawMyLife-Service/projects/1)
+**Q1**: [Project Boards](https://github.com/empowerhack/DrawMyLife-Service/projects)
 
 **2016**
 
