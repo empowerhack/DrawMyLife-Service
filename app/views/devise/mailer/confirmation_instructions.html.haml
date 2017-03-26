@@ -2,5 +2,9 @@
   Welcome #{@email}!
 %p You have been invited to contribute to the Draw My Life admin portal, collecting drawings and data to support children in crisis.
 
-%p Please click the link below to confirm your Draw My Life  account email and set your password:
+%p
+  Please click the link below
+  - unless Devise.confirm_within.nil?
+    %b within #{Devise.confirm_within.inspect}
+  to confirm your Draw My Life account email address and set your password:
 %p= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token)
