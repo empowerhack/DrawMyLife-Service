@@ -1,6 +1,8 @@
 @import "variables";
 
 input.btn.btn-default.btn-success.btn-block {
-  width: 60%;
   display: inline;
+  min-height: 60px;
+  font-weight: bold;
+  font-size: $base-font-size;
 }
