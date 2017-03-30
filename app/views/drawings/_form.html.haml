@@ -1,17 +1,17 @@
 .col-xs-12.text-center
   %h1.add-margin.top.bottom
     = form_title
-.row.drawings-wrapper
-  .col-xs-12.col-sm-11.position.central
+.row.drawings-wrapper.no-padding
+  .col-xs-12.col-sm-11.position.central.no-padding
     = simple_form_for @drawing, html: {multipart: true } do |f|
-      .col-xs-12.col-sm-4
+      .col-xs-12.col-md-4
         .image-wrap.text-center
           = image_tag preview_image(@drawing), id: 'image-preview', class: 'img-responsive'
           %b Allowed image types: jpg, jpeg, png, tiff, gif, bmp
           =f.input :image, label: false, required: false, input_html: { onChange: 'loadFile(event)' }
 
-      .forms-wrapper.col-xs.12.col-sm-8
-        .col-xs-12.col-sm-6
+      .forms-wrapper.col-xs.12.col-sm-8.no-padding
+        .col-xs-12.col-md-6
           .position.central.form-section
             .form-title
               %h2 Drawing Details
@@ -26,7 +26,7 @@
             .form-group.form-consent
               = f.input :image_consent, label: @drawing.image_consent_text, input_html: { checked: image_consent_default }
 
-        .col-xs-12.col-sm-6
+        .col-xs-12.col-md-6
           .position.central.form-section
             .form-title
               %h2 Artist Details
@@ -40,9 +40,10 @@
               = f.input :stage_of_journey, collection: journey_options, label: 'Stage of journey', required: false
             .form-group
               = f.input :story, label: 'Story of the artist', required: false
-
-            .form-group
-              %label.radio_buttons{for: "status"} Status
-              = f.input :status, collection: radio_statuses, label_method: lambda {|k| k.last.capitalize }, as: :radio_buttons, required: true, label: false
-            .form-group.text-center
-              = f.button :submit, class: 'btn-success btn-block'
+        
+        .col-xs-12.col-md-4.col-md-offset-7.add-margin.top
+          .form-group
+            %label.radio_buttons{for: "status"} Status
+            = f.input :status, collection: radio_statuses, label_method: lambda {|k| k.last.capitalize }, as: :radio_buttons, required: true, label: false
+          .form-group.text-center
+            = f.button :submit, class: 'btn-success btn-block'
