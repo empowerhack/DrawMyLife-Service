@@ -12,11 +12,11 @@ module DrawingsHelper
   end
 
   def radio_statuses
-    get_humanized_options(Drawing.statuses)
+    get_humanized_options(Drawing.statuses.keys)
   end
 
   def radio_genders
-    get_humanized_options(Drawing.genders)
+    get_humanized_options(Drawing.genders.keys)
   end
 
   def mood_select_box
@@ -31,11 +31,11 @@ module DrawingsHelper
   end
 
   def journey_options
-    get_humanized_options(Drawing.journeys)
+    get_humanized_options(Drawing::STAGES_OF_JOURNEY)
   end
 
   def subject_matter_options
-    get_humanized_options(Drawing.subject_matters)
+    get_humanized_options(Drawing::SUBJECT_MATTERS)
   end
 
   def image_consent_default
@@ -44,7 +44,7 @@ module DrawingsHelper
 
   def get_humanized_options(options)
     # Example output: [ ["gender0", "Gender 0"], ["gender1", "Gender 1"] ... ]
-    options.keys.map do |option|
+    options.map do |option|
       [option.humanize, option]
     end
   end
