@@ -8,23 +8,23 @@ input.btn.btn-default.btn-success.btn-block {
 }
 
 .form-section {
-	background-color: $white;
-	padding: $spacing-unit;
-	padding-bottom: 0;
+  background-color: $white;
+  padding: $spacing-unit;
+  padding-bottom: 0;
 }
 
 .form-title {
-	border-bottom: 1px $light-gray solid;
-	margin-bottom: $spacing-unit;
+  border-bottom: 1px $light-gray solid;
+  margin-bottom: $spacing-unit;
 
-	h2 {
-		font-size: 1.3em;
-		margin-top: 0;
-	}
+  h2 {
+    font-size: 1.3em;
+    margin-top: 0;
+  }
 }
 
 .form-group {
-	margin-bottom: $spacing-unit;
+  margin-bottom: $spacing-unit;
 }
 
 .form-consent label {
@@ -35,6 +35,6 @@ label {
   font-weight: normal;
 
   &.radio_buttons {
-  	margin-bottom: 0px;
+    margin-bottom: 0px;
   }
 }

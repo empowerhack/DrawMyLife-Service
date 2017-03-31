@@ -21,21 +21,13 @@ module DrawingsHelper
 
   def mood_select_box
     # Example output: [ ["1 (sad face)", 1], ["2", 2] ... ["4", 4] ["5 (happy face)", 5] ]
-    selections = (1..5).map do |number| 
+    selections = (1..5).map do |number|
       [number.to_s, number]
     end
 
     selections[0][0] += " 😢"
     selections[-1][0] += " 😃"
     selections
-  end
-
-  def journey_options
-    get_humanized_options(Drawing::STAGES_OF_JOURNEY)
-  end
-
-  def subject_matter_options
-    get_humanized_options(Drawing::SUBJECT_MATTERS)
   end
 
   def image_consent_default
@@ -48,5 +40,4 @@ module DrawingsHelper
       [option.humanize, option]
     end
   end
-
 end
