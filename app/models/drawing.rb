@@ -16,16 +16,7 @@ class Drawing < ActiveRecord::Base
   validates :age, numericality: { only_integer: true }, allow_nil: true
   validates :mood_rating, numericality: { only_integer: true, greater_than_or_equal_to: 1, less_than_or_equal_to: 5 }, allow_nil: true
 
-  has_attached_file :image, styles: {
-    medium: ["640x", :jpg],
-    thumb: ["100x100#", :jpg],
-    large: ["100%", :jpg]
-  }, convert_options: {
-    all: "-bordercolor none -border 1 -trim"
-  }
-
-  validates_attachment_content_type :image, content_type: %r{\A(image\/(jpeg|png|gif|tiff|bmp)|application\/pdf)\z},
-                                            message: "Accepted image formats are: jpg/jpeg, png, tiff, gif, bmp, pdf"
+  mount_uploader :image, ImageUploader
 
   belongs_to :user
 

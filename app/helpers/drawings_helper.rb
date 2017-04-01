@@ -1,6 +1,6 @@
 module DrawingsHelper
   def preview_image(drawing)
-    if drawing.image.exists?
+    if drawing.image.present?
       drawing.image.url(:medium)
     else
       'placeholder.png'
