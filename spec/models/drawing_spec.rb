@@ -27,7 +27,7 @@ RSpec.describe Drawing, type: :model do
         .is_less_than_or_equal_to(5)
     end
 
-    context "images/paperclip" do
+    xcontext "images/paperclip" do
       it { is_expected.to validate_attachment_presence(:image) }
 
       it { is_expected.to have_attached_file(:image) }
