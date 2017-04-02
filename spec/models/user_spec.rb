@@ -50,6 +50,11 @@ RSpec.describe User, type: :model do
     before do
       Timecop.freeze(Time.local(2016))
     end
+
+    after do
+      Timecop.return
+    end
+
     context "deleting a user" do
       it 'records deletion time' do
         subject.soft_delete

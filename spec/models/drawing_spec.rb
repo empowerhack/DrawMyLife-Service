@@ -18,25 +18,11 @@ RSpec.describe Drawing, type: :model do
     it { is_expected.to validate_numericality_of(:age) }
 
     it do
-      is_expected.to validate_numericality_of(:mood_rating)
-        .is_greater_than_or_equal_to(1)
+      is_expected.to validate_numericality_of(:mood_rating).is_greater_than_or_equal_to(1)
     end
 
     it do
-      is_expected.to validate_numericality_of(:mood_rating)
-        .is_less_than_or_equal_to(5)
-    end
-
-    xcontext "images/paperclip" do
-      it { is_expected.to validate_attachment_presence(:image) }
-
-      it { is_expected.to have_attached_file(:image) }
-
-      it do
-        is_expected.to validate_attachment_content_type(:image)
-          .allowing('image/png', 'image/gif', 'image/jpeg', 'image/tiff', 'image/bmp', 'application/pdf')
-          .rejecting('application/zip', 'image/x-png')
-      end
+      is_expected.to validate_numericality_of(:mood_rating).is_less_than_or_equal_to(5)
     end
 
     it { should_not allow_value(nil).for(:image_consent) }

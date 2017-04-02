@@ -1,3 +1,3 @@
-Cloudinary.config do |config| 
-  config.secure = true 
+Cloudinary.config do |config|
+  config.secure = true
 end
