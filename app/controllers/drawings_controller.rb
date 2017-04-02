@@ -25,7 +25,7 @@ class DrawingsController < ApplicationController
   end
 
   def create
-    @drawing = current_user.drawings.build("image": drawing_params["image"]).decorate
+    @drawing = current_user.drawings.build(drawing_params).decorate
     if @drawing.save
       flash[:success] = "Your drawing is uploaded."
       redirect_to drawings_path
