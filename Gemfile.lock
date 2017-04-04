@@ -178,7 +178,10 @@ GEM
     mime-types (3.1)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2016.0521)
+<<<<<<< HEAD
     mimemagic (0.3.0)
+=======
+>>>>>>> 163-move-to-cloudinary
     mini_magick (4.7.0)
     mini_portile2 (2.1.0)
     minitest (5.9.0)
@@ -192,12 +195,6 @@ GEM
       nenv (~> 0.1)
       shellany (~> 0.0)
     orm_adapter (0.5.0)
-    paperclip (4.3.5)
-      activemodel (>= 3.2.0)
-      activesupport (>= 3.2.0)
-      cocaine (~> 0.5.5)
-      mime-types
-      mimemagic (= 0.3.0)
     parser (2.3.1.2)
       ast (~> 2.2)
     pg (0.18.4)
@@ -389,7 +386,10 @@ DEPENDENCIES
   jquery-rails
   kaminari (~> 0.16.3)
   mini_magick
+<<<<<<< HEAD
   paperclip (~> 4.3)
+=======
+>>>>>>> 163-move-to-cloudinary
   pg
   pry-rails
   puma
@@ -418,4 +418,7 @@ RUBY VERSION
 
 BUNDLED WITH
    1.14.6
+<<<<<<< HEAD
    1.13.7
+=======
+>>>>>>> 163-move-to-cloudinary

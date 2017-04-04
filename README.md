@@ -174,7 +174,7 @@ Or for just one set of tests:
 
 ### Deployment and Production Notes
 
-Draw My Life is currently hosted on [Heroku](https://www.heroku.com/), with images automagically hosted on a free tier [Amazon Simple Storage Service (S3)](https://aws.amazon.com/documentation/s3/) instance. The `.env.production.example` file holds a template of the ENV vars required to be set on the live production environment.
+Draw My Life is currently hosted on [Heroku](https://www.heroku.com/), with images automagically hosted on [Cloudinary](http://www.cloudinary.com/) instance. The `.env.production.example` file holds a template of the ENV vars required to be set on the live production environment.
 
 Please ask the team for details if you need deployment instructions.
 
@@ -182,4 +182,4 @@ Please ask the team for details if you need deployment instructions.
 
 We have a staging environment set up which is auto-deployed to from the `staging` branch in GitHub. Pushing any changes to this branch will update the staging environment.
 
-The staging environment is set up as a replica of the Production environment, hosted on Heroku using an Amazon Simple Storage (S3) instance for image storage.
+The staging environment is set up as a replica of the Production environment, hosted on Heroku using a Cloudinary instance for image storage.

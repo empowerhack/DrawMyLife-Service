@@ -1,5 +1,6 @@
 class ImageUploader < CarrierWave::Uploader::Base
   include Cloudinary::CarrierWave
+<<<<<<< HEAD
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   include CarrierWave::MiniMagick
@@ -8,18 +9,39 @@ class ImageUploader < CarrierWave::Uploader::Base
   # Choose what kind of storage to use for this uploader:
   #  storage :file
   # storage :fog
+=======
+
+  # Include RMagick or MiniMagick support:
+  # include CarrierWave::RMagick
+  include CarrierWave::MiniMagick
+
+>>>>>>> 163-move-to-cloudinary
   if Rails.env.test?
     CarrierWave.configure do |config|
       config.storage = :file
       config.enable_processing = false
     end
   end
+<<<<<<< HEAD
+=======
+
+# to store file locally in store_dir location uncomment next line
+# storage :file
+
+ process convert: [:jpg]
+
+
+  # Choose what kind of storage to use for this uploader:
+  # storage :fog
+
+>>>>>>> 163-move-to-cloudinary
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
+<<<<<<< HEAD
   def set_content_type
     model.image_content_type = file.content_type if file.content_type
   end
@@ -31,6 +53,12 @@ class ImageUploader < CarrierWave::Uploader::Base
   def set_updated_at
     model.image_updated_at = Time.now
   end
+=======
+ # def filename
+   # "#{model.class.to_s.underscore}.jpg"
+ # end
+
+>>>>>>> 163-move-to-cloudinary
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url
@@ -46,10 +74,13 @@ class ImageUploader < CarrierWave::Uploader::Base
   # def scale(width, height)
   #   # do something
   # end
+<<<<<<< HEAD
 
   # convert_options: {
   #   all: "-bordercolor none -border 1 -trim"
 
+=======
+>>>>>>> 163-move-to-cloudinary
   # Create different versions of your uploaded files:
   version :thumb do
     process resize_to_fit: [100, 100]
@@ -71,9 +102,19 @@ class ImageUploader < CarrierWave::Uploader::Base
     %w(jpg jpeg gif png tiff gif bmp pdf)
   end
 
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> 163-move-to-cloudinary
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
   # def filename
   #   "something.jpg" if original_filename
   # end
+<<<<<<< HEAD
+=======
+
+>>>>>>> 163-move-to-cloudinary
 end
