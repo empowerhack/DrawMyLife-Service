@@ -12,7 +12,10 @@ class ImageUploader < CarrierWave::Uploader::Base
     end
   end
 
- # storage :file
+# to store file locally in store_dir location uncomment next line
+# storage :file
+
+ process convert: [:jpg]
 
 
   # Choose what kind of storage to use for this uploader:
