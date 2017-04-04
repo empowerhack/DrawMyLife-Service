@@ -25,7 +25,7 @@ class Drawing < ActiveRecord::Base
   #}
 
 
-  mount_uploader :image, ImageUploader, mount_on: :image_file_name
+  mount_uploader :image, ImageUploader 
   #validates_attachment_content_type :image, content_type: %r{\A(image\/(jpeg|png|gif|tiff|bmp)|application\/pdf)\z},
    #                                         message: "Accepted image formats are: jpg/jpeg, png, tiff, gif, bmp, pdf"
 
