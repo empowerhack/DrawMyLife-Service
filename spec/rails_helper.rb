@@ -67,7 +67,6 @@ RSpec.configure do |config|
     FileUtils.rm_rf(Dir["#{Rails.root}/spec/test_files/"])
   end
 
-  config.include Paperclip::Shoulda::Matchers
 end
 
 Shoulda::Matchers.configure do |config|
