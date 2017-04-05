@@ -12,11 +12,10 @@ class ImageUploader < CarrierWave::Uploader::Base
     end
   end
 
-# to store file locally in store_dir location uncomment next line
-# storage :file
+  # to store file locally in store_dir location uncomment next line
+  # storage :file
 
- process convert: [:jpg]
-
+  process convert: [:jpg]
 
   # Choose what kind of storage to use for this uploader:
   # storage :fog
@@ -26,11 +25,6 @@ class ImageUploader < CarrierWave::Uploader::Base
   def store_dir
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
-
- # def filename
-   # "#{model.class.to_s.underscore}.jpg"
- # end
-
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url
@@ -67,13 +61,9 @@ class ImageUploader < CarrierWave::Uploader::Base
     %w(jpg jpeg gif png tiff gif bmp pdf)
   end
 
-
-
-
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
   # def filename
   #   "something.jpg" if original_filename
   # end
-
 end

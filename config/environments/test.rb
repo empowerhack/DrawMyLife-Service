@@ -41,7 +41,7 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
 
   # Prevent multiple copies of Paperclip test files with a custom path
-  #Paperclip::Attachment.default_options[:path] = "#{Rails.root}/spec/test_files/:class/:id_partition/:style.:extension"
+  # Paperclip::Attachment.default_options[:path] = "#{Rails.root}/spec/test_files/:class/:id_partition/:style.:extension"
 
   # User support email
   config.support_email = ENV.fetch('SUPPORT_EMAIL', '')
