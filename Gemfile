@@ -38,6 +38,7 @@ gem 'devise'
 gem 'carrierwave', '~> 1.0'
 gem 'mini_magick'
 gem 'cloudinary'
+gem 'paperclip'
 
 # Pagination
 gem 'kaminari', '~> 0.16.3'
