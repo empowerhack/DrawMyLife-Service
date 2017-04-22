@@ -22,7 +22,7 @@
             .form-group
               = f.input :mood_rating, as: :radio_buttons, collection: mood_select_box, label: 'How would you rate the mood of the drawing?'
             .form-group
-              = f.input :description, as: :text, input_html: {:rows => 8 }, label: 'Description of drawing'
+              = f.input :description, as: :text, input_html: { rows: 8 }, label: 'Description of drawing'
             .form-group.form-consent
               = f.input :image_consent, label: @drawing.image_consent_text, input_html: { checked: image_consent_default }
 

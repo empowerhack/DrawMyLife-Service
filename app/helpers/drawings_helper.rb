@@ -35,7 +35,7 @@ module DrawingsHelper
   end
 
   def get_humanized_options(options)
-    # Example output: [ ["gender0", "Gender 0"], ["gender1", "Gender 1"] ... ]
+    # Example output: [ ["Gender 0", "gender0"], ["Gender 1", "gender1"] ... ]
     options.map do |option|
       [option.humanize, option]
     end
