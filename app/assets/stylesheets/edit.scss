@@ -23,33 +23,3 @@
     text-align: center;
   }
 }
-
-// TODO - Tidy up during the week
-.form-group.genders {
-  label {
-    border-radius: 5px;
-    margin-right: 5px;
-  }
-  label[for=drawing_gender_not_specified] {
-    background-color: #D3D3D3;
-    padding-left: 15px;
-  }
-  label[for=drawing_gender_female] {
-    background-color: #FFB6C1;
-    padding-left: 15px;
-  }
-  label[for=drawing_gender_male] {
-    background-color: #ADD8E6;
-    padding-left: 15px;
-  }
-  label[for=drawing_gender_other] {
-    background-color: #FFE8CD;
-    padding-left: 15px;
-  }
-}
-
-.form-consent {
-  label {
-    font-weight: bold;
-  }
-}
