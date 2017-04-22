@@ -42,7 +42,7 @@ Rails.application.configure do
   # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for NGINX
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  # config.force_ssl = true
+  config.force_ssl = true
 
   # Use the lowest log level to ensure availability of diagnostic information
   # when problems arise.
@@ -94,7 +94,8 @@ Rails.application.configure do
       bucket: ENV.fetch('S3_BUCKET_NAME', ''),
       access_key_id: ENV.fetch('AWS_ACCESS_KEY_ID', ''),
       secret_access_key: ENV.fetch('AWS_SECRET_ACCESS_KEY', '')
-    }
+    },
+    s3_protocol: :https
   }
 
   # User support email
