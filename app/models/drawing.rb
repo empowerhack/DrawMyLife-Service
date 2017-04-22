@@ -1,6 +1,6 @@
 class Drawing < ActiveRecord::Base
-  # STAGES_OF_JOURNEY
-  # SUBJECT_MATTERS
+  STAGES_OF_JOURNEY = ["At home", "In temporary shelter", "Awaiting transit", "On the move", "Arrived at destination"].freeze
+  SUBJECT_MATTERS = ["Home / Country of origin", "In transit", "Camp life", "Future hopes / destination"].freeze
 
   enum status: %i(pending complete)
   enum gender: %i(not_specified female male other)
@@ -53,11 +53,11 @@ class Drawing < ActiveRecord::Base
   end
 
   def self.stages_of_journey
-    @stages_of_journey = ["At home", "In temporary shelter", "Awaiting transit", "On the move", "Arrived at destination"]
+    STAGES_OF_JOURNEY
   end
 
   def self.subject_matters
-    @subject_matters = ["Home / Country of origin", "In transit", "Camp life", "Future_hopes / destination"]
+    SUBJECT_MATTERS
   end
 
   def can_view?(current_user)
