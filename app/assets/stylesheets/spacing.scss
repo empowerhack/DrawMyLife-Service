@@ -3,10 +3,18 @@
 .add-margin {
   &.top {
     margin-top: $spacing-unit;
+
+    &.half {
+      margin-top: calc( #{ $spacing-unit} / 2);
+    }
   }
 
   &.bottom {
     margin-bottom: $spacing-unit;
+
+    &.half {
+      margin-bottom: calc( #{ $spacing-unit} / 2);
+    }
   }
 }
 

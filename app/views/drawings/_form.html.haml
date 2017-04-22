@@ -22,7 +22,7 @@
             .form-group
               = f.input :mood_rating, as: :radio_buttons, collection: mood_select_box, label: 'How would you rate the mood of the drawing?'
             .form-group
-              = f.input :description, as: :text, label: 'Description of drawing'
+              = f.input :description, as: :text, input_html: {:rows => 8 }, label: 'Description of drawing'
             .form-group.form-consent
               = f.input :image_consent, label: @drawing.image_consent_text, input_html: { checked: image_consent_default }
 
@@ -31,7 +31,7 @@
             .form-title
               %h2 Artist Details
             .form-group
-              = f.input :age, type: 'number', label: 'Age of artist', required: false
+              = f.input :age, type: 'number', label: 'Age of artist', class: 'optional', required: false
             .form-group
               = f.input :gender, as: :radio_buttons, collection: radio_genders, label: 'Gender'
             .form-group
@@ -39,11 +39,10 @@
             .form-group
               = f.input :stage_of_journey, collection: Drawing.stages_of_journey, label: 'Stage of journey', required: false
             .form-group
-              = f.input :story, label: 'Story of the artist', required: false
+              = f.input :story, label: 'Story of the artist', class: 'optional-label', required: false
 
-        .col-xs-12.col-md-4.col-md-offset-7.add-margin.top
-          .form-group
-            %label.radio_buttons{for: "status"} Status
-            = f.input :status, collection: radio_statuses, label_method: lambda {|k| k.last.capitalize }, as: :radio_buttons, required: true, label: false
-          .form-group.text-center
-            = f.button :submit, class: 'btn-success btn-block'
+          .col-xs-12.col-sm-10.col-md-8.add-margin.top.half.position.central
+            .form-group
+              = f.input :status, collection: radio_statuses, label_method: lambda {|k| k.last.capitalize }, as: :radio_buttons, required: true, label: 'Status', class: 'add-margin bottom half'
+            .form-group.text-center
+              = f.button :submit, class: 'btn-success btn-block no-margin'
