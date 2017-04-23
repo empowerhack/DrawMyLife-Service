@@ -21,3 +21,6 @@
 
 en:
   hello: "Hello world"
+  errors:
+    messages:
+      extension_whitelist_error: "Accepted image formats are: jpg/jpeg, png, tiff, gif, bmp, pdf"

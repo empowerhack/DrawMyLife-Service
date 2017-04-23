@@ -1,8 +1,9 @@
 class Drawing < ActiveRecord::Base
+  include CarrierWave::Validations::ActiveModel
+
   enum status: %i(pending complete)
   enum gender: %i(not_specified female male other)
 
-  validates :image, presence: true
   validates :status, presence: true
   validates_inclusion_of :image_consent, in: [true, false]
 
@@ -16,17 +17,8 @@ class Drawing < ActiveRecord::Base
   validates :age, numericality: { only_integer: true }, allow_nil: true
   validates :mood_rating, numericality: { only_integer: true, greater_than_or_equal_to: 1, less_than_or_equal_to: 5 }, allow_nil: true
 
-  # has_attached_file :image, styles: {
-  #  medium: ["640x", :jpg],
-  #  thumb: ["100x100#", :jpg],
-  #  large: ["100%", :jpg]
-  # }, convert_options: {
-  #  all: "-bordercolor none -border 1 -trim"
-  # }
-
   mount_uploader :image, ImageUploader
-  # validates_attachment_content_type :image, content_type: %r{\A(image\/(jpeg|png|gif|tiff|bmp)|application\/pdf)\z},
-  #                                         message: "Accepted image formats are: jpg/jpeg, png, tiff, gif, bmp, pdf"
+  validates :image, presence: true
 
   belongs_to :user
 
