@@ -39,6 +39,7 @@ gem 'carrierwave', '~> 1.0'
 gem 'mini_magick'
 gem 'cloudinary'
 gem 'paperclip'
+gem 'sqlite3'
 
 # Pagination
 gem 'kaminari', '~> 0.16.3'
