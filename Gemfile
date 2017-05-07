@@ -36,6 +36,8 @@ gem 'devise'
 
 # Image management
 gem "paperclip", "~> 4.3"
+gem "cloudinary"
+gem "sqlite3"
 
 # Pagination
 gem 'kaminari', '~> 0.16.3'
