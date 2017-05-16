@@ -13,7 +13,8 @@ namespace :db do
 
     Drawing.all.each do
       |drawing|
-      migrator.process(:id =>  drawing.id, :url => "./public#{drawing.image.url[/^(.*?)\.png/]}", :public_id => "#{drawing.image_file_name.chomp('.png')}")
+      file = drawing.image_file_name
+      migrator.process(:id =>  drawing.id, :url => "./public#{drawing.image.url[/^(.*?)\.png/]}", :public_id => "#{File.basename(file,File.extname(file))}")
 
     end
     migrator.done
