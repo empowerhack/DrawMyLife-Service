@@ -13,7 +13,7 @@
 
 1) An administration system used by field workers to upload images and data from art therapy sessions ***- status: live, with  updates/improvement issues open***
 2) A public API of this data (see [Apiary spec](http://docs.drawmylife.apiary.io/#)), ensuring anonymity and with respect to consent ***- in progress, issues open***
-3) A JSON endpoint to integrate with the UN's [Humanitarian Data Exchange (HDX)](https://data.humdata.org) collating open data sources. This endpoint will expose data using [HXL standards](hxlstandard.org) and be used to create a separate HXL-formatted API via the open source [HXL Proxy](https://github.com/HXLStandard/hxl-proxy/wiki/Source-page) - (see [example Draw My Life Proxy API interface](https://proxy.hxlstandard.org/data/tZOYfb)). ***- in progress, issues open***
+3) A JSON endpoint to integrate with the UN's [Humanitarian Data Exchange (HDX)](https://data.humdata.org) collating open data sources. This endpoint will expose data using [HXL standards](http://hxlstandard.org) and be used to create a separate HXL-formatted API via the open source [HXL Proxy](https://github.com/HXLStandard/hxl-proxy/wiki/Source-page) - (see [example Draw My Life Proxy API interface](https://proxy.hxlstandard.org/data/tZOYfb)). ***- in progress, issues open***
 
 We also have a team website being built with Jekyll/React with open issues over at [empowerhack/DrawMyLife-Website](https://github.com/empowerhack/DrawMyLife-Website)
 
