@@ -1,38 +1,38 @@
 [![Build Status](https://travis-ci.org/empowerhack/DrawMyLife-Service.svg?branch=master)](https://travis-ci.org/empowerhack/DrawMyLife-Service)
 
-![Screenshot - Upload New Drawing](./app/assets/images/screenshot.png "Screenshot - Upload New Drawing")
+![DML](https://cloud.githubusercontent.com/assets/574526/26177709/bfe9365e-3b52-11e7-8d05-eeef8f908fdc.png)
 
 # Draw My Life API / Admin
 
-**Draw My Life** is an open source, volunteer-led initiative in partnership with [Terre Des Hommes](terredeshommes.org), born at an [EmpowerHack](empowerhack.com) hackathon for refugee women and girls in 2016. The initiative consists of multiple, separate and inter-related projects aiming to improve mental health support for refugee children.
+**Draw My Life** is an open source, volunteer-led initiative in partnership with [Terre Des Hommes](terredeshommes.org) and  partners, born at an [EmpowerHack](empowerhack.com) hackathon for refugee women and girls in 2016. The initiative consists of multiple, separate and inter-related projects aiming to improve mental health support for refugee children.
 
 [![Project Introduction](./app/assets/images/video-screenshot.png)](http://www.youtube.com/watch?v=chG9_jWdJL8 "Draw my Life project introduction")
 
-**This repository holds an API and administration system built with the [Ruby on Rails](http://rubyonrails.org/) framework for storing images and data collected by field workers during art therapy sessions.**
 
-***Related pending projects include:***
+**You can get an overview of DML projects on the [Project Definition](https://github.com/empowerhack/DrawMyLife-Service/wiki/1.-Project-Definition) wiki page. This specific repository is built with the [Ruby on Rails](http://rubyonrails.org/) framework and includes the following features:**
 
-* An advocacy tool that makes use of data collected here
-* Extension of this API to integrate with the [Humanitarian Data Exchange (HDX)](https://data.humdata.org) using [HXL standards](hxlstandard.org)
+1) An administration system used by field workers to upload images and data from art therapy sessions ***- status: live, with  updates/improvement issues open***
+2) A public API of this data (see [Apiary spec](http://docs.drawmylife.apiary.io/#)), ensuring anonymity and with respect to consent ***- in progress, issues open***
+3) A JSON endpoint to integrate with the UN's [Humanitarian Data Exchange (HDX)](https://data.humdata.org) collating open data sources. This endpoint will expose data using [HXL standards](hxlstandard.org) and be used to create a separate HXL-formatted API via the open source [HXL Proxy](https://github.com/HXLStandard/hxl-proxy/wiki/Source-page) - (see [example Draw My Life Proxy API interface](https://proxy.hxlstandard.org/data/tZOYfb)). ***- in progress, issues open***
 
-To get an overview of the journey so far, you can view [these slides](https://slides.com/krissygoround/drawmylife). You can also chat to the team over at our [public channel in EmpowerHack's Slack](https://empowerhackteam.slack.com/messages/project_drawmylife/).
-
+We also have a team website being built with Jekyll/React with open issues over at [empowerhack/DrawMyLife-Website](https://github.com/empowerhack/DrawMyLife-Website)
 
 ## Project Status/Timeline
+
 
 **2017**
 
 **Q2**: [Project Boards](https://github.com/empowerhack/DrawMyLife-Service/projects)  
 [Milestones](https://github.com/empowerhack/DrawMyLife-Service/milestones)  
-[Project Definition](https://github.com/empowerhack/DrawMyLife-Service/wiki/1.-Project-Definition)  
+
 
 ## For New Volunteers
 
 * Say hi to the team on [Slack](https://empowerhackteam.slack.com/messages/project_drawmylife/)
 * Read the starter [HackPad](https://hackpad.com/Draw-My-Life-Team-Info-8vFpl0IOk3U)
-* Check the [Project Sprint Boards](https://github.com/empowerhack/DrawMyLife-Service/projects) for issues in the **Pick Me Up** column. The boards are organised by goal. Open issues will typically have a milestone.
+* Check the [Project Sprint Boards](https://github.com/empowerhack/DrawMyLife-Service/projects) for issues in the **Pick Me Up** column. The boards are organised by goal. Open issues will typically have a milestone. We also have frontend-heavy project boards on our team website repository [empowerhack/DrawMyLife-Website](https://github.com/empowerhack/DrawMyLife-Website/projects).
 * If creating a new issue to work on, please ensure the task is discrete (i.e. easily transferred to a new assignee), clearly described, and has no more than 3 labels. Ideally we should clearly separate UX/design and dev tasks.
-* Follow the instructions below to set up (feel free to holler if it looks out of date)
+* Follow the instructions below to set up (feel free to holler/submit a pull request if it looks out of date)
 
 ## Development Setup
 
