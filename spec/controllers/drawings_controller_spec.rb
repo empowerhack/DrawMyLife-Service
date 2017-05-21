@@ -14,9 +14,9 @@ RSpec.describe DrawingsController, type: :controller do
         allow_any_instance_of(Drawing).to receive(:can_modify?).and_return(false)
       end
 
-       it "returns an unauthorized status" do
-         expect(perform).to have_http_status :unauthorized
-       end
+      it "returns an unauthorized status" do
+        expect(perform).to have_http_status :unauthorized
+      end
     end
   end
 

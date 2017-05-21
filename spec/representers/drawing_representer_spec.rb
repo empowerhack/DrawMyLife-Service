@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe DrawingRepresenter do
-  DATE_FRACTIONAL_SECONDS = 3.freeze
+  DATE_FRACTIONAL_SECONDS = 3
 
   let(:url_host) { "http://localhost:3000" }
   let(:now) { Time.now }
@@ -23,13 +23,13 @@ RSpec.describe DrawingRepresenter do
         'created_at' => drawing_resource.created_at.iso8601(DATE_FRACTIONAL_SECONDS),
         'updated_at' => drawing_resource.updated_at.iso8601(DATE_FRACTIONAL_SECONDS),
 
-        'artist' => hash_including({
+        'artist' => hash_including(
           'age' => drawing_resource.age,
           'gender' => drawing_resource.gender,
           'country_code_home' => drawing_resource.country_code_home,
           'stage_of_journey' => drawing_resource.stage_of_journey,
           'background_story' => drawing_resource.background_story
-        })
+        )
       )
     end
   end
@@ -44,20 +44,19 @@ RSpec.describe DrawingRepresenter do
         'dml_id' => drawing_resource.organisation.dml_id,
         'name' => drawing_resource.user.organisation.name,
 
-        '_links' => hash_including({
-          'self' => hash_including({
+        '_links' => hash_including(
+          'self' => hash_including(
             'href' => "#{url_host}/organisations/#{drawing_resource.organisation.dml_id}.hal"
-          })
-        })
+          )
+        )
       )
     end
   end
 
-
   describe "links" do
     subject { representer["_links"] }
 
-    its(:keys) { is_expected.to include('self','image_large') }
+    its(:keys) { is_expected.to include('self', 'image_large') }
 
     its(["self"]) { is_expected.to include("href" => "#{url_host}/drawings/#{drawing_resource.dml_id}.hal") }
     its(["image_large"]) { is_expected.to include("href" => drawing_resource.image.url) }

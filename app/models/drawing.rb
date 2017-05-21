@@ -4,7 +4,7 @@ class Drawing < ActiveRecord::Base
   SUBJECT_MATTERS = ["Home / Country of origin", "In transit", "Camp life", "Future hopes / destination"].freeze
 
   ### Aliases / delegations / overrides
-  obfuscate_id :spin => ENV['OBFUSCATE_ID_SPIN_NUMBER'].to_i
+  obfuscate_id spin: ENV['OBFUSCATE_ID_SPIN_NUMBER'].to_i
   alias_attribute :dml_id, :to_param
 
   alias_attribute :country_code_drawn, :country
