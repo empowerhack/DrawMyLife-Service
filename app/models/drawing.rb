@@ -1,12 +1,23 @@
 class Drawing < ActiveRecord::Base
+  ### Constants
   STAGES_OF_JOURNEY = ["At home", "In temporary shelter", "Awaiting transit", "On the move", "Arrived at destination"].freeze
   SUBJECT_MATTERS = ["Home / Country of origin", "In transit", "Camp life", "Future hopes / destination"].freeze
 
+  ### Aliases / delegations / overrides
   obfuscate_id :spin => ENV['OBFUSCATE_ID_SPIN_NUMBER'].to_i
+  alias_attribute :dml_id, :to_param
 
+  alias_attribute :country_code_drawn, :country
+  alias_attribute :country_code_home, :origin_country
+  alias_attribute :background_story, :story
+
+  delegate :organisation, to: :user
+
+  ### Enumerables
   enum status: %i(pending complete)
   enum gender: %i(not_specified female male other)
 
+  ### Validations
   validates :image, presence: true
   validates :status, presence: true
   validates_inclusion_of :image_consent, in: [true, false]
@@ -32,8 +43,10 @@ class Drawing < ActiveRecord::Base
   validates_attachment_content_type :image, content_type: %r{\A(image\/(jpeg|png|gif|tiff|bmp)|application\/pdf)\z},
                                             message: "Accepted image formats are: jpg/jpeg, png, tiff, gif, bmp, pdf"
 
+  ### Associations
   belongs_to :user
 
+  ### Scopes
   scope :desc, -> { order("drawings.created_at DESC") }
   scope :within_org, lambda { |org_id|
     joins(:user).where("users.organisation_id" => org_id)

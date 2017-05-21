@@ -1,15 +1,37 @@
-class DrawingRepresenter < Roar::Decorator
-  include Roar::JSON::HAL
-
-  property :country
-  property :age
-  property :gender
-  property :mood_rating
+class DrawingRepresenter < BaseRepresenter
+  property :dml_id
   property :description
-  property :story
+  property :country_code_drawn
+  property :mood_rating
+  property :subject_matter
   property :created_at
+  property :updated_at
+
+  nested :artist do
+    property :age
+    property :gender
+    property :country_code_home
+    property :stage_of_journey
+    property :background_story
+  end
 
   link :self do
-    drawing_path(id: represented.id, format: :hal)
+    drawing_url(id: represented, format: :hal)
+  end
+
+  link :image_large do
+    represented.image.url
+  end
+
+  property :organisation, embedded: true do
+    include Roar::JSON::HAL
+    include ::Representer::Routing
+
+    property :dml_id
+    property :name
+
+    link :self do
+      organisation_url(id: represented, format: :hal)
+    end
   end
 end

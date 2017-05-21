@@ -6,9 +6,6 @@ class ApplicationController < ActionController::Base
   private
 
   def authorize_super_admin!
-    unless current_user.super_admin?
-      flash[:error] = "Sorry, you may be a super human being, but you need to be a super admin to do that."
-      redirect_to root_path
-    end
+    return head :unauthorized unless current_user.super_admin?
   end
 end

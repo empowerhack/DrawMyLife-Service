@@ -63,15 +63,11 @@ class DrawingsController < ApplicationController
   private
 
   def authorize_read
-    return if @drawing.can_view?(current_user)
-    flash[:alert] = "You do not have permission to view this drawing."
-    redirect_to root_path
+    return head :unauthorized unless @drawing.can_view?(current_user)
   end
 
   def authorize_write
-    return if @drawing.can_modify?(current_user)
-    flash[:alert] = "You do not have permission to edit or delete this drawing."
-    redirect_to root_path
+    return head :unauthorized unless @drawing.can_modify?(current_user)
   end
 
   def drawing_params

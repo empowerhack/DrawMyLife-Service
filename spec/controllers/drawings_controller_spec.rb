@@ -14,14 +14,9 @@ RSpec.describe DrawingsController, type: :controller do
         allow_any_instance_of(Drawing).to receive(:can_modify?).and_return(false)
       end
 
-      it "redirects to root path" do
-        expect(perform).to redirect_to root_path
-      end
-
-      it "renders a flash error" do
-        perform
-        expect(flash[:alert]).to have_content("You do not have permission to edit or delete this drawing.")
-      end
+       it "returns an unauthorized status" do
+         expect(perform).to have_http_status :unauthorized
+       end
     end
   end
 
@@ -153,13 +148,8 @@ RSpec.describe DrawingsController, type: :controller do
         allow_any_instance_of(Drawing).to receive(:can_view?).and_return(false)
       end
 
-      it "redirects to root path" do
-        expect(perform).to redirect_to root_path
-      end
-
-      it "renders a flash error" do
-        perform
-        expect(flash[:alert]).to have_content("You do not have permission to view this drawing.")
+      it "returns an unauthorized status" do
+        expect(perform).to have_http_status :unauthorized
       end
     end
   end

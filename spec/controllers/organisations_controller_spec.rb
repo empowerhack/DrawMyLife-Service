@@ -7,13 +7,8 @@ RSpec.describe OrganisationsController, type: :controller do
     context "with incorrect access" do
       login_as_admin
 
-      it "redirects to root path" do
-        expect(perform).to redirect_to root_path
-      end
-
-      it "renders a flash error" do
-        perform
-        expect(flash[:error]).to have_content("Sorry, you may be a super human being, but you need to be a super admin to do that.")
+      it "returns an unauthorized status" do
+        expect(perform).to have_http_status :unauthorized
       end
     end
   end

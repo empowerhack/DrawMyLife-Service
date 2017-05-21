@@ -161,6 +161,9 @@ Also, in the shell window you ran the actual server, you can see request logs as
 
 #### Running Tests
 
+To ensure your test database is up-to-date, run:
+	$ RAILS_ENV=test bundle exec rake db:reset
+
 We will be using [rspec](http://rspec.info/) for tests. To run all tests, from your project's root, run:
 
 	$ bundle exec rspec spec

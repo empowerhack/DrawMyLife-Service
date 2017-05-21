@@ -45,4 +45,7 @@ Rails.application.configure do
 
   # User support email
   config.support_email = ENV.fetch('SUPPORT_EMAIL', '')
+
+  # Default URL
+  config.action_controller.default_url_options = { host: 'localhost', port: 3000 }
 end
