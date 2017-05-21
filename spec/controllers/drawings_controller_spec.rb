@@ -66,7 +66,7 @@ RSpec.describe DrawingsController, type: :controller do
       end
 
       it "redirects to the drawing" do
-        expect(perform).to redirect_to drawing_path drawing.id
+        expect(perform).to redirect_to drawing_path drawing
       end
     end
 

@@ -25,7 +25,7 @@
           %i.fa.fa-pencil{"aria-hidden" => "true"}
     %td
       - if drawing.can_modify?(current_user)
-        = link_to drawing_path(drawing.id), method: :delete, data: { confirm: 'Are you sure?' } do
+        = link_to drawing_path(drawing), method: :delete, data: { confirm: 'Are you sure?' } do
           %i.fa.fa-trash{"aria-hidden" => "true"}
     %td
       = drawing.user.email_link

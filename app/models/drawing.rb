@@ -2,6 +2,8 @@ class Drawing < ActiveRecord::Base
   STAGES_OF_JOURNEY = ["At home", "In temporary shelter", "Awaiting transit", "On the move", "Arrived at destination"].freeze
   SUBJECT_MATTERS = ["Home / Country of origin", "In transit", "Camp life", "Future hopes / destination"].freeze
 
+  obfuscate_id :spin => ENV['OBFUSCATE_ID_SPIN_NUMBER'].to_i
+
   enum status: %i(pending complete)
   enum gender: %i(not_specified female male other)
 
