@@ -19,6 +19,10 @@
           %th Status
       %tbody
         = render 'drawings'
+    - if @drawings.empty?
+      .center
+        To get started, click
+        = link_to "Add Drawing", new_drawing_path
 
 #paginator.text-center
   = link_to_next_page @drawings, 'MORE', remote: true, id: 'load_more'
