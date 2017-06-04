@@ -4,9 +4,10 @@ class HxlStatsView < ActiveRecord::Base
     true
   end
 
-
   def self.to_csv # Not actually used! But could be convenient for data analysts
-    attributes = %w{org_name country mood_rating  drawing_id user_id org_id description image_file_name mood_rating age subject_matter story country status gender stage_of_journey origin_country user_country org_name}
+    attributes = %w(org_name country mood_rating drawing_id user_id org_id description 
+                    image_file_name mood_rating age subject_matter story country status 
+                    gender stage_of_journey origin_country user_country org_name)
 
     CSV.generate(headers: true) do |csv|
       csv << attributes
@@ -16,5 +17,5 @@ class HxlStatsView < ActiveRecord::Base
       end
     end
   end
-  
+
 end
