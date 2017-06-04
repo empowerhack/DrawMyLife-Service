@@ -53,11 +53,11 @@ class HxlstatsController < ApplicationController
           older_total += 1
         end
       end
-       
+
       @results.append([*keys, hxlstatsgroup.count, gender_totals[0], gender_totals[1], gender_totals[2],
                        five_twelve_total, thirteen_eighteen_total, younger_than_five, older_total])
     end
- 
+
     respond_to do |format|
       format.html
       format.json { send_data @results, filename: "hxlstats-#{Date.today}.json" }

@@ -17,5 +17,4 @@ class HxlStatsView < ActiveRecord::Base
       end
     end
   end
-
 end
