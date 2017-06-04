@@ -19,5 +19,8 @@ Rails.application.routes.draw do
 
   resources :drawings, :organisations
 
+  resources :hxlstats
+
+  
   root 'drawings#index'
 end
