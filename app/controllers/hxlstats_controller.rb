@@ -10,9 +10,9 @@ class HxlstatsController < ApplicationController
   def show
     # Prepare output results array
     @results = []
-    @results.append(["Emotional State", "Stage of journey", "Country drawn in", "Total children affected", 
-                     "Children who identify as female", "Children who identify as male", 
-                     "Children who identify as neither female nor male", "Children between the ages of 5-12", 
+    @results.append(["Emotional State", "Stage of journey", "Country drawn in", "Total children affected",
+                     "Children who identify as female", "Children who identify as male",
+                     "Children who identify as neither female nor male", "Children between the ages of 5-12",
                      "Children between the ages of 13-18", "Children under 5 years old ", "Older than 18 years old"])
 
     @hxlstats = HxlStatsView.all
