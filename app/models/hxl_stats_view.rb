@@ -52,9 +52,8 @@ class HxlStatsView < ActiveRecord::Base
     # Processing Age aggregations
     @hxlstatsgroupsage = hxlstatsmajorgroup.group_by(&:age) # shorthand for { |hxlstat| hxlstat.age }
     # gender *and* age inclusiveness 
-    younger_than_five, five_twelve_total = 0, 0
-    thirteen_eighteen_total = 0
-    older_total = 0
+    younger_than_five, five_twelve_total, thirteen_eighteen_total, older_total = 0, 0, 0, 0
+
     @hxlstatsgroupsage.each do |k_age, _v_age|
       # k_age is age, _v_age is array of hxlstatsmatview
       # puts "    cycle ages"
@@ -100,7 +99,7 @@ class HxlStatsView < ActiveRecord::Base
     @results = []
     @results = @results.append(hxlstats_column_headers)
     @results = @results.append(hxlstats_tags)
-    @results = @results.push(*hxl_stats_counts)
+    @results = @results.concat(hxl_stats_counts)
     return @results
   end
 end
