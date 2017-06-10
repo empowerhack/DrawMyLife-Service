@@ -44,7 +44,7 @@ class HxlStatsView < ActiveRecord::Base
       # puts "    %s " % v_gender
       gender_totals[k_gender] = v_gender.count
     end
-    return gender_totals # hash of key gender to v counts
+    gender_totals # hash of key gender to v counts
   end
 
   # rubocop:disable MethodLength
@@ -69,7 +69,7 @@ class HxlStatsView < ActiveRecord::Base
         older_total += 1
       end
     end
-    return younger_than_five, five_twelve_total, thirteen_eighteen_total, older_total
+    [younger_than_five, five_twelve_total, thirteen_eighteen_total, older_total]
   end
 
   # rubocop:disable MethodLength
@@ -92,7 +92,7 @@ class HxlStatsView < ActiveRecord::Base
                       younger_than_five,
                       older_total])
     end
-    return results
+    results
   end
 
   def self.results_by_emotional_state() 
@@ -100,6 +100,6 @@ class HxlStatsView < ActiveRecord::Base
     @results = @results.append(hxlstats_column_headers)
     @results = @results.append(hxlstats_tags)
     @results = @results.concat(hxl_stats_counts)
-    return @results
+    @results
   end
 end
