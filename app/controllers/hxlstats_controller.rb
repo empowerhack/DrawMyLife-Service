@@ -1,4 +1,5 @@
 class HxlstatsController < ApplicationController
+=begin
   # Controller collects and aggregate data to parse to the HXL proxy/endpoint
 
   def append_column_headers(results)
@@ -77,25 +78,27 @@ class HxlstatsController < ApplicationController
     @hxlstatsgroups.each do |keys, hxlstatsmajorgroup| # keys = mood_rating, stage_of_j, country
       gender_totals = get_counts_by_gender(hxlstatsmajorgroup)
       younger_than_five, five_twelve_total, thirteen_eighteen_total, older_total = get_counts_by_age(hxlstatsmajorgroup)
-      results.append([*keys, 
-                      hxlstatsmajorgroup.count, 
-                      gender_totals[0], 
-                      gender_totals[1], 
+      results.append([*keys,
+                      hxlstatsmajorgroup.count,
+                      gender_totals[0],
+                      gender_totals[1],
                       gender_totals[2],
-                      five_twelve_total, 
-                      thirteen_eighteen_total, 
-                      younger_than_five, 
+                      five_twelve_total,
+                      thirteen_eighteen_total,
+                      younger_than_five,
                       older_total])
     end
     return results
   end
-
+=end
   # rubocop:disable MethodLength
   def show
-    @results = []
-    @results = append_column_headers(@results)
-    @results = append_hxl_tags(@results)
-    @results = append_hxl_stats_counts(@results)
+    #@results = []
+    #@results = append_column_headers(@results)
+    #@results = append_hxl_tags(@results)
+    #@results = append_hxl_stats_counts(@results)
+
+    @results = HxlStatsView.results_by_emotional_state()
 
     respond_to do |format|
       format.html
