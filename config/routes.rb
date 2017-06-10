@@ -19,7 +19,7 @@ Rails.application.routes.draw do
 
   resources :drawings, :organisations
 
-  resources :hxlstats
+  get 'hxlstats', to: 'hxlstats#show'
 
   
   root 'drawings#index'

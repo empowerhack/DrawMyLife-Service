@@ -1,19 +1,32 @@
 class HxlstatsController < ApplicationController
-  # Class to collect and aggregate data to parse to the HXL proxy/endpoint
-  def new
-  end
-
-  def create
-  end
+  # Controller collects and aggregate data to parse to the HXL proxy/endpoint
 
   # rubocop:disable MethodLength
   def show
-    # Prepare output results array
     @results = []
-    @results.append(["Emotional State", "Stage of journey", "Country drawn in", "Total children affected",
-                     "Children who identify as female", "Children who identify as male",
-                     "Children who identify as neither female nor male", "Children between the ages of 5-12",
-                     "Children between the ages of 13-18", "Children under 5 years old ", "Older than 18 years old"])
+    @results.append(["Emotional State", 
+                     "Stage of journey", 
+                     "Country drawn in", 
+                     "Total children affected",
+                     "Children who identify as female", 
+                     "Children who identify as male",
+                     "Children who identify as neither female nor male", 
+                     "Children between the ages of 5-12",
+                     "Children between the ages of 13-18", 
+                     "Children under 5 years old ", 
+                     "Older than 18 years old"])
+
+    @results.append(["Emotional State", 
+                     "Stage of journey", 
+                     "Country drawn in", 
+                     "Total children affected",
+                     "Children who identify as female", 
+                     "Children who identify as male",
+                     "Children who identify as neither female nor male", 
+                     "Children between the ages of 5-12",
+                     "Children between the ages of 13-18", 
+                     "Children under 5 years old ", 
+                     "Older than 18 years old"])
 
     @hxlstats = HxlStatsView.all
 
@@ -32,9 +45,9 @@ class HxlstatsController < ApplicationController
         gender_totals[k_gender] = v_gender.count
       end
 
-      # puts "Processing Age aggregations"
+      # Processing Age aggregations
       @hxlstatsgroupsage = hxlstatsgroup.group_by(&:age) # shorthand for { |hxlstat| hxlstat.age }
-      younger_than_five = 0 # doesn't seem right to be gender neutral but age discriminatory
+      younger_than_five = 0 # gender *and* age inclusiveness 
       five_twelve_total = 0
       thirteen_eighteen_total = 0
       older_total = 0
@@ -54,8 +67,15 @@ class HxlstatsController < ApplicationController
         end
       end
 
-      @results.append([*keys, hxlstatsgroup.count, gender_totals[0], gender_totals[1], gender_totals[2],
-                       five_twelve_total, thirteen_eighteen_total, younger_than_five, older_total])
+      @results.append([*keys, 
+                       hxlstatsgroup.count, 
+                       gender_totals[0], 
+                       gender_totals[1], 
+                       gender_totals[2],
+                       five_twelve_total, 
+                       thirteen_eighteen_total, 
+                       younger_than_five, 
+                       older_total])
     end
 
     respond_to do |format|
@@ -64,6 +84,4 @@ class HxlstatsController < ApplicationController
     end
   end
 
-  def index
-  end
 end
