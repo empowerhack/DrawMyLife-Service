@@ -1,50 +1,52 @@
 class HxlstatsController < ApplicationController
   # Controller collects and aggregate data to parse to the HXL proxy/endpoint
 
-  # rubocop:disable MethodLength
-  def show
-    @results = []
-    @results.append(["Emotional State",
-                     "Stage of journey",
-                     "Country drawn in",
-                     "Total children affected",
-                     "Children who identify as female",
-                     "Children who identify as male",
-                     "Children who identify as neither female nor male",
-                     "Children between the ages of 5-12",
-                     "Children between the ages of 13-18",
-                     "Children under 5 years old",
-                     "Older than 18 years old"])
+  def append_column_headers(results)
+    results.append(["Emotional State",
+                    "Stage of journey",
+                    "Country drawn in",
+                    "Total children affected",
+                    "Children who identify as female",
+                    "Children who identify as male",
+                    "Children who identify as neither female nor male",
+                    "Children between the ages of 5-12",
+                    "Children between the ages of 13-18",
+                    "Children under 5 years old",
+                    "Older than 18 years old"])
+    return results
+  end 
 
-    @results.append(["#impact+indicator+code",
-                     "#affected+children",
-                     "#country+code",
-                     "#affected+children+total",
-                     "#affected+children+female",
-                     "#affected+children+male",
-                     "#affected+children+indicator",
-                     "#affected+children+age_5_12",
-                     "#affected+children+age_13_18"])
+  def append_hxl_tags(results)
+    results.append(["#impact+indicator+code",
+                    "#affected+children",
+                    "#country+code",
+                    "#affected+children+total",
+                    "#affected+children+female",
+                    "#affected+children+male",
+                    "#affected+children+indicator",
+                    "#affected+children+age_5_12",
+                    "#affected+children+age_13_18",
+                    "#affected+children+age_under5",
+                    "#affected+children+age_18plus"])
+    return results
+  end
 
-    @hxlstats = HxlStatsView.all
-
-    # Group by major categories, before aggregating subbuckets for gender and age
-    @hxlstatsgroups = @hxlstats.group_by { |hxlstat| [hxlstat.mood_rating, hxlstat.stage_of_journey, hxlstat.country] }
-    @hxlstatsgroups.each do |keys, hxlstatsgroup|
-      # keys = mood_rating, stage_of_j, country
-
+  def get_counts_by_gender(hxlstatsmajorgroup)
       # Group by gender and aggregate
       gender_totals = Hash.new(0)
-      @hxlstatsgroupsgender = hxlstatsgroup.group_by(&:gender) # shorthand for { |hxlstat| hxlstat.gender }
+      @hxlstatsgroupsgender = hxlstatsmajorgroup.group_by(&:gender) # shorthand for { |hxlstat| hxlstat.gender }
       @hxlstatsgroupsgender.each do |k_gender, v_gender|
         # puts "    cycle genders"
         # puts "    %s " % k_gender
         # puts "    %s " % v_gender
         gender_totals[k_gender] = v_gender.count
       end
+      return gender_totals # hash of key gender to v counts
+  end
 
+  def get_counts_by_age(hxlstatsmajorgroup)
       # Processing Age aggregations
-      @hxlstatsgroupsage = hxlstatsgroup.group_by(&:age) # shorthand for { |hxlstat| hxlstat.age }
+      @hxlstatsgroupsage = hxlstatsmajorgroup.group_by(&:age) # shorthand for { |hxlstat| hxlstat.age }
       younger_than_five = 0 # gender *and* age inclusiveness 
       five_twelve_total = 0
       thirteen_eighteen_total = 0
@@ -64,17 +66,36 @@ class HxlstatsController < ApplicationController
           older_total += 1
         end
       end
+    return younger_than_five, five_twelve_total, thirteen_eighteen_total, older_total
+  end
 
-      @results.append([*keys, 
-                       hxlstatsgroup.count, 
-                       gender_totals[0], 
-                       gender_totals[1], 
-                       gender_totals[2],
-                       five_twelve_total, 
-                       thirteen_eighteen_total, 
-                       younger_than_five, 
-                       older_total])
+  def append_hxl_stats_counts(results)
+    @hxlstats = HxlStatsView.all
+
+    # First group by major categories, before aggregating independently for gender and age and recombining
+    @hxlstatsgroups = @hxlstats.group_by { |hxlstat| [hxlstat.mood_rating, hxlstat.stage_of_journey, hxlstat.country] }
+    @hxlstatsgroups.each do |keys, hxlstatsmajorgroup| # keys = mood_rating, stage_of_j, country
+      gender_totals = get_counts_by_gender(hxlstatsmajorgroup)
+      younger_than_five, five_twelve_total, thirteen_eighteen_total, older_total = get_counts_by_age(hxlstatsmajorgroup)
+      results.append([*keys, 
+                      hxlstatsmajorgroup.count, 
+                      gender_totals[0], 
+                      gender_totals[1], 
+                      gender_totals[2],
+                      five_twelve_total, 
+                      thirteen_eighteen_total, 
+                      younger_than_five, 
+                      older_total])
     end
+    return results
+  end
+
+  # rubocop:disable MethodLength
+  def show
+    @results = []
+    @results = append_column_headers(@results)
+    @results = append_hxl_tags(@results)
+    @results = append_hxl_stats_counts(@results)
 
     respond_to do |format|
       format.html
