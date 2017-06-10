@@ -51,8 +51,11 @@ class HxlStatsView < ActiveRecord::Base
   def self.get_counts_by_age(hxlstatsmajorgroup)
     # Processing Age aggregations
     @hxlstatsgroupsage = hxlstatsmajorgroup.group_by(&:age) # shorthand for { |hxlstat| hxlstat.age }
-    # gender *and* age inclusiveness 
-    younger_than_five, five_twelve_total, thirteen_eighteen_total, older_total = 0, 0, 0, 0
+    # gender *and* age inclusiveness
+    younger_than_five = 0
+    five_twelve_total = 0
+    thirteen_eighteen_total = 0
+    older_total = 0
 
     @hxlstatsgroupsage.each do |k_age, _v_age|
       # k_age is age, _v_age is array of hxlstatsmatview
@@ -72,7 +75,6 @@ class HxlStatsView < ActiveRecord::Base
     [younger_than_five, five_twelve_total, thirteen_eighteen_total, older_total]
   end
 
-  # rubocop:disable MethodLength
   def self.hxl_stats_counts
     results = []
     @hxlstats = HxlStatsView.all
@@ -95,7 +97,7 @@ class HxlStatsView < ActiveRecord::Base
     results
   end
 
-  def self.results_by_emotional_state() 
+  def self.results_by_emotional_state
     @results = []
     @results = @results.append(hxlstats_column_headers)
     @results = @results.append(hxlstats_tags)
