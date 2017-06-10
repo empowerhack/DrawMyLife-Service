@@ -4,29 +4,27 @@ class HxlstatsController < ApplicationController
   # rubocop:disable MethodLength
   def show
     @results = []
-    @results.append(["Emotional State", 
-                     "Stage of journey", 
-                     "Country drawn in", 
+    @results.append(["Emotional State",
+                     "Stage of journey",
+                     "Country drawn in",
                      "Total children affected",
-                     "Children who identify as female", 
+                     "Children who identify as female",
                      "Children who identify as male",
-                     "Children who identify as neither female nor male", 
+                     "Children who identify as neither female nor male",
                      "Children between the ages of 5-12",
-                     "Children between the ages of 13-18", 
-                     "Children under 5 years old ", 
+                     "Children between the ages of 13-18",
+                     "Children under 5 years old",
                      "Older than 18 years old"])
 
-    @results.append(["Emotional State", 
-                     "Stage of journey", 
-                     "Country drawn in", 
-                     "Total children affected",
-                     "Children who identify as female", 
-                     "Children who identify as male",
-                     "Children who identify as neither female nor male", 
-                     "Children between the ages of 5-12",
-                     "Children between the ages of 13-18", 
-                     "Children under 5 years old ", 
-                     "Older than 18 years old"])
+    @results.append(["#impact+indicator+code",
+                     "#affected+children",
+                     "#country+code",
+                     "#affected+children+total",
+                     "#affected+children+female",
+                     "#affected+children+male",
+                     "#affected+children+indicator",
+                     "#affected+children+age_5_12",
+                     "#affected+children+age_13_18"])
 
     @hxlstats = HxlStatsView.all
 
@@ -83,5 +81,4 @@ class HxlstatsController < ApplicationController
       format.json { send_data @results, filename: "hxlstats-#{Date.today}.json" }
     end
   end
-
 end

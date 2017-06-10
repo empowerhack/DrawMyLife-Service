@@ -21,6 +21,5 @@ Rails.application.routes.draw do
 
   get 'hxlstats', to: 'hxlstats#show'
 
-  
   root 'drawings#index'
 end
