@@ -1,6 +1,6 @@
 class HxlstatsController < ApplicationController
   def show
-    @results = HxlStatsView.results_by_emotional_state()
+    @results = HxlStatsView.results_by_emotional_state
 
     respond_to do |format|
       format.html
