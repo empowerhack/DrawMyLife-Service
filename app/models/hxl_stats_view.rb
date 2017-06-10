@@ -1,4 +1,4 @@
-def hxlstats_column_headers()
+def hxlstats_column_headers
   ["Emotional State",
    "Stage of journey",
    "Country drawn in",
@@ -12,7 +12,7 @@ def hxlstats_column_headers()
    "Older than 18 years old"]
 end
 
-def hxlstats_tags()
+def hxlstats_tags
   ["#impact+indicator+code",
    "#affected+children",
    "#country+code",
@@ -47,11 +47,12 @@ class HxlStatsView < ActiveRecord::Base
     return gender_totals # hash of key gender to v counts
   end
 
+  # rubocop:disable MethodLength
   def self.get_counts_by_age(hxlstatsmajorgroup)
     # Processing Age aggregations
     @hxlstatsgroupsage = hxlstatsmajorgroup.group_by(&:age) # shorthand for { |hxlstat| hxlstat.age }
-    younger_than_five = 0 # gender *and* age inclusiveness 
-    five_twelve_total = 0
+    # gender *and* age inclusiveness 
+    younger_than_five, five_twelve_total = 0, 0
     thirteen_eighteen_total = 0
     older_total = 0
     @hxlstatsgroupsage.each do |k_age, _v_age|
@@ -72,7 +73,8 @@ class HxlStatsView < ActiveRecord::Base
     return younger_than_five, five_twelve_total, thirteen_eighteen_total, older_total
   end
 
-  def self.hxl_stats_counts()
+  # rubocop:disable MethodLength
+  def self.hxl_stats_counts
     results = []
     @hxlstats = HxlStatsView.all
 
@@ -94,7 +96,6 @@ class HxlStatsView < ActiveRecord::Base
     return results
   end
 
-  # rubocop:disable MethodLength
   def self.results_by_emotional_state() 
     @results = []
     @results = @results.append(hxlstats_column_headers)
