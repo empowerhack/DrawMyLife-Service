@@ -1,4 +1,4 @@
-def hxlstats_column_headers
+HXLSTATS_COLUMN_HEADERS = 
   ["Emotional State",
    "Stage of journey",
    "Country drawn in",
@@ -10,9 +10,8 @@ def hxlstats_column_headers
    "Children between the ages of 13-18",
    "Children under 5 years old",
    "Older than 18 years old"]
-end
 
-def hxlstats_tags
+HXL_STATS_TAGS = 
   ["#impact+indicator+code",
    "#affected+children",
    "#country+code",
@@ -24,7 +23,8 @@ def hxlstats_tags
    "#affected+children+age_13_18",
    "#affected+children+age_under5",
    "#affected+children+age_18plus"]
-end
+
+
 
 def get_counts_by_gender(hxlstatsmajorgroup)
   # Group by gender and aggregate
@@ -75,6 +75,8 @@ class HxlStatsView < ActiveRecord::Base
     true
   end
 
+  @gender_lookup = {'male' => 0, 'female' => 1, 'other_gender' => 2}
+
   def self.hxl_stats_counts
     results = []
     @hxlstats = HxlStatsView.all
@@ -86,9 +88,9 @@ class HxlStatsView < ActiveRecord::Base
       younger_than_five, five_twelve_total, thirteen_eighteen_total, older_total = get_counts_by_age(hxlstatsmajorgroup)
       results.append([*keys,
                       hxlstatsmajorgroup.count,
-                      gender_totals[0],
-                      gender_totals[1],
-                      gender_totals[2],
+                      gender_totals[@gender_lookup['female']], # 1
+                      gender_totals[@gender_lookup['male']], # 0 
+                      gender_totals[@gender_lookup['other_gender']], # 2
                       five_twelve_total,
                       thirteen_eighteen_total,
                       younger_than_five,
@@ -99,8 +101,8 @@ class HxlStatsView < ActiveRecord::Base
 
   def self.results_by_emotional_state
     @results = []
-    @results = @results.append(hxlstats_column_headers)
-    @results = @results.append(hxlstats_tags)
+    @results = @results.append(HXLSTATS_COLUMN_HEADERS)
+    @results = @results.append(HXL_STATS_TAGS)
     @results = @results.concat(hxl_stats_counts)
     @results
   end
