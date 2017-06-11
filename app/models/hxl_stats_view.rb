@@ -18,7 +18,7 @@ HXL_STATS_TAGS =
    "#affected+children+total",
    "#affected+children+female",
    "#affected+children+male",
-   "#affected+children+indicator",
+   "#affected+children+other_gender",
    "#affected+children+age_5_12",
    "#affected+children+age_13_18",
    "#affected+children+age_under5",
