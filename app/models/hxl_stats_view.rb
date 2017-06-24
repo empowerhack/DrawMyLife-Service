@@ -32,38 +32,9 @@ class HxlStatsView < ActiveRecord::Base
      "#affected+children+age_under5",
      "#affected+children+age_18plus"].freeze
 
+  private_class_method :get_counts_by_gender
+  private_class_method :get_counts_by_age
 
-  def self.hxl_stats_counts
-    results = []
-    hxlstats = HxlStatsView.all
-
-    # First group by major categories, before aggregating independently for gender and age and recombining
-    hxlstatsgroups = hxlstats.group_by { |hxlstat| [hxlstat.mood_rating, hxlstat.stage_of_journey, hxlstat.country] }
-    hxlstatsgroups.each do |keys, hxlstatsmajorgroup| # keys = mood_rating, stage_of_j, country
-      gender_totals = get_counts_by_gender(hxlstatsmajorgroup)
-      younger_than_five, five_twelve_total, thirteen_eighteen_total, older_total = get_counts_by_age(hxlstatsmajorgroup)
-      results.append([*keys,
-                      hxlstatsmajorgroup.count,
-                      gender_totals[Drawing.genders["female"]], # 1 or 1
-                      gender_totals[Drawing.genders["male"]], # 0 or 2
-                      gender_totals[Drawing.genders["other"]] + gender_totals[Drawing.genders["not_specified"]], # 2 or 0 + 3
-                      five_twelve_total,
-                      thirteen_eighteen_total,
-                      younger_than_five,
-                      older_total])
-    end
-    results
-  end
-
-  def self.results_by_emotional_state
-    results = []
-    results = results.append(HXLSTATS_COLUMN_HEADERS)
-    results = results.append(HXL_STATS_TAGS)
-    results = results.concat(hxl_stats_counts)
-    results
-  end
-  
-  private
   def self.get_counts_by_gender(hxlstatsmajorgroup)
     # Group by gender and aggregate
     gender_totals = Hash.new(0)
@@ -103,5 +74,36 @@ class HxlStatsView < ActiveRecord::Base
       end
     end
     [younger_than_five, five_twelve_total, thirteen_eighteen_total, older_total]
+  end
+
+  # rubocop:disable MethodLength
+  def self.hxl_stats_counts
+    results = []
+    hxlstats = HxlStatsView.all
+
+    # First group by major categories, before aggregating independently for gender and age and recombining
+    hxlstatsgroups = hxlstats.group_by { |hxlstat| [hxlstat.mood_rating, hxlstat.stage_of_journey, hxlstat.country] }
+    hxlstatsgroups.each do |keys, hxlstatsmajorgroup| # keys = mood_rating, stage_of_j, country
+      gender_totals = get_counts_by_gender(hxlstatsmajorgroup)
+      younger_than_five, five_twelve_total, thirteen_eighteen_total, older_total = get_counts_by_age(hxlstatsmajorgroup)
+      results.append([*keys,
+                      hxlstatsmajorgroup.count,
+                      gender_totals[Drawing.genders["female"]], # 1 or 1
+                      gender_totals[Drawing.genders["male"]], # 0 or 2
+                      gender_totals[Drawing.genders["other"]] + gender_totals[Drawing.genders["not_specified"]], # 2 or 0 + 3
+                      five_twelve_total,
+                      thirteen_eighteen_total,
+                      younger_than_five,
+                      older_total])
+    end
+    results
+  end
+
+  def self.results_by_emotional_state
+    results = []
+    results = results.append(HXLSTATS_COLUMN_HEADERS)
+    results = results.append(HXL_STATS_TAGS)
+    results = results.concat(hxl_stats_counts)
+    results
   end
 end
