@@ -5,12 +5,16 @@ class API::DrawingsController < ApplicationController
   before_action :restrict_access!
 
   def index
-    drawings = Drawing.complete.desc.page params[:page]
+    drawings = Drawing.complete_with_consent.desc.page params[:page]
     respond_with drawings, represent_with: DrawingCollectionRepresenter
   end
 
   def show
-    drawing = Drawing.find(params[:id]).decorate
+    # annoying bug with obfuscate_id, need to deobfuscate if using find with scopes
+    deobs_id = Drawing.deobfuscate_id(params[:id])
+
+    drawing = Drawing.complete_with_consent.find(deobs_id).decorate
+
     respond_with drawing, represent_with: DrawingRepresenter
   end
 

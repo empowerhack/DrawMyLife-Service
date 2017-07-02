@@ -48,9 +48,14 @@ class Drawing < ActiveRecord::Base
 
   ### Scopes
   scope :desc, -> { order("drawings.created_at DESC") }
+  scope :consent_given, -> { where(image_consent: true) }
   scope :within_org, lambda { |org_id|
     joins(:user).where("users.organisation_id" => org_id)
   }
+
+  def self.complete_with_consent
+    complete.consent_given
+  end
 
   def self.to_csv(hxl: false)
     fields = %w(org country age gender mood_rating description story created_at)

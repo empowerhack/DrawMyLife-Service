@@ -1,5 +1,4 @@
-class DrawingCollectionRepresenter < Roar::Decorator
-  include Roar::JSON::HAL
+class DrawingCollectionRepresenter < BaseRepresenter
   include Roar::Contrib::Decorator::PageRepresenter
 
   collection :drawings, exec_context: :decorator, decorator: DrawingMinimalRepresenter
@@ -13,6 +12,6 @@ class DrawingCollectionRepresenter < Roar::Decorator
   end
 
   def page_url(args)
-    drawings_path(format: :hal, page: args[:page])
+    drawings_url(format: :hal, page: args[:page])
   end
 end
