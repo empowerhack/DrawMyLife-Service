@@ -5,7 +5,7 @@ class API::DrawingsController < ApplicationController
   before_action :restrict_access!
 
   def index
-    drawings = Drawing.desc.page params[:page]
+    drawings = Drawing.complete.desc.page params[:page]
     respond_with drawings, represent_with: DrawingCollectionRepresenter
   end
 

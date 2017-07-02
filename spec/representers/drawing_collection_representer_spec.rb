@@ -14,7 +14,7 @@ RSpec.describe DrawingCollectionRepresenter do
 
     it "includes the expected attributes" do
       expect(subject.keys).to contain_exactly(
-        *%w(drawings total_entries _links)
+        *%w(drawings current_page per_page total_entries _links)
       )
     end
   end
