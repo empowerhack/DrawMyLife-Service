@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe DrawingRepresenter do
   DATE_FRACTIONAL_SECONDS = 3
 
-  let(:url_host) { "http://localhost:3000" }
+  let(:url_host) { "http://localhost:3000/api" }
   let(:now) { Time.now }
   let(:drawing_resource) { FactoryGirl.create(:drawing, created_at: now) }
   let(:representer) { JSON.parse(described_class.new(drawing_resource).to_json) }
@@ -42,13 +42,7 @@ RSpec.describe DrawingRepresenter do
     its(['organisation']) do
       is_expected.to include(
         'dml_id' => drawing_resource.organisation.dml_id,
-        'name' => drawing_resource.user.organisation.name,
-
-        '_links' => hash_including(
-          'self' => hash_including(
-            'href' => "#{url_host}/organisations/#{drawing_resource.organisation.dml_id}.hal"
-          )
-        )
+        'name' => drawing_resource.user.organisation.name
       )
     end
   end
@@ -58,7 +52,7 @@ RSpec.describe DrawingRepresenter do
 
     its(:keys) { is_expected.to include('self', 'image_large') }
 
-    its(["self"]) { is_expected.to include("href" => "#{url_host}/drawings/#{drawing_resource.dml_id}.hal") }
+    its(["self"]) { is_expected.to include("href" => "#{url_host}/drawings/#{drawing_resource.dml_id}") }
     its(["image_large"]) { is_expected.to include("href" => drawing_resource.image.url) }
   end
 end

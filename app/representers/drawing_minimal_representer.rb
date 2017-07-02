@@ -7,7 +7,7 @@ class DrawingMinimalRepresenter < BaseRepresenter
   end
 
   link :self do
-    drawing_url(id: represented, format: :hal)
+    api_drawing_url(id: represented, format: :hal)
   end
 
   link :thumbnail do

@@ -16,7 +16,7 @@ class DrawingRepresenter < BaseRepresenter
   end
 
   link :self do
-    drawing_url(id: represented, format: :hal)
+    api_drawing_url(format: :hal, id: represented)
   end
 
   link :image_large do
@@ -29,9 +29,5 @@ class DrawingRepresenter < BaseRepresenter
 
     property :dml_id
     property :name
-
-    link :self do
-      organisation_url(id: represented, format: :hal)
-    end
   end
 end

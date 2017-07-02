@@ -12,6 +12,6 @@ class DrawingCollectionRepresenter < BaseRepresenter
   end
 
   def page_url(args)
-    drawings_url(format: :hal, page: args[:page])
+    api_drawings_url(format: :hal, page: args[:page])
   end
 end
