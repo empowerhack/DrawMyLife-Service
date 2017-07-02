@@ -1,7 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe API::DrawingsController, type: :controller do
-  login_as_super_admin
+  before do
+    request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(api_key.access_token)
+  end
+
+  let(:api_key) { FactoryGirl.create :api_key }
 
   describe "GET index" do
     subject(:perform) { get :index, format: :hal }
