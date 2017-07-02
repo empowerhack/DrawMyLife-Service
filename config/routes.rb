@@ -20,4 +20,8 @@ Rails.application.routes.draw do
   resources :drawings, :organisations
 
   root 'drawings#index'
+
+  namespace :api, defaults: {format: :hal} do
+    resources :drawings
+  end
 end

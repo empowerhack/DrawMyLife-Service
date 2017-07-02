@@ -95,20 +95,6 @@ RSpec.describe DrawingsController, type: :controller do
       end
       it { expect(perform).to render_template :index }
     end
-
-    context "JSON HAL request" do
-      let(:perform) { get :index, format: :hal }
-
-      it do
-        perform
-        expect(assigns(:drawings)).not_to be_nil
-      end
-
-      context "body" do
-        subject { JSON.parse(perform.body) }
-        it { is_expected.to include("drawings") }
-      end
-    end
   end
 
   describe "GET show" do
@@ -127,20 +113,6 @@ RSpec.describe DrawingsController, type: :controller do
       end
 
       it { expect(perform).to render_template :show }
-    end
-
-    context "JSON HAL request" do
-      let(:perform) { get :show, id: drawing, format: :hal }
-
-      it do
-        perform
-        expect(assigns(:drawing)).not_to be_nil
-      end
-
-      context "body" do
-        subject { JSON.parse(perform.body) }
-        it { is_expected.to include("description" => drawing.description) }
-      end
     end
 
     context "with incorrect access" do
