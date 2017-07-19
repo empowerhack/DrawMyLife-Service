@@ -38,9 +38,6 @@ class HxlStatsView < ActiveRecord::Base
       gender_totals = Hash.new(0)
       hxlstatsgroupsgender = hxlstatsmajorgroup.group_by(&:gender) # shorthand for { |hxlstat| hxlstat.gender }
       hxlstatsgroupsgender.each do |k_gender, v_gender|
-        # puts "    cycle genders"
-        # puts "    %s " % k_gender
-        # puts "    %s " % v_gender
         gender_totals[k_gender] = v_gender.count
       end
       gender_totals # hash of key gender to v counts
@@ -50,17 +47,12 @@ class HxlStatsView < ActiveRecord::Base
     def self.get_counts_by_age(hxlstatsmajorgroup)
       # Processing Age aggregations
       hxlstatsgroupsage = hxlstatsmajorgroup.group_by(&:age) # shorthand for { |hxlstat| hxlstat.age }
-      # gender *and* age inclusiveness
       younger_than_five = 0
       five_twelve_total = 0
       thirteen_eighteen_total = 0
       older_total = 0
 
       hxlstatsgroupsage.each do |k_age, _v_age|
-        # k_age is age, _v_age is array of hxlstatsmatview
-        # puts "    cycle ages"
-        # puts "    %s" % k_age
-        # puts "    %s" % _v_age.count
         if k_age < 5
           younger_than_five += 1
         elsif k_age >= 5 && k_age < 13
