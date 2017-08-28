@@ -1,5 +1,5 @@
 class CreateHxlStatsView < ActiveRecord::Migration
-  def up 
+  def up
     execute <<-SQL
       CREATE VIEW hxl_stats_view AS
       SELECT d.id AS drawing_id,
@@ -21,4 +21,3 @@ class CreateHxlStatsView < ActiveRecord::Migration
     SQL
   end
 end
-
