@@ -14,13 +14,8 @@ RSpec.describe DrawingsController, type: :controller do
         allow_any_instance_of(Drawing).to receive(:can_modify?).and_return(false)
       end
 
-      it "redirects to root path" do
-        expect(perform).to redirect_to root_path
-      end
-
-      it "renders a flash error" do
-        perform
-        expect(flash[:alert]).to have_content("You do not have permission to edit or delete this drawing.")
+      it "returns an unauthorized status" do
+        expect(perform).to have_http_status :unauthorized
       end
     end
   end
@@ -66,7 +61,7 @@ RSpec.describe DrawingsController, type: :controller do
       end
 
       it "redirects to the drawing" do
-        expect(perform).to redirect_to drawing_path drawing.id
+        expect(perform).to redirect_to drawing_path drawing
       end
     end
 
@@ -100,20 +95,6 @@ RSpec.describe DrawingsController, type: :controller do
       end
       it { expect(perform).to render_template :index }
     end
-
-    context "JSON HAL request" do
-      let(:perform) { get :index, format: :hal }
-
-      it do
-        perform
-        expect(assigns(:drawings)).not_to be_nil
-      end
-
-      context "body" do
-        subject { JSON.parse(perform.body) }
-        it { is_expected.to include("drawings") }
-      end
-    end
   end
 
   describe "GET show" do
@@ -134,32 +115,13 @@ RSpec.describe DrawingsController, type: :controller do
       it { expect(perform).to render_template :show }
     end
 
-    context "JSON HAL request" do
-      let(:perform) { get :show, id: drawing, format: :hal }
-
-      it do
-        perform
-        expect(assigns(:drawing)).not_to be_nil
-      end
-
-      context "body" do
-        subject { JSON.parse(perform.body) }
-        it { is_expected.to include("description" => drawing.description) }
-      end
-    end
-
     context "with incorrect access" do
       before do
         allow_any_instance_of(Drawing).to receive(:can_view?).and_return(false)
       end
 
-      it "redirects to root path" do
-        expect(perform).to redirect_to root_path
-      end
-
-      it "renders a flash error" do
-        perform
-        expect(flash[:alert]).to have_content("You do not have permission to view this drawing.")
+      it "returns an unauthorized status" do
+        expect(perform).to have_http_status :unauthorized
       end
     end
   end

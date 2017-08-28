@@ -22,3 +22,6 @@ User.create!(
   role: "admin",
   confirmed_at: Time.zone.now
 )
+
+# API key
+APIKey.create!

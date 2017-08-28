@@ -133,7 +133,7 @@ Install all the dependencies from your Gemfile using Bundler:
 
 	$ bundle install
 
-Set up your database and seed sample data (including admin users to log in!):
+Set up your database and seed sample data (including admin users to log in and an API key!):
 
 	$ bundle exec rake db:migrate
 	$ bundle exec rake db:seed
@@ -143,7 +143,27 @@ Run the Rails server:
 	$ bundle exec rails s
 
 
-**You should now be able to access the app in your browser at [localhost:3000](http://localhost:3000). If you ran the database seed task you can log in with super_admin@example.com or admin@example.com (password is 'password')**!
+**You should now be able to access the admin app in your browser at [localhost:3000](http://localhost:3000). If you ran the database seed task you can log in with super_admin@example.com or admin@example.com (password is 'password')**!
+
+### Try out the API
+
+Once you've completed the steps above, you should also now be able to access the drawings API. The hypermedia API format is JSON HAL and is secured with very simple token access. You will need to pass a token through as a header with your request.
+
+Find the seeded API key in your Rails console:
+
+	$ APIKey.first.access_token
+
+
+If this errors, you may not have run the seeds script yet. You can also generate one using:
+
+	$ APIKey.create!
+
+Using this token, make a request via cURL on the command line, e.g:
+
+	$ curl http://localhost:3000/api/drawings.hal -H 'Authorization: Token token="cd1facb479c09638967c2dcf78d22d5b"'
+
+*Note the .hal extension there ^*
+
 
 ### Set up emails
 
@@ -160,6 +180,9 @@ Also, in the shell window you ran the actual server, you can see request logs as
 
 
 #### Running Tests
+
+To ensure your test database is up-to-date, run:
+	$ RAILS_ENV=test bundle exec rake db:reset
 
 We will be using [rspec](http://rspec.info/) for tests. To run all tests, from your project's root, run:
 

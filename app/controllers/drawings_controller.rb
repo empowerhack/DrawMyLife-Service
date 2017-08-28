@@ -1,7 +1,4 @@
 class DrawingsController < ApplicationController
-  include Roar::Rails::ControllerAdditions
-  respond_to :hal
-
   before_action :authenticate_user!
   before_action :set_drawing, only: [:show, :edit, :update, :destroy]
   before_action :authorize_read, only: :show
@@ -15,7 +12,6 @@ class DrawingsController < ApplicationController
     respond_to do |format|
       format.html
       format.js
-      format.hal { respond_with drawings, represent_with: DrawingCollectionRepresenter }
       format.csv { render text: drawings.to_csv(hxl: params[:hxl].present?) }
     end
   end
@@ -38,7 +34,6 @@ class DrawingsController < ApplicationController
   def show
     respond_to do |format|
       format.html
-      format.hal { respond_with @drawing, represent_with: DrawingRepresenter }
     end
   end
 
@@ -63,15 +58,11 @@ class DrawingsController < ApplicationController
   private
 
   def authorize_read
-    return if @drawing.can_view?(current_user)
-    flash[:alert] = "You do not have permission to view this drawing."
-    redirect_to root_path
+    return head :unauthorized unless @drawing.can_view?(current_user)
   end
 
   def authorize_write
-    return if @drawing.can_modify?(current_user)
-    flash[:alert] = "You do not have permission to edit or delete this drawing."
-    redirect_to root_path
+    return head :unauthorized unless @drawing.can_modify?(current_user)
   end
 
   def drawing_params

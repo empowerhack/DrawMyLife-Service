@@ -100,4 +100,6 @@ Rails.application.configure do
 
   # User support email
   config.support_email = ENV.fetch('SUPPORT_EMAIL', '')
+
+  config.action_controller.default_url_options = { host: ENV.fetch('MAILER_URL', '') }
 end

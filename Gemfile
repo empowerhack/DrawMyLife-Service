@@ -60,6 +60,8 @@ gem 'responders'
 gem 'roar-rails'
 gem 'roar-contrib'
 
+gem 'obfuscate_id'
+
 group :development, :test do
   # Load environment variables in dev and test envs
   gem 'dotenv-rails'

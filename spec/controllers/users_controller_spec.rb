@@ -14,13 +14,9 @@ RSpec.describe UsersController, type: :controller do
     context "current user is admin" do
       login_as_admin
 
-      it "sets an appropriate flash error" do
-        perform
-        expect(controller).to set_flash[:error]
-        expect(flash[:error]).to have_content("Sorry, you may be a super human being, but you need to be a super admin to do that.")
+      it "returns an unauthorized status" do
+        expect(perform).to have_http_status :unauthorized
       end
-
-      it { expect(perform).to redirect_to root_path }
     end
   end
 

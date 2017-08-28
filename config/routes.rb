@@ -22,4 +22,8 @@ Rails.application.routes.draw do
   get 'hxlstats', to: 'hxlstats#show'
 
   root 'drawings#index'
+
+  namespace :api, defaults: { format: :hal } do
+    resources :drawings
+  end
 end
