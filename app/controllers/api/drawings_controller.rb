@@ -10,12 +10,11 @@ class API::DrawingsController < ApplicationController
   end
 
   def show
-    # annoying bug with obfuscate_id, need to deobfuscate if using find with scopes
-    deobs_id = Drawing.deobfuscate_id(params[:id])
-
-    drawing = Drawing.complete_with_consent.find(deobs_id).decorate
-
-    respond_with drawing, represent_with: DrawingRepresenter
+    if (drawing = Drawing.find(params[:id])) && drawing.complete? && drawing.image_consent
+      respond_with drawing.decorate, represent_with: DrawingRepresenter
+    else
+      render json: { error: 'Not found' }, status: :not_found
+    end
   end
 
   private
