@@ -1,7 +1,6 @@
 namespace :backfill do
-
   desc "Halves mood rating of any images uploaded before 24 Oct 16"
-  task :mood_rating_field => :environment do
+  task mood_rating_field: :environment do
     Drawing.all.each do |drawing|
       # If drawing has a mood rating and was last updated before we moved to a 1-5 scale
       if drawing.mood_rating? && drawing.updated_at <= Time.parse('24 Oct 2016')
@@ -14,5 +13,4 @@ namespace :backfill do
       end
     end
   end
-
 end
