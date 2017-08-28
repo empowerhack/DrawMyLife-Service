@@ -86,7 +86,7 @@ class HxlStatsView < ActiveRecord::Base
 
     def hxl_stats_counts
       results = []
-      hxlstats = HxlStatsView.all
+      hxlstats = HxlStatsView.where(status: Drawing.statuses[:complete])
 
       # First group by major categories, before aggregating independently for gender and age and recombining
       hxlstatsgroups = hxlstats.group_by { |hxlstat| [hxlstat.mood_rating, hxlstat.stage_of_journey, hxlstat.country] }
