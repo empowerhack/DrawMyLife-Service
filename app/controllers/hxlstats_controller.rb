@@ -4,7 +4,7 @@ class HxlstatsController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.json { send_data @results, filename: "hxlstats-#{Date.today}.json" }
+      format.json { send_data @results.to_json, filename: "hxlstats-#{Date.today}.json" }
     end
   end
 end
