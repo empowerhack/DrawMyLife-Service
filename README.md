@@ -29,7 +29,7 @@ We also have a team website being built with Jekyll/React with open issues over 
 ## For New Volunteers
 
 * Say hi to the team on [Slack](https://empowerhackteam.slack.com/messages/project_drawmylife/)
-* Read the starter [HackPad](https://hackpad.com/Draw-My-Life-Team-Info-8vFpl0IOk3U)
+* Read the starter [document](https://www.notion.so/Draw-My-Life-DML-Team-Info-a4ee64eb01cd445ea9f7a71ead5b5140)
 * Check the [Project Sprint Boards](https://github.com/empowerhack/DrawMyLife-Service/projects) for issues in the **Pick Me Up** column. The boards are organised by goal. Open issues will typically have a milestone. We also have frontend-heavy project boards on our team website repository [empowerhack/DrawMyLife-Website](https://github.com/empowerhack/DrawMyLife-Website/projects).
 * If creating a new issue to work on, please ensure the task is discrete (i.e. easily transferred to a new assignee), clearly described, and has no more than 3 labels. Ideally we should clearly separate UX/design and dev tasks.
 * Follow the instructions below to set up (feel free to holler/submit a pull request if it looks out of date)
